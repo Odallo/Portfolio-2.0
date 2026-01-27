@@ -1,17 +1,11 @@
 import Hero from "../src/components/Hero";
-import About from "../src/components/About";
-import Skills from "../src/components/Skills";
-import Projects from "../src/components/Projects";
-import Contact from "../src/components/Contact";
+import Navigation from "../src/components/Navigation";
 
 export default function Home() {
   return (
     <main>
+      <Navigation />
       <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Contact />
     </main>
   );
 }

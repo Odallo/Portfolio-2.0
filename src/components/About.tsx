@@ -22,7 +22,7 @@ export default function About() {
               <div className="flex justify-center mb-8">
                 <div className="relative">
                   <img 
-                    src="/profile.jpg" 
+                    src="/WhatsApp Image 2026-01-27 at 23.26.06.jpeg" 
                     alt="Profile" 
                     className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-tan/50 shadow-xl"
                   />
