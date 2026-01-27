@@ -7,8 +7,8 @@ export default function Hero() {
         </h1>
 
         <p className="mt-6 text-lg text-cream/80">
-          I build reliable, human-centered digital solutions using modern web
-          technologies.
+          I build reliable, scalable, and human-centered digital solutions
+          using modern web technologies.
         </p>
 
         <div className="mt-8 flex gap-4">

@@ -22,4 +22,6 @@
 body {
   background-color: #414A37;
   color: #DBC2A6;
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.6;
 }
