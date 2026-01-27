@@ -1,60 +1,37 @@
-import AnimateIn from "./AnimateIn";
-
 export default function Contact() {
   return (
     <section className="py-24 bg-olive/90">
-      <div className="max-w-4xl mx-auto px-6">
-        <AnimateIn>
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
-            Let's Connect
-          </h2>
-        </AnimateIn>
+      <div className="max-w-6xl mx-auto px-6">
+        <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          Contact
+        </h2>
 
-        <AnimateIn delay={0.1}>
-          <div className="text-center mb-12">
-            <p className="text-lg text-cream/90 leading-relaxed">
-              If you're looking for a motivated developer who learns fast, 
-              asks good questions, and cares about code quality — let's talk.
-            </p>
-          </div>
-        </AnimateIn>
+        <p className="max-w-2xl text-cream/85 mb-8">
+          If you're looking for a motivated developer who learns fast,
+          communicates clearly, and cares about code quality, I'd be happy
+          to connect.
+        </p>
 
-        <AnimateIn delay={0.2}>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="mailto:your.email@example.com"
-              className="px-8 py-3 bg-tan text-olive font-semibold rounded-xl text-center hover:bg-cream transition-colors"
-            >
-              Email Me
+        <div className="space-y-3">
+          <p>
+            📧 Email:{" "}
+            <a href="mailto:odaloeugine@gmail.com" className="underline">
+              odaloeugine@gmail.com
             </a>
-
-            <a
-              href="https://github.com/yourusername"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-3 border border-cream text-cream font-semibold rounded-xl text-center hover:bg-cream hover:text-olive transition-colors"
-            >
-              GitHub
+          </p>
+          <p>
+            💻 GitHub:{" "}
+            <a href="https://github.com/Odallo" className="underline">
+              https://github.com/Odallo
             </a>
-
-            <a
-              href="https://linkedin.com/in/yourusername"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-3 border border-cream text-cream font-semibold rounded-xl text-center hover:bg-cream hover:text-olive transition-colors"
-            >
-              LinkedIn
+          </p>
+          <p>
+            🔗 LinkedIn:{" "}
+            <a href="https://www.linkedin.com/in/odallo-eugine/" className="underline">
+              https://www.linkedin.com/in/odallo-eugine/
             </a>
-          </div>
-        </AnimateIn>
-
-        <AnimateIn delay={0.3}>
-          <div className="mt-12 text-center">
-            <p className="text-sm text-cream/70">
-              Open to opportunities and meaningful conversations about building great software.
-            </p>
-          </div>
-        </AnimateIn>
+          </p>
+        </div>
       </div>
     </section>
   );

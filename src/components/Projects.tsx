@@ -3,33 +3,45 @@ import AnimateIn from "./AnimateIn";
 const projects = [
   {
     title: "Weather Application",
-    description:
-      "A decoupled weather app using Next.js and Laravel, integrating the OpenWeatherMap API with a clean, responsive UI.",
-    problem: "Needed reliable weather data with graceful error handling for API failures",
-    solution: "Implemented retry logic, caching, and fallback data sources",
-    outcome: "99.9% uptime with smooth user experience even during API issues",
-    tech: ["Next.js", "TypeScript", "Laravel", "API"],
-    focus: "API integration, separation of concerns, clean UI"
+    description: `
+    A decoupled weather application built with a Next.js frontend and a Laravel
+    backend. The project focuses on clean separation of concerns, predictable
+    data flow, and reliable API integration using the OpenWeatherMap API.
+    `,
+    highlights: [
+      "Designed a clear frontend–backend contract using REST APIs",
+      "Handled asynchronous data loading and error states gracefully",
+      "Improved understanding of decoupled architecture and API-driven systems",
+    ],
+    tech: ["Next.js", "TypeScript", "Laravel", "REST APIs"],
   },
   {
     title: "Hotel Management System",
-    description:
-      "A management system designed to handle reservations, customers, and reporting with a focus on usability.",
-    problem: "Complex booking logic with concurrent access and data integrity concerns",
-    solution: "Designed transactional database schema with proper locking mechanisms",
-    outcome: "Handled 100+ concurrent bookings without data conflicts",
-    tech: ["Java", "Database Design"],
-    focus: "Database architecture, transaction management, scalability"
+    description: `
+    A management system designed to support reservations, customer records,
+    and basic reporting. The project emphasized data modeling, system flow,
+    and building features around real operational needs.
+    `,
+    highlights: [
+      "Translated real-world processes into system logic",
+      "Designed database-backed features with consistency in mind",
+      "Strengthened fundamentals in structured application development",
+    ],
+    tech: ["Java", "Databases", "System Design"],
   },
   {
     title: "CLI Goal Tracker",
-    description:
-      "A local-first CLI application built with Node.js, TypeScript, and SQLite to track goals and monthly progress.",
-    problem: "Users needed offline capability with data synchronization across devices",
-    solution: "Built local-first architecture with conflict resolution for sync",
-    outcome: "Zero data loss incidents with seamless sync when connectivity restored",
+    description: `
+    A local-first command-line application for tracking personal goals and
+    monthly progress. Built to be simple, fast, and future-ready for cloud
+    synchronization.
+    `,
+    highlights: [
+      "Implemented persistent storage using SQLite",
+      "Focused on clear CLI UX and predictable commands",
+      "Reinforced habits around building small but complete tools",
+    ],
     tech: ["Node.js", "TypeScript", "SQLite"],
-    focus: "Local-first design, data persistence, CLI UX"
   },
 ];
 
@@ -51,30 +63,18 @@ export default function Projects() {
                   {project.title}
                 </h3>
 
-                <p className="text-cream/80 mb-4">
+                <p className="text-cream/80 mb-4 whitespace-pre-line">
                   {project.description}
                 </p>
 
-                <div className="space-y-3 mb-4">
-                  <div>
-                    <span className="text-sm font-semibold text-tan">Problem:</span>
-                    <p className="text-sm text-cream/70 mt-1">{project.problem}</p>
-                  </div>
-                  
-                  <div>
-                    <span className="text-sm font-semibold text-tan">Solution:</span>
-                    <p className="text-sm text-cream/70 mt-1">{project.solution}</p>
-                  </div>
-                  
-                  <div>
-                    <span className="text-sm font-semibold text-tan">Outcome:</span>
-                    <p className="text-sm text-cream/70 mt-1">{project.outcome}</p>
-                  </div>
+                <div className="space-y-2 mb-4">
+                  {project.highlights.map((highlight, i) => (
+                    <div key={i} className="flex items-start">
+                      <span className="text-tan mr-2 text-sm">•</span>
+                      <span className="text-sm text-cream/70">{highlight}</span>
+                    </div>
+                  ))}
                 </div>
-
-                <p className="text-sm text-cream/70 mb-3">
-                  <strong>Focus:</strong> {project.focus}
-                </p>
 
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((t) => (
