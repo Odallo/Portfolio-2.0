@@ -1,11 +1,11 @@
-import Skills from "../../src/components/Skills";
+import Contact from "../../src/components/Contact";
 import Navigation from "../../src/components/Navigation";
 
-export default function SkillsPage() {
+export default function ContactPage() {
   return (
     <main>
       <Navigation />
-      <Skills />
+      <Contact />
     </main>
   );
 }
