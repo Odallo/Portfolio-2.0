@@ -11,7 +11,7 @@ export default function Navigation() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="text-xl font-bold text-cream">
-            Portfolio
+            Odallo Eugine
           </Link>
 
           {/* Desktop Navigation */}
