@@ -18,6 +18,18 @@ export default function About() {
           {/* Main content with vintage card styling */}
           <div className="bg-olive/20 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-tan/30">
             <div className="space-y-8">
+              {/* Profile Picture Section */}
+              <div className="flex justify-center mb-8">
+                <div className="relative">
+                  <img 
+                    src="/profile.jpg" 
+                    alt="Profile" 
+                    className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-tan/50 shadow-xl"
+                  />
+                  <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-tan rounded-full border-2 border-olive/30"></div>
+                </div>
+              </div>
+              
               <div className="text-center md:text-left">
                 <p className="text-xl md:text-2xl text-cream/95 leading-relaxed font-light">
                   I'm a software developer who cares about how systems behave but also 
