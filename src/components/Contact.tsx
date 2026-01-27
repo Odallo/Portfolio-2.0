@@ -6,31 +6,35 @@ export default function Contact() {
           Contact
         </h2>
 
-        <p className="max-w-2xl text-cream/85 mb-8">
+        <p className="max-w-2xl text-cream/85 mb-10">
           If you're looking for a motivated developer who learns fast,
-          communicates clearly, and cares about code quality, I'd be happy
+          communicates clearly, and cares about code quality, I'd be glad
           to connect.
         </p>
 
-        <div className="space-y-3">
-          <p>
-            📧 Email:{" "}
-            <a href="mailto:odaloeugine@gmail.com" className="underline">
-              odaloeugine@gmail.com
-            </a>
-          </p>
-          <p>
-            💻 GitHub:{" "}
-            <a href="https://github.com/Odallo" className="underline">
-              https://github.com/Odallo
-            </a>
-          </p>
-          <p>
-            🔗 LinkedIn:{" "}
-            <a href="https://www.linkedin.com/in/odallo-eugine/" className="underline">
-              https://www.linkedin.com/in/odallo-eugine/
-            </a>
-          </p>
+        <div className="flex flex-wrap gap-4">
+          <a
+            href="mailto:odaloeugine@gmail.com"
+            className="px-6 py-3 bg-tan text-olive font-semibold rounded-xl"
+          >
+            Email Me
+          </a>
+
+          <a
+            href="https://github.com/Odallo"
+            target="_blank"
+            className="px-6 py-3 border border-cream rounded-xl"
+          >
+            GitHub
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/odallo-eugine/"
+            target="_blank"
+            className="px-6 py-3 border border-cream rounded-xl"
+          >
+            LinkedIn
+          </a>
         </div>
       </div>
     </section>

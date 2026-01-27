@@ -2,46 +2,83 @@ import AnimateIn from "./AnimateIn";
 
 const projects = [
   {
-    title: "Weather Application",
+    title: "Weather Application (Decoupled Architecture)",
     description: `
-    A decoupled weather application built with a Next.js frontend and a Laravel
-    backend. The project focuses on clean separation of concerns, predictable
-    data flow, and reliable API integration using the OpenWeatherMap API.
+    A production-style weather application with a Next.js + TypeScript frontend
+    and a Laravel backend. Designed to consume external APIs reliably while
+    keeping concerns clearly separated.
     `,
     highlights: [
-      "Designed a clear frontend–backend contract using REST APIs",
-      "Handled asynchronous data loading and error states gracefully",
-      "Improved understanding of decoupled architecture and API-driven systems",
+      "Implemented API-driven frontend using OpenWeatherMap",
+      "Designed clean separation between UI and backend logic",
+      "Handled async states, errors, and user input predictably",
     ],
     tech: ["Next.js", "TypeScript", "Laravel", "REST APIs"],
   },
   {
-    title: "Hotel Management System",
+    title: "CLI Goal Tracker",
     description: `
-    A management system designed to support reservations, customer records,
-    and basic reporting. The project emphasized data modeling, system flow,
-    and building features around real operational needs.
+    A local-first command-line application for tracking personal goals and monthly
+    progress. Built with future cloud synchronization in mind.
     `,
     highlights: [
-      "Translated real-world processes into system logic",
+      "Designed a simple but extensible SQLite data model",
+      "Built a clear CLI interface with predictable commands",
+      "Focused on persistence, correctness, and usability",
+    ],
+    tech: ["Node.js", "TypeScript", "SQLite"],
+  },
+  {
+    title: "Hotel Management System",
+    description: `
+    A system for managing reservations, customer records, and reporting.
+    The focus was on translating real-world workflows into reliable software.
+    `,
+    highlights: [
+      "Modeled real operational processes into application logic",
       "Designed database-backed features with consistency in mind",
-      "Strengthened fundamentals in structured application development",
+      "Strengthened system design and structured programming skills",
     ],
     tech: ["Java", "Databases", "System Design"],
   },
   {
-    title: "CLI Goal Tracker",
+    title: "Rock–Paper–Scissors Game",
     description: `
-    A local-first command-line application for tracking personal goals and
-    monthly progress. Built to be simple, fast, and future-ready for cloud
-    synchronization.
+    A browser-based game built to reinforce JavaScript fundamentals,
+    game logic flow, and clean UI updates.
     `,
     highlights: [
-      "Implemented persistent storage using SQLite",
-      "Focused on clear CLI UX and predictable commands",
-      "Reinforced habits around building small but complete tools",
+      "Implemented deterministic game logic",
+      "Focused on state handling and user feedback",
+      "Practiced clean separation between logic and UI",
     ],
-    tech: ["Node.js", "TypeScript", "SQLite"],
+    tech: ["JavaScript", "HTML", "CSS"],
+  },
+  {
+    title: "Android Calculator App",
+    description: `
+    A native Android calculator application built to understand mobile UI,
+    event handling, and application lifecycle fundamentals.
+    `,
+    highlights: [
+      "Implemented core arithmetic logic",
+      "Worked with Android layouts and user interaction",
+      "Learned basics of mobile application structure",
+    ],
+    tech: ["Java", "Android Studio"],
+  },
+  {
+    title: "Ayoayo Game (Take-Home Assignment)",
+    description: `
+    A JavaScript implementation of the traditional Ayoayo game,
+    adapted from an original Java design.
+    `,
+    highlights: [
+      "Translated object-oriented logic into JavaScript",
+      "Implemented turn-based game rules accurately",
+      "Improved problem-solving under assignment constraints",
+    ],
+    tech: ["JavaScript", "Game Logic"],
   },
 ];
 
