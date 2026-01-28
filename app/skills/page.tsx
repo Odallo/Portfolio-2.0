@@ -1,11 +1,11 @@
-import Skills from "../../src/components/Skills";
+import TechStack from "../../src/components/TechStack";
 import Navigation from "../../src/components/Navigation";
 
 export default function SkillsPage() {
   return (
     <main>
       <Navigation />
-      <Skills />
+      <TechStack />
     </main>
   );
 }

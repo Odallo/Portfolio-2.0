@@ -19,6 +19,9 @@ export default function Navigation() {
             <Link href="/about" className="text-cream/80 hover:text-cream transition-colors">
               About
             </Link>
+            <Link href="/services" className="text-cream/80 hover:text-cream transition-colors">
+              Services
+            </Link>
             <Link href="/projects" className="text-cream/80 hover:text-cream transition-colors">
               Projects
             </Link>
@@ -62,6 +65,13 @@ export default function Navigation() {
               onClick={() => setIsOpen(false)}
             >
               About
+            </Link>
+            <Link
+              href="/services"
+              className="block py-2 text-cream/80 hover:text-cream transition-colors"
+              onClick={() => setIsOpen(false)}
+            >
+              Services
             </Link>
             <Link
               href="/projects"

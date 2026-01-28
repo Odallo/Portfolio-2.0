@@ -20,8 +20,15 @@ export default function Hero() {
           </a>
 
           <a
-            href="/resume_eugene_odallo_wakho (1).pdf"
+            href="/services"
             className="px-6 py-3 border border-cream rounded-xl"
+          >
+            Get a Free Quote
+          </a>
+
+          <a
+            href="/resume_eugene_odallo_wakho (1).pdf"
+            className="px-6 py-3 border border-cream/50 rounded-xl text-sm"
           >
             Download CV
           </a>
