@@ -35,6 +35,10 @@ export default function About() {
                   I'm a software developer who cares about how systems behave but also 
                   under real usage, changing requirements, and imperfect conditions.
                 </p>
+                <p className="text-lg text-cream/85 leading-relaxed mt-4">
+                  I've built systems ranging from web applications to a miniature relational
+                  database engine, which helped me deeply understand how software behaves under the hood.
+                </p>
               </div>
 
               <div className="grid md:grid-cols-2 gap-8">
