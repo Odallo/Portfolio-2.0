@@ -1,4 +1,5 @@
 import AnimateIn from "./AnimateIn";
+import ProjectCard from "./ui/ProjectCard";
 
 const projects = [
   {
@@ -16,7 +17,7 @@ const projects = [
     ],
     tech: ["Python", "Flask", "Data Structures", "System Design"],
     github: "https://github.com/Odallo/Pesa-Pal",
-    demo: null,
+    demo: undefined,
   },
   {
     title: "Weather Application (Decoupled Architecture)",
@@ -32,7 +33,7 @@ const projects = [
     ],
     tech: ["Next.js", "TypeScript", "Laravel", "REST APIs"],
     github: "https://github.com/Odallo/weather-app",
-    demo: null,
+    demo: undefined,
   },
   {
     title: "CLI Goal Tracker",
@@ -47,7 +48,7 @@ const projects = [
     ],
     tech: ["Node.js", "TypeScript", "SQLite"],
     github: "https://github.com/Odallo/goaltrack",
-    demo: null,
+    demo: undefined,
   },
   {
     title: "Hotel Management System",
@@ -62,7 +63,7 @@ const projects = [
     ],
     tech: ["Java", "Databases"],
     github: "https://github.com/Odallo/hotel-management-system",
-    demo: null,
+    demo: undefined,
   },
   {
     title: "Ayoayo Game (JavaScript)",
@@ -77,76 +78,33 @@ const projects = [
     ],
     tech: ["JavaScript", "Game Logic"],
     github: "https://github.com/Odallo/ayoayo-game",
-    demo: null,
+    demo: undefined,
   },
 ];
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 bg-olive/90">
+    <section className="py-20">
       <div className="max-w-6xl mx-auto px-6">
-        <AnimateIn>
-          <h2 className="text-3xl md:text-4xl font-bold mb-10">
-            Selected Projects
-          </h2>
-        </AnimateIn>
+        <div className="text-center mb-16">
+          <div className="inline-block relative">
+            <h2 className="text-4xl md:text-6xl font-bold text-[#2d2d2d] mb-4"
+              style={{ fontFamily: 'Kalam, cursive' }}
+            >
+              Selected Projects
+            </h2>
+            <div className="absolute -bottom-2 left-0 right-0 h-2 bg-[#ff4d4d]"
+              style={{
+                borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px',
+              }}
+            />
+          </div>
+        </div>
 
         <div className="grid md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <AnimateIn key={project.title} delay={index * 0.1}>
-              <div className="border border-cream/20 rounded-2xl p-6 hover:bg-olive/70 transition">
-                <h3 className="text-xl font-semibold mb-3">
-                  {project.title}
-                </h3>
-
-                <p className="text-cream/80 mb-4 whitespace-pre-line">
-                  {project.description}
-                </p>
-
-                <div className="space-y-2 mb-4">
-                  {project.highlights.map((highlight, i) => (
-                    <div key={i} className="flex items-start">
-                      <span className="text-tan mr-2 text-sm">•</span>
-                      <span className="text-sm text-cream/70">{highlight}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="text-sm px-3 py-1 bg-tan text-olive rounded-full"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex gap-4">
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-4 py-2 border border-cream rounded-lg text-sm hover:bg-cream hover:text-olive transition"
-                    >
-                      View Code
-                    </a>
-                  )}
-
-                  {project.demo && (
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-4 py-2 bg-tan text-olive rounded-lg text-sm font-semibold"
-                    >
-                      Live Demo
-                    </a>
-                  )}
-                </div>
-              </div>
+              <ProjectCard project={project} index={index} />
             </AnimateIn>
           ))}
         </div>

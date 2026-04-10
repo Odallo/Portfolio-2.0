@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import "@fontsource/inter/400.css";
-import "@fontsource/inter/600.css";
-import "@fontsource/inter/700.css";
+import "@fontsource/kalam/700.css";
+import "@fontsource/patrick-hand/400.css";
 
 export const metadata: Metadata = {
   title: "Odallo Eugine",
@@ -16,7 +15,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">
+      <body 
+        className="antialiased"
+        style={{
+          backgroundImage: 'radial-gradient(#e5e0d8 1px, transparent 1px)',
+          backgroundSize: '24px 24px',
+          backgroundColor: '#fdfbf7',
+          fontFamily: 'Patrick Hand, cursive',
+        }}
+      >
         {children}
       </body>
     </html>
