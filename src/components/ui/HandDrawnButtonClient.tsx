@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Link from 'next/link';
 
 interface HandDrawnButtonClientProps {
   children: React.ReactNode;
@@ -64,14 +65,52 @@ export default function HandDrawnButtonClient({
     setTransform('translateX(0) translateY(0)');
   };
 
-  const ButtonContent = () => (
-    <div 
-      className={`${baseClasses} ${sizeClasses[size]} ${className}`}
-      style={{
-        borderRadius: radius[size],
-        boxShadow: shadow,
-        transform,
-      }}
+  const buttonStyles = {
+    borderRadius: radius[size],
+    boxShadow: shadow,
+    transform,
+  };
+
+  const buttonClassNames = `${baseClasses} ${sizeClasses[size]} ${className}`;
+
+  if (href) {
+    // PDF download — plain <a> with download attribute
+    if (href.includes('.pdf')) {
+      return (
+        <a
+          href={href}
+          download
+          className={`block ${buttonClassNames}`}
+          style={buttonStyles}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onMouseDown={handleMouseDown}
+          onMouseUp={handleMouseUp}
+        >
+          {children}
+        </a>
+      );
+    }
+    // Internal Next.js route — use Link for client-side navigation
+    return (
+      <Link
+        href={href}
+        className={`block ${buttonClassNames}`}
+        style={buttonStyles}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+      >
+        {children}
+      </Link>
+    );
+  }
+
+  return (
+    <div
+      className={buttonClassNames}
+      style={buttonStyles}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onMouseDown={handleMouseDown}
@@ -81,29 +120,4 @@ export default function HandDrawnButtonClient({
       {children}
     </div>
   );
-
-  if (href) {
-    // Check if it's an external link (PDF download) or internal route
-    if (href.includes('.pdf')) {
-      return (
-        <a 
-          href={href} 
-          download
-          className="pointer-events-auto"
-        >
-          <ButtonContent />
-        </a>
-      );
-    }
-    return (
-      <a 
-        href={href}
-        className="pointer-events-auto"
-      >
-        <ButtonContent />
-      </a>
-    );
-  }
-
-  return <ButtonContent />;
 }

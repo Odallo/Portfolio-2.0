@@ -59,7 +59,7 @@ export default function Hero() {
               Get a Free Quote
             </HandDrawnButtonClient>
 
-            <HandDrawnButtonClient href="/resume_eugine_odallo_wakho (1).pdf" size="sm">
+            <HandDrawnButtonClient href="/resume_eugene_odallo_wakho%20(1).pdf" size="sm">
               Download CV
             </HandDrawnButtonClient>
           </div>
