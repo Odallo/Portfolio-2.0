@@ -11,21 +11,36 @@ export default function Contact() {
     timeline: "",
     message: ""
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent("Project Inquiry from Portfolio");
-    const body = encodeURIComponent(`
-Name: ${formData.name}
-Email: ${formData.email}
-Project Type: ${formData.projectType}
-Budget: ${formData.budget}
-Timeline: ${formData.timeline}
+    
+    // Validation
+    if (!formData.name || !formData.email || !formData.projectType) {
+      alert("Please fill in all required fields (Name, Email, and Project Type).");
+      return;
+    }
 
-Message:
-${formData.message}
-    `);
+    setIsSubmitting(true);
+
+    // Create properly formatted email content
+    const subject = encodeURIComponent(`Project Inquiry from ${formData.name}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\n` +
+      `Email: ${formData.email}\n` +
+      `Project Type: ${formData.projectType}\n` +
+      `Budget: ${formData.budget || 'Not specified'}\n` +
+      `Timeline: ${formData.timeline || 'Not specified'}\n\n` +
+      `Message:\n${formData.message || 'No additional message'}\n\n` +
+      `---\n` +
+      `Sent from portfolio website`
+    );
+
+    // Open email client
     window.location.href = `mailto:odalloeugine@gmail.com?subject=${subject}&body=${body}`;
+    
+    setIsSubmitting(false);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -196,7 +211,9 @@ ${formData.message}
             
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-lg font-bold mb-2 text-[#2d2d2d]">Name *</label>
+                <label className="block text-lg font-bold mb-2 text-[#2d2d2d]">
+                  Name *
+                </label>
                 <input
                   type="text"
                   name="name"
@@ -213,7 +230,9 @@ ${formData.message}
               </div>
 
               <div>
-                <label className="block text-lg font-bold mb-2 text-[#2d2d2d]">Email *</label>
+                <label className="block text-lg font-bold mb-2 text-[#2d2d2d]">
+                  Email *
+                </label>
                 <input
                   type="email"
                   name="email"
@@ -230,7 +249,9 @@ ${formData.message}
               </div>
 
               <div>
-                <label className="block text-lg font-bold mb-2 text-[#2d2d2d]">Project Type *</label>
+                <label className="block text-lg font-bold mb-2 text-[#2d2d2d]">
+                  Project Type *
+                </label>
                 <select
                   name="projectType"
                   required
@@ -252,7 +273,9 @@ ${formData.message}
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-lg font-bold mb-2 text-[#2d2d2d]">Budget Range</label>
+                  <label className="block text-lg font-bold mb-2 text-[#2d2d2d]">
+                    Budget Range
+                  </label>
                   <select
                     name="budget"
                     value={formData.budget}
@@ -272,7 +295,9 @@ ${formData.message}
                 </div>
 
                 <div>
-                  <label className="block text-lg font-bold mb-2 text-[#2d2d2d]">Timeline</label>
+                  <label className="block text-lg font-bold mb-2 text-[#2d2d2d]">
+                    Timeline
+                  </label>
                   <select
                     name="timeline"
                     value={formData.timeline}
@@ -294,7 +319,9 @@ ${formData.message}
               </div>
 
               <div>
-                <label className="block text-lg font-bold mb-2 text-[#2d2d2d]">Project Details</label>
+                <label className="block text-lg font-bold mb-2 text-[#2d2d2d]">
+                  Project Details
+                </label>
                 <textarea
                   name="message"
                   rows={4}
@@ -311,23 +338,33 @@ ${formData.message}
 
               <button
                 type="submit"
-                className="w-full bg-[#ff4d4d] text-white px-6 py-4 text-xl font-bold transition-all duration-100 hover:bg-[#2d2d2d]"
+                disabled={isSubmitting}
+                className="w-full bg-[#ff4d4d] text-white px-6 py-4 text-xl font-bold transition-all duration-100 hover:bg-[#2d2d2d] disabled:opacity-50 disabled:cursor-not-allowed"
                 style={{
                   borderRadius: '255px 25px 225px 25px / 25px 225px 25px 255px',
                   boxShadow: '4px 4px 0px 0px #2d2d2d',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = '2px 2px 0px 0px #2d2d2d';
-                  e.currentTarget.style.transform = 'translateX(2px) translateY(2px)';
+                  if (!isSubmitting) {
+                    e.currentTarget.style.boxShadow = '2px 2px 0px 0px #2d2d2d';
+                    e.currentTarget.style.transform = 'translateX(2px) translateY(2px)';
+                  }
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = '4px 4px 0px 0px #2d2d2d';
-                  e.currentTarget.style.transform = 'translateX(0) translateY(0)';
+                  if (!isSubmitting) {
+                    e.currentTarget.style.boxShadow = '4px 4px 0px 0px #2d2d2d';
+                    e.currentTarget.style.transform = 'translateX(0) translateY(0)';
+                  }
                 }}
               >
-                Send Project Inquiry
+                {isSubmitting ? 'Opening Email Client...' : 'Send Project Inquiry'}
               </button>
             </form>
+
+            {/* Help text */}
+            <div className="mt-4 text-sm text-[#2d2d2d] opacity-70">
+              <p>Clicking "Send Project Inquiry" will open your default email client with the form details pre-filled.</p>
+            </div>
           </div>
         </div>
       </div>
