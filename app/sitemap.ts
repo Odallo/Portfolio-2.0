@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 
-const SITE_URL = "https://your-portfolio.vercel.app"; // 🔁 Replace with your actual Vercel URL
+const SITE_URL = "https://odallo-portfolio.vercel.app"; // 🔁 Replace with your actual Vercel URL
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

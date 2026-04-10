@@ -3,7 +3,7 @@ import "./globals.css";
 import "@fontsource/kalam/700.css";
 import "@fontsource/patrick-hand/400.css";
 
-const SITE_URL = "https://your-portfolio.vercel.app"; // 🔁 Replace with your actual Vercel URL
+const SITE_URL = "https://odallo-portfolio.vercel.app"; // 🔁 Replace with your actual Vercel URL
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -63,7 +63,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body 
+      <body
         className="antialiased"
         style={{
           backgroundImage: 'radial-gradient(#e5e0d8 1px, transparent 1px)',
