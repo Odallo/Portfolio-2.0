@@ -1,7 +1,6 @@
 "use client";
 
 import React from 'react';
-import Link from 'next/link';
 
 interface HandDrawnButtonClientProps {
   children: React.ReactNode;
@@ -21,7 +20,7 @@ export default function HandDrawnButtonClient({
   href
 }: HandDrawnButtonClientProps) {
   const baseClasses = `
-    relative border-[3px] border-solid font-bold transition-all duration-100
+    relative border-[3px] border-solid font-bold transition-all duration-100 pointer-events-auto
     ${variant === 'primary' 
       ? 'bg-white text-[#2d2d2d] hover:bg-[#ff4d4d] hover:text-white' 
       : variant === 'secondary'
@@ -86,9 +85,24 @@ export default function HandDrawnButtonClient({
   if (href) {
     // Check if it's an external link (PDF download) or internal route
     if (href.includes('.pdf')) {
-      return <a href={href} download><ButtonContent /></a>;
+      return (
+        <a 
+          href={href} 
+          download
+          className="pointer-events-auto"
+        >
+          <ButtonContent />
+        </a>
+      );
     }
-    return <Link href={href}><ButtonContent /></Link>;
+    return (
+      <a 
+        href={href}
+        className="pointer-events-auto"
+      >
+        <ButtonContent />
+      </a>
+    );
   }
 
   return <ButtonContent />;
