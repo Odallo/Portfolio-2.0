@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function About() {
   return (
     <section className="py-24 relative">
@@ -21,9 +23,11 @@ export default function About() {
               {/* Profile Picture Section */}
               <div className="flex justify-center mb-8">
                 <div className="relative">
-                  <img 
+                  <Image 
                     src="/WhatsApp Image 2026-01-27 at 23.26.06.jpeg" 
                     alt="Profile" 
+                    width={160}
+                    height={160}
                     className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-tan/50 shadow-xl"
                   />
                   <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-tan rounded-full border-2 border-olive/30"></div>
@@ -32,11 +36,11 @@ export default function About() {
               
               <div className="text-center md:text-left">
                 <p className="text-xl md:text-2xl text-cream/95 leading-relaxed font-light">
-                  I'm a software developer who cares about how systems behave but also 
+                  I&apos;m a software developer who cares about how systems behave but also 
                   under real usage, changing requirements, and imperfect conditions.
                 </p>
                 <p className="text-lg text-cream/85 leading-relaxed mt-4">
-                  I've built systems ranging from web applications to a miniature relational
+                  I&apos;ve built systems ranging from web applications to a miniature relational
                   database engine, which helped me deeply understand how software behaves under the hood.
                 </p>
               </div>
@@ -48,7 +52,7 @@ export default function About() {
                   </h3>
                   <p className="text-cream/85 leading-relaxed">
                     I enjoy working across the stack, from shaping clean user interfaces to designing 
-                    APIs and data models that are easy to reason about. I'm especially interested in 
+                    APIs and data models that are easy to reason about. I&apos;m especially interested in 
                     backend systems, application architecture, and writing code that other developers 
                     can confidently build on.
                   </p>
@@ -60,7 +64,7 @@ export default function About() {
                   </h3>
                   <p className="text-cream/85 leading-relaxed">
                     My approach to learning is hands-on: I build, break things, reflect, and improve. 
-                    I value clarity over cleverness, and I'm focused on growing into an engineer who 
+                    I value clarity over cleverness, and I&apos;m focused on growing into an engineer who 
                     ships reliable software and contributes meaningfully to a team.
                   </p>
                 </div>
@@ -68,7 +72,7 @@ export default function About() {
 
               <div className="text-center pt-6 border-t border-tan/20">
                 <p className="text-lg text-cream/90 leading-relaxed">
-                  I'm currently seeking opportunities where I can learn from experienced developers, 
+                  I&apos;m currently seeking opportunities where I can learn from experienced developers, 
                   work on real problems, and continue developing strong engineering fundamentals.
                 </p>
                 
@@ -85,7 +89,7 @@ export default function About() {
           {/* Vintage-inspired footer quote */}
           <div className="mt-12 text-center">
             <p className="text-tan/70 italic text-sm">
-              "Crafting digital experiences with timeless principles"
+              &quot;Crafting digital experiences with timeless principles&quot;
             </p>
           </div>
         </div>
