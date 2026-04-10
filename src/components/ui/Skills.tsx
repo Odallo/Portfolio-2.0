@@ -1,24 +1,32 @@
 export default function Skills() {
   const skills = {
     frontend: [
-      { name: "HTML/CSS", level: 90 },
-      { name: "JavaScript/TypeScript", level: 85 },
-      { name: "React/Next.js", level: 80 },
-      { name: "TailwindCSS", level: 85 }
+      "HTML/CSS",
+      "JavaScript/TypeScript", 
+      "React/Next.js",
+      "TailwindCSS"
     ],
     backend: [
-      { name: "Node.js", level: 75 },
-      { name: "Python", level: 70 },
-      { name: "Laravel", level: 65 },
-      { name: "REST APIs", level: 80 }
+      "Node.js",
+      "Python",
+      "Laravel",
+      "REST APIs"
     ],
     tools: [
-      { name: "Git/GitHub", level: 85 },
-      { name: "VS Code", level: 90 },
-      { name: "Linux/CLI", level: 75 },
-      { name: "SQLite/MySQL", level: 70 }
+      "Git/GitHub",
+      "VS Code",
+      "Linux/CLI",
+      "SQLite/MySQL"
     ]
   };
+
+  const projects = [
+    "MiniRDBMS (Database Engine)",
+    "Weather App (Full-stack)",
+    "CLI Goal Tracker",
+    "Hotel Management System",
+    "Ayoayo Game"
+  ];
 
   return (
     <section className="py-20">
@@ -38,7 +46,8 @@ export default function Skills() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        {/* Skills Categories */}
+        <div className="grid md:grid-cols-3 gap-8 mb-12">
           {/* Frontend Skills */}
           <div className="bg-white border-4 border-[#2d2d2d] p-8 hover:rotate-1 transition-transform duration-100 relative"
             style={{
@@ -63,27 +72,11 @@ export default function Skills() {
               Frontend
             </h3>
             
-            <div className="space-y-4">
+            <div className="space-y-3">
               {skills.frontend.map((skill, i) => (
-                <div key={i}>
-                  <div className="flex justify-between mb-2">
-                    <span className="text-[#2d2d2d] font-bold">{skill.name}</span>
-                    <span className="text-[#2d2d2d]">{skill.level}%</span>
-                  </div>
-                  <div className="w-full bg-[#e5e0d8] h-4 relative"
-                    style={{
-                      borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px',
-                      border: '2px solid #2d2d2d',
-                    }}
-                  >
-                    <div 
-                      className="bg-[#ff4d4d] h-full"
-                      style={{
-                        width: `${skill.level}%`,
-                        borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px',
-                      }}
-                    />
-                  </div>
+                <div key={i} className="flex items-center">
+                  <span className="text-[#ff4d4d] mr-3 font-bold text-lg">~</span>
+                  <span className="text-[#2d2d2d] text-lg">{skill}</span>
                 </div>
               ))}
             </div>
@@ -113,27 +106,11 @@ export default function Skills() {
               Backend
             </h3>
             
-            <div className="space-y-4">
+            <div className="space-y-3">
               {skills.backend.map((skill, i) => (
-                <div key={i}>
-                  <div className="flex justify-between mb-2">
-                    <span className="text-[#2d2d2d] font-bold">{skill.name}</span>
-                    <span className="text-[#2d2d2d]">{skill.level}%</span>
-                  </div>
-                  <div className="w-full bg-[#e5e0d8] h-4 relative"
-                    style={{
-                      borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px',
-                      border: '2px solid #2d2d2d',
-                    }}
-                  >
-                    <div 
-                      className="bg-[#2d5da1] h-full"
-                      style={{
-                        width: `${skill.level}%`,
-                        borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px',
-                      }}
-                    />
-                  </div>
+                <div key={i} className="flex items-center">
+                  <span className="text-[#2d5da1] mr-3 font-bold text-lg">~</span>
+                  <span className="text-[#2d2d2d] text-lg">{skill}</span>
                 </div>
               ))}
             </div>
@@ -158,35 +135,19 @@ export default function Skills() {
               Tools & Other
             </h3>
             
-            <div className="space-y-4">
+            <div className="space-y-3">
               {skills.tools.map((skill, i) => (
-                <div key={i}>
-                  <div className="flex justify-between mb-2">
-                    <span className="text-[#2d2d2d] font-bold">{skill.name}</span>
-                    <span className="text-[#2d2d2d]">{skill.level}%</span>
-                  </div>
-                  <div className="w-full bg-white h-4 relative"
-                    style={{
-                      borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px',
-                      border: '2px solid #2d2d2d',
-                    }}
-                  >
-                    <div 
-                      className="bg-[#2d2d2d] h-full"
-                      style={{
-                        width: `${skill.level}%`,
-                        borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px',
-                      }}
-                    />
-                  </div>
+                <div key={i} className="flex items-center">
+                  <span className="text-[#2d2d2d] mr-3 font-bold text-lg bg-[#2d2d2d] px-1">~</span>
+                  <span className="text-[#2d2d2d] text-lg">{skill}</span>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Learning Section */}
-        <div className="bg-white border-4 border-[#2d2d2d] p-8 mt-12 relative"
+        {/* Experience Section */}
+        <div className="bg-white border-4 border-[#2d2d2d] p-8 mb-12 relative"
           style={{
             borderRadius: '255px 35px 225px 35px / 35px 225px 35px 255px',
             boxShadow: '8px 8px 0px 0px #2d2d2d',
@@ -205,28 +166,64 @@ export default function Skills() {
           <h3 className="text-2xl font-bold mb-6 text-center text-[#2d2d2d]"
             style={{ fontFamily: 'Kalam, cursive' }}
           >
-            Currently Learning
+            What I've Built
           </h3>
           
-          <div className="flex flex-wrap justify-center gap-4">
-            {[
-              "Advanced TypeScript", 
-              "System Design", 
-              "Cloud Architecture", 
-              "Performance Optimization"
-            ].map((topic, i) => (
-              <span
-                key={i}
-                className="text-lg px-4 py-2 bg-[#e5e0d8] text-[#2d2d2d] font-bold hover:rotate-1 transition-transform duration-100"
-                style={{
-                  borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px',
-                  border: '2px solid #2d2d2d',
-                  boxShadow: '2px 2px 0px 0px #2d2d2d',
-                }}
-              >
-                {topic}
-              </span>
+          <div className="grid md:grid-cols-2 gap-6">
+            {projects.map((project, i) => (
+              <div key={i} className="flex items-start">
+                <span className="text-[#ff4d4d] mr-3 font-bold">~</span>
+                <span className="text-[#2d2d2d] text-lg">{project}</span>
+              </div>
             ))}
+          </div>
+        </div>
+
+        {/* Learning Section */}
+        <div className="bg-white border-4 border-[#2d2d2d] p-8 relative"
+          style={{
+            borderRadius: '255px 35px 225px 35px / 35px 225px 35px 255px',
+            boxShadow: '8px 8px 0px 0px #2d2d2d',
+            transform: 'rotate(-0.5deg)',
+          }}
+        >
+          {/* Sticky note decoration */}
+          <div className="absolute top-2 right-2 text-xs text-[#2d2d2d] opacity-60 font-bold">
+            LEARNING
+          </div>
+
+          <h3 className="text-2xl font-bold mb-6 text-center text-[#2d2d2d]"
+            style={{ fontFamily: 'Kalam, cursive' }}
+          >
+            Currently Exploring
+          </h3>
+          
+          <div className="text-center">
+            <p className="text-[#2d2d2d] text-lg mb-6 leading-relaxed">
+              I'm always learning and improving my skills. Currently diving deeper into 
+              system design, cloud architecture, and performance optimization.
+            </p>
+            
+            <div className="flex flex-wrap justify-center gap-3">
+              {[
+                "Advanced TypeScript", 
+                "System Design", 
+                "Cloud Architecture", 
+                "Performance Optimization"
+              ].map((topic, i) => (
+                <span
+                  key={i}
+                  className="text-lg px-4 py-2 bg-[#e5e0d8] text-[#2d2d2d] font-bold hover:rotate-1 transition-transform duration-100"
+                  style={{
+                    borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px',
+                    border: '2px solid #2d2d2d',
+                    boxShadow: '2px 2px 0px 0px #2d2d2d',
+                  }}
+                >
+                  {topic}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>
