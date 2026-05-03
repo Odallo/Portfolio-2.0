@@ -1,125 +1,102 @@
 import Image from "next/image";
+import Card from "./ui/Card";
 
 export default function About() {
   return (
-    <section className="py-20 relative">
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
+    <section className="py-24 md:py-32">
+      <div className="max-w-6xl mx-auto px-6">
         <div className="max-w-4xl mx-auto">
-          {/* Header with decoration */}
-          <div className="text-center mb-12">
-            <div className="inline-block relative">
-              <h2 className="text-4xl md:text-6xl font-bold text-[#2d2d2d] mb-4"
-                style={{ fontFamily: 'Kalam, cursive' }}
-              >
-                About Me
-              </h2>
-              <div className="absolute -bottom-2 left-0 right-0 h-2 bg-[#2d5da1]"
-                style={{
-                  borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px',
-                }}
-              />
-            </div>
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold gradient-text mb-4">
+              About Me
+            </h2>
+            <p className="text-lg text-[#8A8F98] max-w-2xl mx-auto">
+              Passionate software developer crafting digital experiences with clean code and modern technologies
+            </p>
           </div>
 
-          {/* Main content card */}
-          <div className="bg-white border-4 border-[#2d2d2d] p-8 md:p-12 mb-8 relative"
-            style={{
-              borderRadius: '255px 35px 225px 35px / 35px 225px 35px 255px',
-              boxShadow: '8px 8px 0px 0px #2d2d2d',
-              transform: 'rotate(-0.5deg)',
-            }}
-          >
-            {/* Profile Picture Section */}
-            <div className="flex justify-center mb-8">
-              <div className="relative">
-                <div className="bg-white border-4 border-[#2d2d2d] p-2"
-                  style={{
-                    borderRadius: '255px 25px 225px 25px / 25px 225px 25px 255px',
-                    boxShadow: '4px 4px 0px 0px #2d2d2d',
-                    transform: 'rotate(2deg)',
-                  }}
-                >
+          {/* Profile Section */}
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
+            {/* Profile Card */}
+            <Card variant="glass" spotlight className="md:col-span-1">
+              <div className="text-center">
+                <div className="relative inline-block mb-6">
+                  <div className="absolute inset-0 bg-[#5E6AD2]/20 rounded-full blur-xl" />
                   <Image 
                     src="/WhatsApp Image 2026-01-27 at 23.26.06.jpeg" 
                     alt="Profile" 
                     width={160}
                     height={160}
-                    className="rounded-full"
-                    style={{
-                      borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px',
-                    }}
+                    className="relative rounded-full border-2 border-white/10"
                   />
                 </div>
-                {/* Thumbtack decoration */}
-                <div 
-                  className="absolute -top-2 left-1/2 w-6 h-6 bg-red-500 rounded-full border-2 border-[#2d2d2d]"
-                  style={{
-                    transform: 'translateX(-50%)',
-                  }}
-                />
-              </div>
-            </div>
-            
-            <div className="text-center md:text-left mb-8">
-              <p className="text-xl md:text-2xl text-[#2d2d2d] leading-relaxed font-bold mb-4">
-                I&apos;m a software developer who cares about how systems behave but also 
-                under real usage, changing requirements, and imperfect conditions.
-              </p>
-              <div className="bg-[#fff9c4] border-4 border-[#2d2d2d] p-4 relative"
-                style={{
-                  borderRadius: '255px 25px 225px 25px / 25px 225px 25px 255px',
-                  boxShadow: '4px 4px 0px 0px #2d2d2d',
-                  transform: 'rotate(1deg)',
-                }}
-              >
-                <p className="text-lg text-[#2d2d2d] leading-relaxed font-bold">
-                  I&apos;ve built systems ranging from web applications to a miniature relational
-                  database engine, which helped me deeply understand how software behaves under the hood.
+                
+                <h3 className="text-xl font-semibold text-[#EDEDEF] mb-2">
+                  Odallo Eugine
+                </h3>
+                <p className="text-[#8A8F98] mb-4">
+                  Software Developer
                 </p>
-                {/* Sticky note decoration */}
-                <div className="absolute top-2 right-2 text-xs text-[#2d2d2d] opacity-60">
-                  POST-IT
+                
+                <div className="flex justify-center gap-2">
+                  <span className="px-3 py-1 bg-[#5E6AD2]/20 text-[#5E6AD2] rounded-full text-xs font-medium">
+                    React
+                  </span>
+                  <span className="px-3 py-1 bg-[#5E6AD2]/20 text-[#5E6AD2] rounded-full text-xs font-medium">
+                    Next.js
+                  </span>
+                  <span className="px-3 py-1 bg-[#5E6AD2]/20 text-[#5E6AD2] rounded-full text-xs font-medium">
+                    TypeScript
+                  </span>
                 </div>
               </div>
-            </div>
+            </Card>
 
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-white border-4 border-[#2d2d2d] p-6 hover:rotate-1 transition-transform duration-100"
-                style={{
-                  borderRadius: '255px 25px 225px 25px / 25px 225px 25px 255px',
-                  boxShadow: '4px 4px 0px 0px #2d2d2d',
-                }}
-              >
-                <h3 className="text-2xl font-bold text-[#2d2d2d] mb-4 border-b-4 border-[#ff4d4d] pb-2"
-                  style={{ fontFamily: 'Kalam, cursive' }}
-                >
+            {/* About Content */}
+            <div className="md:col-span-2 space-y-6">
+              <Card variant="default" spotlight>
+                <h3 className="text-xl font-semibold text-[#EDEDEF] mb-4">
+                  My Journey
+                </h3>
+                <p className="text-[#8A8F98] leading-relaxed mb-4">
+                  I'm a passionate software developer specializing in building reliable, scalable, 
+                  and human-centered digital solutions. My journey in web development began with 
+                  a curiosity about how things work on the internet, and has evolved into a 
+                  career focused on creating exceptional user experiences.
+                </p>
+                <p className="text-[#8A8F98] leading-relaxed">
+                  I specialize in modern JavaScript frameworks, particularly React and Next.js, 
+                  and have a strong foundation in both frontend and backend development. 
+                  My approach combines technical expertise with a keen eye for design and user experience.
+                </p>
+              </Card>
+
+              <Card variant="default" spotlight>
+                <h3 className="text-xl font-semibold text-[#EDEDEF] mb-4">
                   Design Philosophy
                 </h3>
-                <p className="text-[#2d2d2d] leading-relaxed text-lg">
-                  I enjoy working across the stack, from shaping clean user interfaces to designing 
-                  APIs and data models that are easy to reason about. I&apos;m especially interested in 
-                  backend systems, application architecture, and writing code that other developers 
-                  can confidently build on.
-                </p>
-              </div>
-
-              <div className="bg-white border-4 border-[#2d2d2d] p-6 hover:-rotate-1 transition-transform duration-100"
-                style={{
-                  borderRadius: '255px 25px 225px 25px / 25px 225px 25px 255px',
-                  boxShadow: '4px 4px 0px 0px #2d2d2d',
-                }}
-              >
-                <h3 className="text-2xl font-bold text-[#2d2d2d] mb-4 border-b-4 border-[#2d5da1] pb-2"
-                  style={{ fontFamily: 'Kalam, cursive' }}
-                >
-                  Learning Approach
-                </h3>
-                <p className="text-[#2d2d2d] leading-relaxed text-lg">
-                  My approach to learning is hands-on: I build, break things, reflect, and improve. 
-                  I value clarity over cleverness, and I&apos;m focused on growing into an engineer who 
-                  ships reliable software and contributes meaningfully to a team.
-                </p>
-              </div>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-[#5E6AD2] rounded-full mt-2 flex-shrink-0" />
+                    <p className="text-[#8A8F98]">
+                      <strong className="text-[#EDEDEF]">User-Centered Approach:</strong> Every line of code serves the user experience
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-[#5E6AD2] rounded-full mt-2 flex-shrink-0" />
+                    <p className="text-[#8A8F98]">
+                      <strong className="text-[#EDEDEF]">Clean Architecture:</strong> Maintainable code that scales with your business
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-[#5E6AD2] rounded-full mt-2 flex-shrink-0" />
+                    <p className="text-[#8A8F98]">
+                      <strong className="text-[#EDEDEF]">Performance First:</strong> Fast, responsive applications that delight users
+                    </p>
+                  </div>
+                </div>
+              </Card>
             </div>
 
             <div className="text-center pt-8 border-t-4 border-dashed border-[#2d2d2d]">

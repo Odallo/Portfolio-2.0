@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import "@fontsource/kalam/700.css";
-import "@fontsource/patrick-hand/400.css";
+import AmbientBackground from "../src/components/ui/AmbientBackground";
 
 const SITE_URL = "https://odallo-portfolio.vercel.app"; // 🔁 Replace with your actual Vercel URL
 
@@ -66,16 +65,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className="antialiased"
-        style={{
-          backgroundImage: 'radial-gradient(#e5e0d8 1px, transparent 1px)',
-          backgroundSize: '24px 24px',
-          backgroundColor: '#fdfbf7',
-          fontFamily: 'Patrick Hand, cursive',
-        }}
-      >
-        {children}
+      <body className="antialiased">
+        <AmbientBackground />
+        <div className="relative z-10">
+          {children}
+        </div>
       </body>
     </html>
   );
