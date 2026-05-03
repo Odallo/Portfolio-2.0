@@ -1,231 +1,123 @@
+"use client";
+
+import Card from "./Card";
+
 export default function Skills() {
-  const skills = {
-    frontend: [
-      "HTML/CSS",
-      "JavaScript/TypeScript", 
-      "React/Next.js",
-      "TailwindCSS"
-    ],
-    backend: [
-      "Node.js",
-      "Python",
-      "Laravel",
-      "REST APIs"
-    ],
-    tools: [
-      "Git/GitHub",
-      "VS Code",
-      "Linux/CLI",
-      "SQLite/MySQL"
-    ]
-  };
+  const skillCategories = [
+    {
+      title: "Frontend",
+      skills: ["React", "Next.js", "TypeScript", "TailwindCSS", "JavaScript", "HTML/CSS"],
+      color: "#5E6AD2"
+    },
+    {
+      title: "Backend",
+      skills: ["Node.js", "Python", "Laravel", "REST APIs", "GraphQL", "PostgreSQL"],
+      color: "#8b92e8"
+    },
+    {
+      title: "Tools & DevOps",
+      skills: ["Git", "VS Code", "Docker", "AWS", "Vercel", "Figma"],
+      color: "#6872D9"
+    }
+  ];
 
   const projects = [
-    "MiniRDBMS (Database Engine)",
-    "Weather App (Full-stack)",
-    "CLI Goal Tracker",
-    "Hotel Management System",
-    "Ayoayo Game"
+    { name: "MiniRDBMS", desc: "Lightweight relational database engine" },
+    { name: "Weather App", desc: "Full-stack weather application" },
+    { name: "CLI Goal Tracker", desc: "Command-line productivity tool" },
+    { name: "Hotel Management System", desc: "Complete booking platform" },
+    { name: "Ayoayo Game", desc: "Traditional African board game" }
   ];
 
   return (
-    <section className="py-20">
+    <section className="py-24 md:py-32">
       <div className="max-w-6xl mx-auto px-6">
+        {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-block relative">
-            <h2 className="text-4xl md:text-6xl font-bold text-[#2d2d2d] mb-4"
-              style={{ fontFamily: 'Kalam, cursive' }}
-            >
-              Skills & Expertise
-            </h2>
-            <div className="absolute -bottom-2 left-0 right-0 h-2 bg-[#2d5da1]"
-              style={{
-                borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px',
-              }}
-            />
-          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold gradient-text mb-4">
+            Skills & Expertise
+          </h2>
+          <p className="text-lg text-[#8A8F98] max-w-2xl mx-auto">
+            Technologies and tools I use to bring ideas to life
+          </p>
         </div>
 
-        {/* Skills Categories */}
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
-          {/* Frontend Skills */}
-          <div className="bg-white border-4 border-[#2d2d2d] p-8 hover:rotate-1 transition-transform duration-100 relative"
-            style={{
-              borderRadius: '255px 35px 225px 35px / 35px 225px 35px 255px',
-              boxShadow: '8px 8px 0px 0px #2d2d2d',
-              transform: 'rotate(-1deg)',
-            }}
-          >
-            {/* Tape decoration */}
-            <div 
-              className="absolute top-0 left-1/2 w-24 h-6 bg-[#ff4d4d] opacity-60"
-              style={{
-                borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px',
-                transform: 'translateX(-50%) translateY(-50%) rotate(-2deg)',
-                boxShadow: '2px 2px 0px 0px rgba(45, 45, 45, 0.2)',
-              }}
-            />
-            
-            <h3 className="text-2xl font-bold mb-6 text-[#2d2d2d]"
-              style={{ fontFamily: 'Kalam, cursive' }}
-            >
-              Frontend
-            </h3>
-            
-            <div className="space-y-3">
-              {skills.frontend.map((skill, i) => (
-                <div key={i} className="flex items-center">
-                  <span className="text-[#ff4d4d] mr-3 font-bold text-lg">~</span>
-                  <span className="text-[#2d2d2d] text-lg">{skill}</span>
+        {/* Skills Grid */}
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
+          {skillCategories.map((category, index) => (
+            <Card key={index} variant="default" spotlight>
+              <div className="p-6">
+                <h3 className="text-lg font-semibold text-[#EDEDEF] mb-6">
+                  {category.title}
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {category.skills.map((skill, skillIndex) => (
+                    <span
+                      key={skillIndex}
+                      className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-sm text-[#8A8F98] hover:text-[#EDEDEF] hover:border-white/20 transition-colors duration-200"
+                    >
+                      {skill}
+                    </span>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Backend Skills */}
-          <div className="bg-white border-4 border-[#2d2d2d] p-8 hover:-rotate-1 transition-transform duration-100 relative"
-            style={{
-              borderRadius: '255px 35px 225px 35px / 35px 225px 35px 255px',
-              boxShadow: '8px 8px 0px 0px #2d2d2d',
-              transform: 'rotate(1deg)',
-            }}
-          >
-            {/* Tape decoration */}
-            <div 
-              className="absolute top-0 left-1/2 w-24 h-6 bg-[#2d5da1] opacity-60"
-              style={{
-                borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px',
-                transform: 'translateX(-50%) translateY(-50%) rotate(2deg)',
-                boxShadow: '2px 2px 0px 0px rgba(45, 45, 45, 0.2)',
-              }}
-            />
-            
-            <h3 className="text-2xl font-bold mb-6 text-[#2d2d2d]"
-              style={{ fontFamily: 'Kalam, cursive' }}
-            >
-              Backend
-            </h3>
-            
-            <div className="space-y-3">
-              {skills.backend.map((skill, i) => (
-                <div key={i} className="flex items-center">
-                  <span className="text-[#2d5da1] mr-3 font-bold text-lg">~</span>
-                  <span className="text-[#2d2d2d] text-lg">{skill}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Tools Skills */}
-          <div className="bg-[#fff9c4] border-4 border-[#2d2d2d] p-8 hover:rotate-1 transition-transform duration-100 relative"
-            style={{
-              borderRadius: '255px 35px 225px 35px / 35px 225px 35px 255px',
-              boxShadow: '8px 8px 0px 0px #2d2d2d',
-              transform: 'rotate(-0.5deg)',
-            }}
-          >
-            {/* Sticky note decoration */}
-            <div className="absolute top-2 right-2 text-xs text-[#2d2d2d] opacity-60 font-bold">
-              TOOLS
-            </div>
-            
-            <h3 className="text-2xl font-bold mb-6 text-[#2d2d2d]"
-              style={{ fontFamily: 'Kalam, cursive' }}
-            >
-              Tools & Other
-            </h3>
-            
-            <div className="space-y-3">
-              {skills.tools.map((skill, i) => (
-                <div key={i} className="flex items-center">
-                  <span className="text-[#2d2d2d] mr-3 font-bold text-lg bg-[#2d2d2d] px-1">~</span>
-                  <span className="text-[#2d2d2d] text-lg">{skill}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Experience Section */}
-        <div className="bg-white border-4 border-[#2d2d2d] p-8 mb-12 relative"
-          style={{
-            borderRadius: '255px 35px 225px 35px / 35px 225px 35px 255px',
-            boxShadow: '8px 8px 0px 0px #2d2d2d',
-          }}
-        >
-          {/* Tape decoration */}
-          <div 
-            className="absolute top-0 left-1/2 w-32 h-8 bg-gray-300 opacity-60"
-            style={{
-              borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px',
-              transform: 'translateX(-50%) translateY(-50%) rotate(-2deg)',
-              boxShadow: '2px 2px 0px 0px rgba(45, 45, 45, 0.2)',
-            }}
-          />
-
-          <h3 className="text-2xl font-bold mb-6 text-center text-[#2d2d2d]"
-            style={{ fontFamily: 'Kalam, cursive' }}
-          >
-            What I've Built
-          </h3>
-          
-          <div className="grid md:grid-cols-2 gap-6">
-            {projects.map((project, i) => (
-              <div key={i} className="flex items-start">
-                <span className="text-[#ff4d4d] mr-3 font-bold">~</span>
-                <span className="text-[#2d2d2d] text-lg">{project}</span>
               </div>
-            ))}
-          </div>
+            </Card>
+          ))}
         </div>
 
-        {/* Learning Section */}
-        <div className="bg-white border-4 border-[#2d2d2d] p-8 relative"
-          style={{
-            borderRadius: '255px 35px 225px 35px / 35px 225px 35px 255px',
-            boxShadow: '8px 8px 0px 0px #2d2d2d',
-            transform: 'rotate(-0.5deg)',
-          }}
-        >
-          {/* Sticky note decoration */}
-          <div className="absolute top-2 right-2 text-xs text-[#2d2d2d] opacity-60 font-bold">
-            LEARNING
+        {/* What I've Built */}
+        <div className="mb-16">
+          <div className="text-center mb-12">
+            <h3 className="text-2xl md:text-3xl font-semibold gradient-text-accent mb-4">
+              What I've Built
+            </h3>
+            <p className="text-[#8A8F98]">
+              Projects that showcase my skills and experience
+            </p>
           </div>
 
-          <h3 className="text-2xl font-bold mb-6 text-center text-[#2d2d2d]"
-            style={{ fontFamily: 'Kalam, cursive' }}
-          >
-            Currently Exploring
-          </h3>
-          
-          <div className="text-center">
-            <p className="text-[#2d2d2d] text-lg mb-6 leading-relaxed">
+          <Card variant="glass">
+            <div className="p-8">
+              <div className="grid md:grid-cols-2 gap-6">
+                {projects.map((project, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-[#5E6AD2] rounded-full mt-2 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-medium text-[#EDEDEF] mb-1">
+                        {project.name}
+                      </h4>
+                      <p className="text-sm text-[#8A8F98]">{project.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Card>
+        </div>
+
+        {/* Currently Learning */}
+        <Card variant="gradient" className="text-center">
+          <div className="p-8">
+            <h3 className="text-xl font-semibold text-[#EDEDEF] mb-4">
+              Currently Exploring
+            </h3>
+            <p className="text-[#8A8F98] mb-6 max-w-2xl mx-auto">
               I'm always learning and improving my skills. Currently diving deeper into 
               system design, cloud architecture, and performance optimization.
             </p>
             
             <div className="flex flex-wrap justify-center gap-3">
-              {[
-                "Advanced TypeScript", 
-                "System Design", 
-                "Cloud Architecture", 
-                "Performance Optimization"
-              ].map((topic, i) => (
+              {["Advanced TypeScript", "System Design", "Cloud Architecture", "Performance Optimization"].map((topic, i) => (
                 <span
                   key={i}
-                  className="text-lg px-4 py-2 bg-[#e5e0d8] text-[#2d2d2d] font-bold hover:rotate-1 transition-transform duration-100"
-                  style={{
-                    borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px',
-                    border: '2px solid #2d2d2d',
-                    boxShadow: '2px 2px 0px 0px #2d2d2d',
-                  }}
+                  className="px-4 py-2 bg-[#5E6AD2]/20 text-[#5E6AD2] rounded-lg text-sm font-medium"
                 >
                   {topic}
                 </span>
               ))}
             </div>
           </div>
-        </div>
+        </Card>
       </div>
     </section>
   );

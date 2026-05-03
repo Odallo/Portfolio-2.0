@@ -10,8 +10,6 @@
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.8",
-    "@fontsource/kalam": "^5.2.8",
-    "@fontsource/patrick-hand": "^5.2.8",
     "framer-motion": "^12.29.2",
     "next": "16.1.5",
     "react": "19.2.3",

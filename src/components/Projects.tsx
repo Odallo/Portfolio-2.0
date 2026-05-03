@@ -1,5 +1,5 @@
-import AnimateIn from "./AnimateIn";
-import ProjectCard from "./ui/ProjectCard";
+import Card from "./ui/Card";
+import Button from "./ui/Button";
 
 const projects = [
   {
@@ -84,28 +84,83 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section className="py-20">
+    <section className="py-24 md:py-32">
       <div className="max-w-6xl mx-auto px-6">
+        {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-block relative">
-            <h2 className="text-4xl md:text-6xl font-bold text-[#2d2d2d] mb-4"
-              style={{ fontFamily: 'Kalam, cursive' }}
-            >
-              Selected Projects
-            </h2>
-            <div className="absolute -bottom-2 left-0 right-0 h-2 bg-[#ff4d4d]"
-              style={{
-                borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px',
-              }}
-            />
-          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold gradient-text mb-4">
+            Selected Projects
+          </h2>
+          <p className="text-lg text-[#8A8F98] max-w-2xl mx-auto">
+            A collection of projects that showcase my skills and passion for building
+          </p>
         </div>
 
+        {/* Projects Grid */}
         <div className="grid md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
-            <AnimateIn key={project.title} delay={index * 0.1}>
-              <ProjectCard project={project} index={index} />
-            </AnimateIn>
+            <Card 
+              key={project.title} 
+              variant={index === 0 ? 'gradient' : 'default'}
+              spotlight
+              className="h-full"
+            >
+              <div className="p-6 h-full flex flex-col">
+                {/* Title */}
+                <h3 className="text-xl font-semibold text-[#EDEDEF] mb-3">
+                  {project.title}
+                </h3>
+                
+                {/* Description */}
+                <p className="text-[#8A8F98] text-sm mb-4 leading-relaxed flex-grow">
+                  {project.description.trim()}
+                </p>
+                
+                {/* Highlights */}
+                <ul className="space-y-2 mb-6">
+                  {project.highlights.slice(0, 3).map((highlight, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm">
+                      <div className="w-1.5 h-1.5 bg-[#5E6AD2] rounded-full mt-1.5 flex-shrink-0" />
+                      <span className="text-[#8A8F98]">{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+                
+                {/* Tech Stack */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.tech.map((tech, i) => (
+                    <span
+                      key={i}
+                      className="px-2 py-1 bg-white/5 border border-white/10 rounded text-xs text-[#8A8F98]"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                
+                {/* Actions */}
+                <div className="flex gap-3 mt-auto">
+                  <Button 
+                    href={project.github} 
+                    variant="secondary" 
+                    size="sm"
+                    className="flex-1"
+                  >
+                    GitHub
+                  </Button>
+                  {project.demo && (
+                    <Button 
+                      href={project.demo} 
+                      variant="primary" 
+                      size="sm"
+                      className="flex-1"
+                    >
+                      Live Demo
+                    </Button>
+                  )}
+                </div>
+              </div>
+            </Card>
           ))}
         </div>
       </div>
