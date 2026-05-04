@@ -12,9 +12,9 @@ interface ButtonProps {
   disabled?: boolean;
 }
 
-export default function Button({ 
-  children, 
-  variant = 'primary', 
+export default function Button({
+  children,
+  variant = 'primary',
   size = 'md',
   href,
   onClick,
@@ -22,37 +22,42 @@ export default function Button({
   disabled = false
 }: ButtonProps) {
   const baseClasses = `
-    inline-flex items-center justify-center font-medium transition-all duration-200 ease-out
-    focus:outline-none focus:ring-2 focus:ring-[#5E6AD2]/50 focus:ring-offset-2 focus:ring-offset-[#050506]
+    inline-flex items-center justify-center font-body font-medium
+    transition-all duration-300 ease-out
+    focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6C63FF] focus-visible:ring-offset-2 focus-visible:ring-offset-[#E0E5EC]
     disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none
   `;
 
   const variantClasses = {
     primary: `
-      bg-[#5E6AD2] text-white rounded-lg
-      shadow-[0_0_0_1px_rgba(94,106,210,0.5),0_4px_12px_rgba(94,106,210,0.3),inset_0_1px_0_0_rgba(255,255,255,0.2)]
-      hover:bg-[#6872D9] hover:shadow-[0_0_0_1px_rgba(94,106,210,0.7),0_6px_20px_rgba(94,106,210,0.4),inset_0_1px_0_0_rgba(255,255,255,0.3)]
-      hover:-translate-y-0.5
-      active:scale-[0.98] active:translate-y-0 active:shadow-[0_0_0_1px_rgba(94,106,210,0.4),0_2px_8px_rgba(94,106,210,0.2),inset_0_1px_0_0_rgba(255,255,255,0.1)]
+      bg-[#6C63FF] text-white
+      shadow-[5px_5px_10px_rgb(163,177,198,0.4),-5px_-5px_10px_rgba(255,255,255,0.3),inset_0_1px_0_rgba(255,255,255,0.2)]
+      hover:bg-[#8B84FF]
+      hover:shadow-[8px_8px_16px_rgb(163,177,198,0.5),-8px_-8px_16px_rgba(255,255,255,0.4),inset_0_1px_0_rgba(255,255,255,0.3)]
+      hover:-translate-y-1
+      active:translate-y-0
+      active:shadow-[inset_3px_3px_6px_rgba(0,0,0,0.2),inset_-1px_-1px_0_rgba(255,255,255,0.1)]
     `,
     secondary: `
-      bg-white/5 text-[#EDEDEF] rounded-lg border border-white/10
-      shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)]
-      hover:bg-white/8 hover:border-white/15 hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.2),0_4px_12px_rgba(0,0,0,0.2)]
-      hover:-translate-y-0.5
-      active:scale-[0.98] active:translate-y-0
+      bg-[#E0E5EC] text-[#3D4852]
+      shadow-[5px_5px_10px_rgb(163,177,198,0.6),-5px_-5px_10px_rgba(255,255,255,0.5)]
+      hover:shadow-[8px_8px_16px_rgb(163,177,198,0.7),-8px_-8px_16px_rgba(255,255,255,0.6)]
+      hover:-translate-y-1
+      active:translate-y-0
+      active:shadow-[inset_3px_3px_6px_rgb(163,177,198,0.6),inset_-3px_-3px_6px_rgba(255,255,255,0.5)]
     `,
     ghost: `
-      bg-transparent text-[#8A8F98] rounded-lg
-      hover:bg-white/5 hover:text-[#EDEDEF] hover:-translate-y-0.5
-      active:scale-[0.98] active:translate-y-0
+      bg-transparent text-[#6B7280]
+      hover:text-[#3D4852] hover:bg-[#E0E5EC]
+      hover:shadow-[inset_3px_3px_6px_rgb(163,177,198,0.4),inset_-3px_-3px_6px_rgba(255,255,255,0.3)]
+      active:shadow-[inset_2px_2px_4px_rgb(163,177,198,0.4),inset_-2px_-2px_4px_rgba(255,255,255,0.3)]
     `
   };
 
   const sizeClasses = {
-    sm: 'px-4 py-2 text-sm',
-    md: 'px-6 py-3 text-base',
-    lg: 'px-8 py-4 text-lg'
+    sm: 'px-4 py-2 text-sm rounded-xl',
+    md: 'px-6 py-3 text-base rounded-2xl',
+    lg: 'px-8 py-4 text-lg rounded-2xl'
   };
 
   const combinedClasses = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
@@ -66,8 +71,8 @@ export default function Button({
   if (href) {
     if (href.includes('.pdf')) {
       return (
-        <a 
-          href={href} 
+        <a
+          href={href}
           download
           className={combinedClasses}
           onClick={onClick}
@@ -77,7 +82,7 @@ export default function Button({
       );
     }
     return (
-      <a 
+      <a
         href={href}
         className={combinedClasses}
         onClick={onClick}

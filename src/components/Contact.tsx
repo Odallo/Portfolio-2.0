@@ -1,6 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Input from "./ui/Input";
+import Card from "./ui/Card";
+import Button from "./ui/Button";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -15,8 +18,7 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Validation
+
     if (!formData.name || !formData.email || !formData.projectType) {
       alert("Please fill in all required fields (Name, Email, and Project Type).");
       return;
@@ -24,7 +26,6 @@ export default function Contact() {
 
     setIsSubmitting(true);
 
-    // Create properly formatted email content
     const subject = encodeURIComponent(`Project Inquiry from ${formData.name}`);
     const body = encodeURIComponent(
       `Name: ${formData.name}\n` +
@@ -37,9 +38,8 @@ export default function Contact() {
       `Sent from portfolio website`
     );
 
-    // Open email client
     window.location.href = `mailto:odalloeugine@gmail.com?subject=${subject}&body=${body}`;
-    
+
     setIsSubmitting(false);
   };
 
@@ -47,117 +47,106 @@ export default function Contact() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const selectClassName = `
+    w-full bg-[#E0E5EC] text-[#3D4852] rounded-2xl px-5 py-4 text-base
+    shadow-[inset_6px_6px_12px_rgb(163,177,198,0.6),inset_-6px_-6px_12px_rgba(255,255,255,0.5)]
+    transition-all duration-300 ease-out
+    focus:shadow-[inset_10px_10px_20px_rgb(163,177,198,0.7),inset_-10px_-10px_20px_rgba(255,255,255,0.6),0_0_0_2px_#6C63FF]
+    border-none outline-none cursor-pointer
+  `;
+
   return (
     <section className="py-20">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
-          <div className="inline-block relative">
-            <h2 className="text-4xl md:text-6xl font-bold text-[#2d2d2d] mb-4"
-              style={{ fontFamily: 'Kalam, cursive' }}
-            >
-              Get In Touch
-            </h2>
-            <div className="absolute -bottom-2 left-0 right-0 h-2 bg-[#2d5da1]"
-              style={{
-                borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px',
-              }}
-            />
+          <div 
+            className="inline-block px-8 py-3 mb-6 rounded-full"
+            style={{
+              background: '#E0E5EC',
+              boxShadow: 'inset 4px 4px 8px rgb(163,177,198,0.5), inset -4px -4px 8px rgba(255,255,255,0.4)',
+            }}
+          >
+            <span className="text-sm font-body font-medium text-[#6C63FF] tracking-wider uppercase">
+              Contact
+            </span>
           </div>
+          <h2 className="text-4xl md:text-6xl font-display font-bold text-[#3D4852] mb-4">
+            Get In Touch
+          </h2>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
+          {/* Contact Info - Neumorphic Card */}
           <div>
-            <div className="bg-white border-4 border-[#2d2d2d] p-8 mb-8 relative"
-              style={{
-                borderRadius: '255px 35px 225px 35px / 35px 225px 35px 255px',
-                boxShadow: '8px 8px 0px 0px #2d2d2d',
-                transform: 'rotate(-1deg)',
-              }}
-            >
-              {/* Tape decoration */}
-              <div 
-                className="absolute top-0 left-1/2 w-24 h-6 bg-gray-300 opacity-60"
-                style={{
-                  borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px',
-                  transform: 'translateX(-50%) translateY(-50%) rotate(-2deg)',
-                  boxShadow: '2px 2px 0px 0px rgba(45, 45, 45, 0.2)',
-                }}
-              />
-
-              <p className="text-[#2d2d2d] mb-8 text-lg leading-relaxed">
+            <Card className="p-8 mb-8">
+              <p className="text-[#6B7280] mb-8 text-lg leading-relaxed font-body">
                 Ready to start your project? I respond within 24 hours and offer 
                 free consultations to discuss your needs.
               </p>
 
               <div className="space-y-6 mb-8">
                 <div>
-                  <h3 className="text-2xl font-bold mb-2 text-[#2d2d2d]"
-                    style={{ fontFamily: 'Kalam, cursive' }}
-                  >
+                  <h3 className="text-lg font-display font-bold text-[#3D4852] mb-2">
                     Email
                   </h3>
-                  <a href="mailto:odalloeugine@gmail.com" className="text-[#2d5da1] text-lg hover:text-[#ff4d4d] transition-colors">
+                  <a 
+                    href="mailto:odalloeugine@gmail.com" 
+                    className="text-[#6C63FF] text-lg hover:text-[#8B84FF] transition-colors font-body"
+                  >
                     odalloeugine@gmail.com
                   </a>
                 </div>
 
                 <div>
-                  <h3 className="text-2xl font-bold mb-2 text-[#2d2d2d]"
-                    style={{ fontFamily: 'Kalam, cursive' }}
-                  >
+                  <h3 className="text-lg font-display font-bold text-[#3D4852] mb-2">
                     Response Time
                   </h3>
-                  <p className="text-[#2d2d2d] text-lg">Within 24 hours</p>
+                  <p className="text-[#6B7280] text-lg font-body">Within 24 hours</p>
                 </div>
 
                 <div>
-                  <h3 className="text-2xl font-bold mb-2 text-[#2d2d2d]"
-                    style={{ fontFamily: 'Kalam, cursive' }}
-                  >
+                  <h3 className="text-lg font-display font-bold text-[#3D4852] mb-3">
                     Available For
                   </h3>
-                  <ul className="text-[#2d2d2d] space-y-1 text-lg">
-                    <li className="flex items-start">
-                      <span className="text-[#ff4d4d] mr-2 font-bold">~</span>
-                      <span>Custom Website Development</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-[#ff4d4d] mr-2 font-bold">~</span>
-                      <span>Web Application Projects</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-[#ff4d4d] mr-2 font-bold">~</span>
-                      <span>E-commerce Solutions</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-[#ff4d4d] mr-2 font-bold">~</span>
-                      <span>Consulting & Code Review</span>
-                    </li>
+                  <ul className="text-[#6B7280] space-y-2 text-lg font-body">
+                    {[
+                      "Custom Website Development",
+                      "Web Application Projects",
+                      "E-commerce Solutions",
+                      "Consulting & Code Review"
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-center gap-3">
+                        <div 
+                          className="w-2 h-2 rounded-full flex-shrink-0"
+                          style={{ backgroundColor: '#6C63FF' }}
+                        />
+                        <span>{item}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
-            </div>
+            </Card>
 
+            {/* Social Links - Neumorphic Buttons */}
             <div className="flex flex-wrap gap-4">
               <a
                 href="https://github.com/Odallo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative group"
+                className="flex-1"
               >
                 <div 
-                  className="bg-white border-[3px] border-[#2d2d2d] px-6 py-3 text-center text-lg font-bold text-[#2d2d2d] transition-all duration-100 group-hover:bg-[#2d5da1] group-hover:text-white"
+                  className="px-6 py-3 text-center text-base font-body font-medium text-[#3D4852] rounded-2xl transition-all duration-300 hover:-translate-y-1"
                   style={{
-                    borderRadius: '255px 25px 225px 25px / 25px 225px 25px 255px',
-                    boxShadow: '4px 4px 0px 0px #2d2d2d',
+                    background: '#E0E5EC',
+                    boxShadow: '5px 5px 10px rgb(163,177,198,0.6), -5px -5px 10px rgba(255,255,255,0.5)',
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = '2px 2px 0px 0px #2d2d2d';
-                    e.currentTarget.style.transform = 'translateX(2px) translateY(2px)';
+                    e.currentTarget.style.boxShadow = '8px 8px 16px rgb(163,177,198,0.7), -8px -8px 16px rgba(255,255,255,0.6)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.boxShadow = '4px 4px 0px 0px #2d2d2d';
-                    e.currentTarget.style.transform = 'translateX(0) translateY(0)';
+                    e.currentTarget.style.boxShadow = '5px 5px 10px rgb(163,177,198,0.6), -5px -5px 10px rgba(255,255,255,0.5)';
                   }}
                 >
                   GitHub
@@ -168,21 +157,19 @@ export default function Contact() {
                 href="https://www.linkedin.com/in/odallo-eugine/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative group"
+                className="flex-1"
               >
                 <div 
-                  className="bg-white border-[3px] border-[#2d2d2d] px-6 py-3 text-center text-lg font-bold text-[#2d2d2d] transition-all duration-100 group-hover:bg-[#2d5da1] group-hover:text-white"
+                  className="px-6 py-3 text-center text-base font-body font-medium text-[#3D4852] rounded-2xl transition-all duration-300 hover:-translate-y-1"
                   style={{
-                    borderRadius: '255px 25px 225px 25px / 25px 225px 25px 255px',
-                    boxShadow: '4px 4px 0px 0px #2d2d2d',
+                    background: '#E0E5EC',
+                    boxShadow: '5px 5px 10px rgb(163,177,198,0.6), -5px -5px 10px rgba(255,255,255,0.5)',
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = '2px 2px 0px 0px #2d2d2d';
-                    e.currentTarget.style.transform = 'translateX(2px) translateY(2px)';
+                    e.currentTarget.style.boxShadow = '8px 8px 16px rgb(163,177,198,0.7), -8px -8px 16px rgba(255,255,255,0.6)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.boxShadow = '4px 4px 0px 0px #2d2d2d';
-                    e.currentTarget.style.transform = 'translateX(0) translateY(0)';
+                    e.currentTarget.style.boxShadow = '5px 5px 10px rgb(163,177,198,0.6), -5px -5px 10px rgba(255,255,255,0.5)';
                   }}
                 >
                   LinkedIn
@@ -191,77 +178,43 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="bg-[#fff9c4] border-4 border-[#2d2d2d] p-8 relative"
-            style={{
-              borderRadius: '255px 35px 225px 35px / 35px 225px 35px 255px',
-              boxShadow: '8px 8px 0px 0px #2d2d2d',
-              transform: 'rotate(1deg)',
-            }}
-          >
-            {/* Sticky note decoration */}
-            <div className="absolute top-2 right-2 text-xs text-[#2d2d2d] opacity-60 font-bold">
-              PROJECT FORM
-            </div>
-
-            <h3 className="text-2xl font-bold mb-6 text-[#2d2d2d]"
-              style={{ fontFamily: 'Kalam, cursive' }}
-            >
+          {/* Contact Form - Neumorphic Card */}
+          <Card className="p-8">
+            <h3 className="text-2xl font-display font-bold text-[#3D4852] mb-6">
               Quick Quote Form
             </h3>
-            
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label className="block text-lg font-bold mb-2 text-[#2d2d2d]">
-                  Name *
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  required
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-white border-2 border-[#2d2d2d] text-[#2d2d2d] placeholder-[#2d2d2d]/40 text-lg"
-                  placeholder="Your Name"
-                  style={{
-                    borderRadius: '255px 25px 225px 25px / 25px 225px 25px 255px',
-                    boxShadow: '3px 3px 0px 0px rgba(45, 45, 45, 0.1)',
-                  }}
-                />
-              </div>
 
-              <div>
-                <label className="block text-lg font-bold mb-2 text-[#2d2d2d]">
-                  Email *
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-white border-2 border-[#2d2d2d] text-[#2d2d2d] placeholder-[#2d2d2d]/40 text-lg"
-                  placeholder="your@email.com"
-                  style={{
-                    borderRadius: '255px 25px 225px 25px / 25px 225px 25px 255px',
-                    boxShadow: '3px 3px 0px 0px rgba(45, 45, 45, 0.1)',
-                  }}
-                />
-              </div>
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <Input
+                type="text"
+                name="name"
+                label="Name"
+                required
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Your Name"
+              />
 
-              <div>
-                <label className="block text-lg font-bold mb-2 text-[#2d2d2d]">
-                  Project Type *
+              <Input
+                type="email"
+                name="email"
+                label="Email"
+                required
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="your@email.com"
+              />
+
+              <div className="space-y-3">
+                <label className="text-sm font-body font-medium text-[#3D4852] ml-1">
+                  Project Type <span className="text-[#6C63FF]">*</span>
                 </label>
                 <select
                   name="projectType"
                   required
                   value={formData.projectType}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-white border-2 border-[#2d2d2d] text-[#2d2d2d] text-lg"
-                  style={{
-                    borderRadius: '255px 25px 225px 25px / 25px 225px 25px 255px',
-                    boxShadow: '3px 3px 0px 0px rgba(45, 45, 45, 0.1)',
-                  }}
+                  className={selectClassName}
                 >
                   <option value="">Select a service</option>
                   <option value="Custom Website">Custom Website</option>
@@ -272,19 +225,15 @@ export default function Contact() {
               </div>
 
               <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-lg font-bold mb-2 text-[#2d2d2d]">
+                <div className="space-y-3">
+                  <label className="text-sm font-body font-medium text-[#3D4852] ml-1">
                     Budget Range
                   </label>
                   <select
                     name="budget"
                     value={formData.budget}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white border-2 border-[#2d2d2d] text-[#2d2d2d] text-lg"
-                    style={{
-                      borderRadius: '255px 25px 225px 25px / 25px 225px 25px 255px',
-                      boxShadow: '3px 3px 0px 0px rgba(45, 45, 45, 0.1)',
-                    }}
+                    className={selectClassName}
                   >
                     <option value="">Select budget</option>
                     <option value="KES 25,000-50,000">KES 25,000-50,000</option>
@@ -294,19 +243,15 @@ export default function Contact() {
                   </select>
                 </div>
 
-                <div>
-                  <label className="block text-lg font-bold mb-2 text-[#2d2d2d]">
+                <div className="space-y-3">
+                  <label className="text-sm font-body font-medium text-[#3D4852] ml-1">
                     Timeline
                   </label>
                   <select
                     name="timeline"
                     value={formData.timeline}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white border-2 border-[#2d2d2d] text-[#2d2d2d] text-lg"
-                    style={{
-                      borderRadius: '255px 25px 225px 25px / 25px 225px 25px 255px',
-                      boxShadow: '3px 3px 0px 0px rgba(45, 45, 45, 0.1)',
-                    }}
+                    className={selectClassName}
                   >
                     <option value="">Select timeline</option>
                     <option value="ASAP">ASAP</option>
@@ -318,42 +263,34 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div>
-                <label className="block text-lg font-bold mb-2 text-[#2d2d2d]">
-                  Project Details
-                </label>
-                <textarea
-                  name="message"
-                  rows={4}
-                  value={formData.message}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-white border-2 border-[#2d2d2d] text-[#2d2d2d] placeholder-[#2d2d2d]/40 text-lg"
-                  placeholder="Tell me about your project..."
-                  style={{
-                    borderRadius: '255px 25px 225px 25px / 25px 225px 25px 255px',
-                    boxShadow: '3px 3px 0px 0px rgba(45, 45, 45, 0.1)',
-                  }}
-                />
-              </div>
+              <Input
+                type="textarea"
+                name="message"
+                label="Project Details"
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="Tell me about your project..."
+                rows={4}
+              />
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-[#ff4d4d] text-white px-6 py-4 text-xl font-bold transition-all duration-100 hover:bg-[#2d2d2d] disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-4 text-lg font-body font-medium text-white rounded-2xl transition-all duration-300 hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
                 style={{
-                  borderRadius: '255px 25px 225px 25px / 25px 225px 25px 255px',
-                  boxShadow: '4px 4px 0px 0px #2d2d2d',
+                  background: '#6C63FF',
+                  boxShadow: '5px 5px 10px rgb(163,177,198,0.4), -5px -5px 10px rgba(255,255,255,0.3), inset 0 1px 0 rgba(255,255,255,0.2)',
                 }}
                 onMouseEnter={(e) => {
                   if (!isSubmitting) {
-                    e.currentTarget.style.boxShadow = '2px 2px 0px 0px #2d2d2d';
-                    e.currentTarget.style.transform = 'translateX(2px) translateY(2px)';
+                    e.currentTarget.style.background = '#8B84FF';
+                    e.currentTarget.style.boxShadow = '8px 8px 16px rgb(163,177,198,0.5), -8px -8px 16px rgba(255,255,255,0.4), inset 0 1px 0 rgba(255,255,255,0.3)';
                   }
                 }}
                 onMouseLeave={(e) => {
                   if (!isSubmitting) {
-                    e.currentTarget.style.boxShadow = '4px 4px 0px 0px #2d2d2d';
-                    e.currentTarget.style.transform = 'translateX(0) translateY(0)';
+                    e.currentTarget.style.background = '#6C63FF';
+                    e.currentTarget.style.boxShadow = '5px 5px 10px rgb(163,177,198,0.4), -5px -5px 10px rgba(255,255,255,0.3), inset 0 1px 0 rgba(255,255,255,0.2)';
                   }
                 }}
               >
@@ -361,11 +298,10 @@ export default function Contact() {
               </button>
             </form>
 
-            {/* Help text */}
-            <div className="mt-4 text-sm text-[#2d2d2d] opacity-70">
+            <div className="mt-4 text-sm text-[#6B7280]">
               <p>Clicking "Send Project Inquiry" will open your default email client with the form details pre-filled.</p>
             </div>
-          </div>
+          </Card>
         </div>
       </div>
     </section>

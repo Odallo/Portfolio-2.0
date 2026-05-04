@@ -11,34 +11,37 @@ interface InputProps {
   required?: boolean;
   className?: string;
   rows?: number;
+  name?: string;
 }
 
-export default function Input({ 
-  type = 'text', 
-  placeholder, 
-  value, 
-  onChange, 
+export default function Input({
+  type = 'text',
+  placeholder,
+  value,
+  onChange,
   label,
   required = false,
   className = '',
-  rows = 3
+  rows = 4,
+  name
 }: InputProps) {
   const baseClasses = `
-    w-full bg-[#0F0F12] border border-white/10 rounded-lg text-gray-100
-    placeholder-gray-500 transition-all duration-200 ease-out
-    focus:outline-none focus:ring-2 focus:ring-[#5E6AD2]/50 focus:ring-offset-2 focus:ring-offset-[#050506]
-    focus:border-[#5E6AD2] focus:bg-[#0F0F12]
-    hover:border-white/15
+    w-full bg-[#E0E5EC] text-[#3D4852] placeholder-[#A0AEC0]
+    border-none outline-none
+    shadow-[inset_6px_6px_12px_rgb(163,177,198,0.6),inset_-6px_-6px_12px_rgba(255,255,255,0.5)]
+    transition-all duration-300 ease-out
+    focus:shadow-[inset_10px_10px_20px_rgb(163,177,198,0.7),inset_-10px_-10px_20px_rgba(255,255,255,0.6),0_0_0_2px_#6C63FF]
   `;
 
-  const sizeClasses = type === 'textarea' 
-    ? `px-4 py-3 text-sm resize-none` 
-    : `px-4 py-3 text-base`;
+  const sizeClasses = type === 'textarea'
+    ? `px-5 py-4 text-base resize-none rounded-2xl`
+    : `px-5 py-4 text-base rounded-2xl`;
 
   const combinedClasses = `${baseClasses} ${sizeClasses} ${className}`;
 
   const inputElement = type === 'textarea' ? (
     <textarea
+      name={name}
       value={value}
       onChange={onChange}
       placeholder={placeholder}
@@ -49,6 +52,7 @@ export default function Input({
   ) : (
     <input
       type={type}
+      name={name}
       value={value}
       onChange={onChange}
       placeholder={placeholder}
@@ -59,10 +63,10 @@ export default function Input({
 
   if (label) {
     return (
-      <div className="space-y-2">
-        <label className="text-xs font-mono tracking-widest text-[#8A8F98] uppercase">
+      <div className="space-y-3">
+        <label className="text-sm font-body font-medium text-[#3D4852] ml-1">
           {label}
-          {required && <span className="text-[#5E6AD2] ml-1">*</span>}
+          {required && <span className="text-[#6C63FF] ml-1">*</span>}
         </label>
         {inputElement}
       </div>

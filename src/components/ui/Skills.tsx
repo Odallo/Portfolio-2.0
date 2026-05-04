@@ -7,17 +7,17 @@ export default function Skills() {
     {
       title: "Frontend",
       skills: ["React", "Next.js", "TypeScript", "TailwindCSS", "JavaScript", "HTML/CSS"],
-      color: "#5E6AD2"
+      color: "#6C63FF"
     },
     {
       title: "Backend",
       skills: ["Node.js", "Python", "Laravel", "REST APIs", "GraphQL", "PostgreSQL"],
-      color: "#8b92e8"
+      color: "#8B84FF"
     },
     {
       title: "Tools & DevOps",
       skills: ["Git", "VS Code", "Docker", "AWS", "Vercel", "Figma"],
-      color: "#6872D9"
+      color: "#38B2AC"
     }
   ];
 
@@ -34,10 +34,21 @@ export default function Skills() {
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold gradient-text mb-4">
+          <div 
+            className="inline-block px-8 py-3 mb-6 rounded-full"
+            style={{
+              background: '#E0E5EC',
+              boxShadow: 'inset 4px 4px 8px rgb(163,177,198,0.5), inset -4px -4px 8px rgba(255,255,255,0.4)',
+            }}
+          >
+            <span className="text-sm font-body font-medium text-[#6C63FF] tracking-wider uppercase">
+              Expertise
+            </span>
+          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-[#3D4852] mb-4">
             Skills & Expertise
           </h2>
-          <p className="text-lg text-[#8A8F98] max-w-2xl mx-auto">
+          <p className="text-lg text-[#6B7280] max-w-2xl mx-auto font-body">
             Technologies and tools I use to bring ideas to life
           </p>
         </div>
@@ -45,21 +56,23 @@ export default function Skills() {
         {/* Skills Grid */}
         <div className="grid md:grid-cols-3 gap-8 mb-16">
           {skillCategories.map((category, index) => (
-            <Card key={index} variant="default" spotlight>
-              <div className="p-6">
-                <h3 className="text-lg font-semibold text-[#EDEDEF] mb-6">
-                  {category.title}
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {category.skills.map((skill, skillIndex) => (
-                    <span
-                      key={skillIndex}
-                      className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-sm text-[#8A8F98] hover:text-[#EDEDEF] hover:border-white/20 transition-colors duration-200"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
+            <Card key={index} className="p-6">
+              <h3 className="text-lg font-display font-bold text-[#3D4852] mb-6">
+                {category.title}
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {category.skills.map((skill, skillIndex) => (
+                  <span
+                    key={skillIndex}
+                    className="px-4 py-2 text-sm font-body font-medium text-[#6B7280] rounded-xl transition-all duration-200 hover:text-[#3D4852]"
+                    style={{
+                      background: '#E0E5EC',
+                      boxShadow: '4px 4px 8px rgb(163,177,198,0.5), -4px -4px 8px rgba(255,255,255,0.4)',
+                    }}
+                  >
+                    {skill}
+                  </span>
+                ))}
               </div>
             </Card>
           ))}
@@ -68,49 +81,67 @@ export default function Skills() {
         {/* What I've Built */}
         <div className="mb-16">
           <div className="text-center mb-12">
-            <h3 className="text-2xl md:text-3xl font-semibold gradient-text-accent mb-4">
+            <h3 className="text-2xl md:text-3xl font-display font-bold text-[#3D4852] mb-4">
               What I've Built
             </h3>
-            <p className="text-[#8A8F98]">
+            <p className="text-[#6B7280] font-body">
               Projects that showcase my skills and experience
             </p>
           </div>
 
-          <Card variant="glass">
-            <div className="p-8">
-              <div className="grid md:grid-cols-2 gap-6">
-                {projects.map((project, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-[#5E6AD2] rounded-full mt-2 flex-shrink-0" />
-                    <div>
-                      <h4 className="font-medium text-[#EDEDEF] mb-1">
-                        {project.name}
-                      </h4>
-                      <p className="text-sm text-[#8A8F98]">{project.desc}</p>
-                    </div>
+          <Card className="p-8">
+            <div className="grid md:grid-cols-2 gap-6">
+              {projects.map((project, index) => (
+                <div key={index} className="flex items-start gap-4">
+                  {/* Neumorphic Check */}
+                  <div 
+                    className="w-6 h-6 rounded-full flex-shrink-0 mt-0.5"
+                    style={{
+                      background: '#E0E5EC',
+                      boxShadow: 'inset 2px 2px 4px rgb(163,177,198,0.5), inset -2px -2px 4px rgba(255,255,255,0.4)',
+                    }}
+                  >
+                    <svg 
+                      className="w-full h-full p-1 text-[#6C63FF]" 
+                      fill="none" 
+                      viewBox="0 0 24 24" 
+                      stroke="currentColor"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                    </svg>
                   </div>
-                ))}
-              </div>
+                  <div>
+                    <h4 className="font-display font-bold text-[#3D4852] mb-1">
+                      {project.name}
+                    </h4>
+                    <p className="text-sm text-[#6B7280]">{project.desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </Card>
         </div>
 
         {/* Currently Learning */}
-        <Card variant="gradient" className="text-center">
+        <Card className="text-center">
           <div className="p-8">
-            <h3 className="text-xl font-semibold text-[#EDEDEF] mb-4">
+            <h3 className="text-xl font-display font-bold text-[#3D4852] mb-4">
               Currently Exploring
             </h3>
-            <p className="text-[#8A8F98] mb-6 max-w-2xl mx-auto">
+            <p className="text-[#6B7280] mb-6 max-w-2xl mx-auto font-body">
               I'm always learning and improving my skills. Currently diving deeper into 
               system design, cloud architecture, and performance optimization.
             </p>
-            
+
             <div className="flex flex-wrap justify-center gap-3">
               {["Advanced TypeScript", "System Design", "Cloud Architecture", "Performance Optimization"].map((topic, i) => (
                 <span
                   key={i}
-                  className="px-4 py-2 bg-[#5E6AD2]/20 text-[#5E6AD2] rounded-lg text-sm font-medium"
+                  className="px-5 py-2.5 text-sm font-body font-medium text-[#6C63FF] rounded-xl"
+                  style={{
+                    background: '#E0E5EC',
+                    boxShadow: '4px 4px 8px rgb(163,177,198,0.5), -4px -4px 8px rgba(255,255,255,0.4)',
+                  }}
                 >
                   {topic}
                 </span>

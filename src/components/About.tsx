@@ -6,154 +6,173 @@ export default function About() {
     <section className="py-24 md:py-32">
       <div className="max-w-6xl mx-auto px-6">
         <div className="max-w-4xl mx-auto">
-          {/* Section Header */}
+          {/* Section Header - Neumorphic Style */}
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold gradient-text mb-4">
+            <div 
+              className="inline-block px-8 py-3 mb-6 rounded-full"
+              style={{
+                background: '#E0E5EC',
+                boxShadow: 'inset 4px 4px 8px rgb(163,177,198,0.5), inset -4px -4px 8px rgba(255,255,255,0.4)',
+              }}
+            >
+              <span className="text-sm font-body font-medium text-[#6C63FF] tracking-wider uppercase">
+                About Me
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-[#3D4852] mb-4">
               About Me
             </h2>
-            <p className="text-lg text-[#8A8F98] max-w-2xl mx-auto">
+            <p className="text-lg text-[#6B7280] max-w-2xl mx-auto font-body">
               Passionate software developer crafting digital experiences with clean code and modern technologies
             </p>
           </div>
 
           {/* Profile Section */}
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
-            {/* Profile Card */}
-            <Card variant="glass" spotlight className="md:col-span-1">
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            {/* Profile Card - Neumorphic */}
+            <Card className="md:col-span-1 p-8">
               <div className="text-center">
+                {/* Profile Image with Neumorphic Frame */}
                 <div className="relative inline-block mb-6">
-                  <div className="absolute inset-0 bg-[#5E6AD2]/20 rounded-full blur-xl" />
-                  <Image 
-                    src="/WhatsApp Image 2026-01-27 at 23.26.06.jpeg" 
-                    alt="Profile" 
+                  <div 
+                    className="absolute inset-0 rounded-full"
+                    style={{
+                      background: '#E0E5EC',
+                      boxShadow: '9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px rgba(255,255,255,0.5)',
+                    }}
+                  />
+                  <Image
+                    src="/WhatsApp Image 2026-01-27 at 23.26.06.jpeg"
+                    alt="Profile"
                     width={160}
                     height={160}
-                    className="relative rounded-full border-2 border-white/10"
+                    className="relative rounded-full border-4 border-[#E0E5EC]"
+                    style={{
+                      boxShadow: 'inset 2px 2px 4px rgba(0,0,0,0.1)',
+                    }}
                   />
                 </div>
-                
-                <h3 className="text-xl font-semibold text-[#EDEDEF] mb-2">
+
+                <h3 className="text-xl font-display font-bold text-[#3D4852] mb-2">
                   Odallo Eugine
                 </h3>
-                <p className="text-[#8A8F98] mb-4">
+                <p className="text-[#6B7280] mb-6 font-body">
                   Software Developer
                 </p>
-                
-                <div className="flex justify-center gap-2">
-                  <span className="px-3 py-1 bg-[#5E6AD2]/20 text-[#5E6AD2] rounded-full text-xs font-medium">
-                    React
-                  </span>
-                  <span className="px-3 py-1 bg-[#5E6AD2]/20 text-[#5E6AD2] rounded-full text-xs font-medium">
-                    Next.js
-                  </span>
-                  <span className="px-3 py-1 bg-[#5E6AD2]/20 text-[#5E6AD2] rounded-full text-xs font-medium">
-                    TypeScript
-                  </span>
+
+                {/* Tech Tags - Neumorphic Style */}
+                <div className="flex flex-wrap justify-center gap-2">
+                  {['React', 'Next.js', 'TypeScript'].map((tech) => (
+                    <span 
+                      key={tech}
+                      className="px-3 py-1.5 text-xs font-body font-medium text-[#6C63FF] rounded-full"
+                      style={{
+                        background: '#E0E5EC',
+                        boxShadow: '3px 3px 6px rgb(163,177,198,0.5), -3px -3px 6px rgba(255,255,255,0.4)',
+                      }}
+                    >
+                      {tech}
+                    </span>
+                  ))}
                 </div>
               </div>
             </Card>
 
             {/* About Content */}
             <div className="md:col-span-2 space-y-6">
-              <Card variant="default" spotlight>
-                <h3 className="text-xl font-semibold text-[#EDEDEF] mb-4">
+              {/* My Journey Card */}
+              <Card className="p-8">
+                <h3 className="text-xl font-display font-bold text-[#3D4852] mb-4">
                   My Journey
                 </h3>
-                <p className="text-[#8A8F98] leading-relaxed mb-4">
+                <p className="text-[#6B7280] leading-relaxed mb-4 font-body">
                   I'm a passionate software developer specializing in building reliable, scalable, 
                   and human-centered digital solutions. My journey in web development began with 
                   a curiosity about how things work on the internet, and has evolved into a 
                   career focused on creating exceptional user experiences.
                 </p>
-                <p className="text-[#8A8F98] leading-relaxed">
+                <p className="text-[#6B7280] leading-relaxed font-body">
                   I specialize in modern JavaScript frameworks, particularly React and Next.js, 
                   and have a strong foundation in both frontend and backend development. 
                   My approach combines technical expertise with a keen eye for design and user experience.
                 </p>
               </Card>
 
-              <Card variant="default" spotlight>
-                <h3 className="text-xl font-semibold text-[#EDEDEF] mb-4">
+              {/* Design Philosophy Card */}
+              <Card className="p-8">
+                <h3 className="text-xl font-display font-bold text-[#3D4852] mb-4">
                   Design Philosophy
                 </h3>
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-[#5E6AD2] rounded-full mt-2 flex-shrink-0" />
-                    <p className="text-[#8A8F98]">
-                      <strong className="text-[#EDEDEF]">User-Centered Approach:</strong> Every line of code serves the user experience
-                    </p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-[#5E6AD2] rounded-full mt-2 flex-shrink-0" />
-                    <p className="text-[#8A8F98]">
-                      <strong className="text-[#EDEDEF]">Clean Architecture:</strong> Maintainable code that scales with your business
-                    </p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-[#5E6AD2] rounded-full mt-2 flex-shrink-0" />
-                    <p className="text-[#8A8F98]">
-                      <strong className="text-[#EDEDEF]">Performance First:</strong> Fast, responsive applications that delight users
-                    </p>
-                  </div>
+                <div className="space-y-4">
+                  {[
+                    { title: 'User-Centered Approach', desc: 'Every line of code serves the user experience' },
+                    { title: 'Clean Architecture', desc: 'Maintainable code that scales with your business' },
+                    { title: 'Performance First', desc: 'Fast, responsive applications that delight users' },
+                  ].map((item) => (
+                    <div key={item.title} className="flex items-start gap-4">
+                      {/* Neumorphic Check Icon */}
+                      <div 
+                        className="w-6 h-6 rounded-full flex-shrink-0 mt-0.5"
+                        style={{
+                          background: '#E0E5EC',
+                          boxShadow: 'inset 2px 2px 4px rgb(163,177,198,0.5), inset -2px -2px 4px rgba(255,255,255,0.4)',
+                        }}
+                      >
+                        <svg 
+                          className="w-full h-full p-1 text-[#38B2AC]" 
+                          fill="none" 
+                          viewBox="0 0 24 24" 
+                          stroke="currentColor"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <p className="text-[#6B7280] font-body">
+                        <strong className="text-[#3D4852]">{item.title}:</strong> {item.desc}
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </Card>
             </div>
-
-            <div className="text-center pt-8 border-t-4 border-dashed border-[#2d2d2d]">
-              <p className="text-xl text-[#2d2d2d] leading-relaxed font-bold mb-6">
-                I&apos;m currently seeking opportunities where I can learn from experienced developers, 
-                work on real problems, and continue developing strong engineering fundamentals.
-              </p>
-              
-              {/* Decorative elements */}
-              <div className="flex justify-center gap-4">
-                <div className="w-8 h-8 bg-[#ff4d4d] rounded-full animate-bounce"
-                  style={{
-                    borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px',
-                    boxShadow: '2px 2px 0px 0px #2d2d2d',
-                  }}
-                />
-                <div className="w-8 h-8 bg-[#2d5da1] rounded-full animate-bounce"
-                  style={{
-                    borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px',
-                    boxShadow: '2px 2px 0px 0px #2d2d2d',
-                    animationDelay: '0.5s',
-                  }}
-                />
-                <div className="w-8 h-8 bg-[#e5e0d8] rounded-full animate-bounce"
-                  style={{
-                    borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px',
-                    boxShadow: '2px 2px 0px 0px #2d2d2d',
-                    animationDelay: '1s',
-                  }}
-                />
-              </div>
-            </div>
           </div>
 
-          {/* Footer quote card */}
-          <div className="bg-white border-4 border-[#2d2d2d] p-6 text-center relative"
+          {/* Call to Action - Neumorphic Style */}
+          <div 
+            className="text-center py-12 rounded-[32px]"
             style={{
-              borderRadius: '255px 25px 225px 25px / 25px 225px 25px 255px',
-              boxShadow: '8px 8px 0px 0px #2d2d2d',
-              transform: 'rotate(1deg)',
+              background: '#E0E5EC',
+              boxShadow: '9px 9px 20px rgb(163,177,198,0.6), -9px -9px 20px rgba(255,255,255,0.5)',
             }}
           >
-            {/* Tape decoration */}
-            <div 
-              className="absolute top-0 left-1/2 w-24 h-6 bg-gray-300 opacity-60"
-              style={{
-                borderRadius: '255px 15px 225px 15px / 15px 225px 15px 255px',
-                transform: 'translateX(-50%) translateY(-50%) rotate(-2deg)',
-                boxShadow: '2px 2px 0px 0px rgba(45, 45, 45, 0.2)',
-              }}
-            />
-            
-            <p className="text-2xl text-[#2d2d2d] italic font-bold"
-              style={{ fontFamily: 'Kalam, cursive' }}
-            >
-              &quot;Crafting digital experiences with timeless principles&quot;
+            <p className="text-xl text-[#3D4852] leading-relaxed font-body font-medium mb-8 max-w-2xl mx-auto">
+              I'm currently seeking opportunities where I can learn from experienced developers, 
+              work on real problems, and continue developing strong engineering fundamentals.
             </p>
+
+            {/* Neumorphic Decorative Elements */}
+            <div className="flex justify-center gap-6">
+              {['#6C63FF', '#38B2AC', '#8B84FF'].map((color, i) => (
+                <div 
+                  key={i}
+                  className="w-12 h-12 rounded-full animate-float"
+                  style={{
+                    background: '#E0E5EC',
+                    boxShadow: '5px 5px 10px rgb(163,177,198,0.5), -5px -5px 10px rgba(255,255,255,0.4)',
+                    animationDelay: `${i * 0.5}s`,
+                  }}
+                >
+                  <div 
+                    className="w-full h-full rounded-full flex items-center justify-center"
+                    style={{
+                      boxShadow: 'inset 2px 2px 4px rgba(0,0,0,0.1)',
+                    }}
+                  >
+                    <div className="w-4 h-4 rounded-full" style={{ backgroundColor: color }} />
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

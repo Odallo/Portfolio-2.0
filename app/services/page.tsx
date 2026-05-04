@@ -9,7 +9,7 @@ export default function ServicesPage() {
       description: "Professional, responsive websites for small businesses and personal brands.",
       features: [
         "Up to 5 pages",
-        "Responsive Design", 
+        "Responsive Design",
         "Contact Form",
         "Basic SEO",
         "2 Revision Rounds",
@@ -27,7 +27,7 @@ export default function ServicesPage() {
         "Admin Dashboard",
         "User Authentication",
         "Database Integration",
-        "3 Revision Rounds", 
+        "3 Revision Rounds",
         "2 Months Support"
       ],
       price: "KES 60,000 - 120,000",
@@ -65,59 +65,78 @@ export default function ServicesPage() {
         <div className="max-w-6xl mx-auto px-6 relative z-10">
           {/* Header */}
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold gradient-text mb-4">
+            <div 
+              className="inline-block px-8 py-3 mb-6 rounded-full"
+              style={{
+                background: '#E0E5EC',
+                boxShadow: 'inset 4px 4px 8px rgb(163,177,198,0.5), inset -4px -4px 8px rgba(255,255,255,0.4)',
+              }}
+            >
+              <span className="text-sm font-body font-medium text-[#6C63FF] tracking-wider uppercase">
+                Services
+              </span>
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-[#3D4852] mb-4">
               Services & Pricing
             </h1>
-            <p className="text-lg text-[#8A8F98] max-w-2xl mx-auto">
+            <p className="text-lg text-[#6B7280] max-w-2xl mx-auto font-body">
               Professional web development services tailored to your business needs
             </p>
           </div>
-          
+
           {/* Services Grid */}
           <div className="grid md:grid-cols-3 gap-8 mb-24">
-            {services.map((service, index) => (
-              <Card 
-                key={service.title} 
-                variant={service.popular ? 'gradient' : 'default'}
-                spotlight 
+            {services.map((service) => (
+              <Card
+                key={service.title}
                 className="relative"
               >
                 {service.popular && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <span className="px-3 py-1 bg-[#5E6AD2] text-white text-xs font-medium rounded-full">
+                    <span 
+                      className="px-4 py-1.5 text-white text-xs font-body font-medium rounded-full"
+                      style={{
+                        background: '#6C63FF',
+                        boxShadow: '3px 3px 6px rgb(163,177,198,0.4), -3px -3px 6px rgba(255,255,255,0.3)',
+                      }}
+                    >
                       Most Popular
                     </span>
                   </div>
                 )}
-                
+
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold text-[#EDEDEF] mb-2">
+                  <h3 className="text-xl font-display font-bold text-[#3D4852] mb-2">
                     {service.title}
                   </h3>
-                  <p className="text-[#8A8F98] text-sm mb-6">
+                  <p className="text-[#6B7280] text-sm mb-6 font-body">
                     {service.description}
                   </p>
-                  
+
                   <div className="mb-6">
-                    <span className="text-2xl font-bold text-[#EDEDEF]">
+                    <span className="text-2xl font-display font-bold text-[#3D4852]">
                       {service.price}
                     </span>
-                    <p className="text-xs text-[#8A8F98] mt-1">
+                    <p className="text-xs text-[#6B7280] mt-1 font-body">
                       {service.priceNote}
                     </p>
                   </div>
-                  
+
+                  {/* Features - Neumorphic Inset */}
                   <ul className="space-y-3 mb-8">
                     {service.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-start gap-3">
-                        <div className="w-1.5 h-1.5 bg-[#5E6AD2] rounded-full mt-2 flex-shrink-0" />
-                        <span className="text-[#8A8F98] text-sm">{feature}</span>
+                        <div 
+                          className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0"
+                          style={{ backgroundColor: '#6C63FF' }}
+                        />
+                        <span className="text-[#6B7280] text-sm">{feature}</span>
                       </li>
                     ))}
                   </ul>
-                  
-                  <Button 
-                    href="/contact" 
+
+                  <Button
+                    href="/contact"
                     variant={service.popular ? 'primary' : 'secondary'}
                     className="w-full"
                   >
@@ -131,25 +150,33 @@ export default function ServicesPage() {
           {/* Process Section */}
           <div className="mb-24">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-semibold gradient-text mb-4">
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-[#3D4852] mb-4">
                 My Process
               </h2>
-              <p className="text-[#8A8F98]">
+              <p className="text-[#6B7280] font-body">
                 A streamlined approach to delivering exceptional results
               </p>
             </div>
-            
+
             <div className="grid md:grid-cols-4 gap-6">
               {processSteps.map((item, i) => (
-                <Card key={i} variant="glass" className="text-center">
+                <Card key={i} className="text-center">
                   <div className="p-6">
-                    <div className="w-12 h-12 bg-[#5E6AD2]/20 text-[#5E6AD2] flex items-center justify-center mx-auto mb-4 text-lg font-bold rounded-xl">
+                    {/* Step Number - Neumorphic Inset */}
+                    <div 
+                      className="w-14 h-14 mx-auto mb-4 rounded-2xl flex items-center justify-center text-lg font-display font-bold"
+                      style={{
+                        background: '#E0E5EC',
+                        boxShadow: 'inset 4px 4px 8px rgb(163,177,198,0.5), inset -4px -4px 8px rgba(255,255,255,0.4)',
+                        color: '#6C63FF',
+                      }}
+                    >
                       {item.step}
                     </div>
-                    <h4 className="font-semibold text-[#EDEDEF] mb-2">
+                    <h4 className="font-display font-bold text-[#3D4852] mb-2">
                       {item.title}
                     </h4>
-                    <p className="text-[#8A8F98] text-sm">{item.desc}</p>
+                    <p className="text-[#6B7280] text-sm font-body">{item.desc}</p>
                   </div>
                 </Card>
               ))}
@@ -157,15 +184,15 @@ export default function ServicesPage() {
           </div>
 
           {/* CTA Section */}
-          <Card variant="glass" className="text-center">
+          <Card className="text-center">
             <div className="p-8 md:p-12">
-              <h2 className="text-2xl md:text-3xl font-semibold gradient-text mb-4">
+              <h2 className="text-2xl md:text-3xl font-display font-bold text-[#3D4852] mb-4">
                 Ready to Get Started?
               </h2>
-              <p className="text-[#8A8F98] mb-8 max-w-xl mx-auto">
+              <p className="text-[#6B7280] mb-8 max-w-xl mx-auto font-body">
                 Get a free quote for your project. I respond within 24 hours with a detailed proposal.
               </p>
-              
+
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button href="/contact" variant="primary" size="lg">
                   Get a Free Quote

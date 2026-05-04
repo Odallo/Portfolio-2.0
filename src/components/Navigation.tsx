@@ -16,39 +16,41 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const navLinks = [
+    { href: "/about", label: "About" },
+    { href: "/services", label: "Services" },
+    { href: "/projects", label: "Projects" },
+    { href: "/skills", label: "Skills" },
+    { href: "/contact", label: "Contact" },
+  ];
+
   return (
     <>
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled 
-          ? 'bg-[#050506]/95 backdrop-blur-xl border-b border-white/6' 
+        scrolled
+          ? 'bg-[#E0E5EC]/95 backdrop-blur-xl shadow-[0_4px_20px_rgb(163,177,198,0.3)]'
           : 'bg-transparent'
       }`}>
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link 
-              href="/" 
-              className="text-2xl font-semibold text-[#EDEDEF] hover:text-[#5E6AD2] transition-colors duration-200"
+            <Link
+              href="/"
+              className="text-2xl font-display font-bold text-[#3D4852] hover:text-[#6C63FF] transition-colors duration-200"
             >
               Odallo Eugine
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
-              {[
-                { href: "/about", label: "About" },
-                { href: "/services", label: "Services" },
-                { href: "/projects", label: "Projects" },
-                { href: "/skills", label: "Skills" },
-                { href: "/contact", label: "Contact" },
-              ].map((item) => (
+            <div className="hidden md:flex items-center gap-6">
+              {navLinks.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="relative text-base text-[#8A8F98] hover:text-[#EDEDEF] transition-all duration-200 group"
+                  className="relative text-base text-[#6B7280] hover:text-[#3D4852] transition-all duration-200 font-body font-medium group py-2"
                 >
                   {item.label}
-                  <span className="absolute bottom-0 left-0 w-0 h-px bg-[#5E6AD2] transition-all duration-200 group-hover:w-full" />
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#6C63FF] transition-all duration-200 group-hover:w-full" />
                 </Link>
               ))}
             </div>
@@ -56,7 +58,7 @@ export default function Navigation() {
             {/* Mobile menu button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 text-[#8A8F98] hover:text-[#EDEDEF] transition-colors duration-200 rounded-lg hover:bg-white/5"
+              className="md:hidden p-3 text-[#6B7280] hover:text-[#3D4852] transition-colors duration-200 rounded-2xl hover:bg-[#E0E5EC] shadow-[3px_3px_6px_rgb(163,177,198,0.5),-3px_-3px_6px_rgba(255,255,255,0.4)] active:shadow-[inset_2px_2px_4px_rgb(163,177,198,0.4),inset_-2px_-2px_4px_rgba(255,255,255,0.3)]"
             >
               <svg
                 className="w-6 h-6"
@@ -82,18 +84,18 @@ export default function Navigation() {
       {isOpen && (
         <div className="fixed inset-0 z-40 md:hidden">
           {/* Backdrop */}
-          <div 
-            className="absolute inset-0 bg-[#050506]/95 backdrop-blur-xl"
+          <div
+            className="absolute inset-0 bg-[#E0E5EC]/95 backdrop-blur-xl"
             onClick={() => setIsOpen(false)}
           />
-          
+
           {/* Navigation Panel */}
-          <div className="absolute top-0 right-0 h-full w-80 bg-[#0a0a0c] border-l border-white/6 transform transition-transform duration-300 ease-out">
+          <div className="absolute top-0 right-0 h-full w-80 bg-[#E0E5EC] shadow-[-10px_0_30px_rgb(163,177,198,0.4)] transform transition-transform duration-300 ease-out">
             <div className="p-6">
               {/* Close Button */}
               <button
                 onClick={() => setIsOpen(false)}
-                className="absolute top-6 right-6 p-2 text-[#8A8F98] hover:text-[#EDEDEF] transition-colors duration-200 rounded-lg hover:bg-white/5"
+                className="absolute top-6 right-6 p-3 text-[#6B7280] hover:text-[#3D4852] transition-colors duration-200 rounded-2xl hover:bg-[#E0E5EC] shadow-[3px_3px_6px_rgb(163,177,198,0.5),-3px_-3px_6px_rgba(255,255,255,0.4)] active:shadow-[inset_2px_2px_4px_rgb(163,177,198,0.4),inset_-2px_-2px_4px_rgba(255,255,255,0.3)]"
               >
                 <svg
                   className="w-6 h-6"
@@ -109,18 +111,12 @@ export default function Navigation() {
               </button>
 
               {/* Mobile Links */}
-              <div className="mt-16 space-y-2">
-                {[
-                  { href: "/about", label: "About" },
-                  { href: "/services", label: "Services" },
-                  { href: "/projects", label: "Projects" },
-                  { href: "/skills", label: "Skills" },
-                  { href: "/contact", label: "Contact" },
-                ].map((item) => (
+              <div className="mt-20 space-y-3">
+                {navLinks.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="block px-4 py-3 text-lg text-[#8A8F98] hover:text-[#EDEDEF] hover:bg-white/5 rounded-lg transition-all duration-200"
+                    className="block px-6 py-4 text-lg text-[#6B7280] hover:text-[#3D4852] hover:bg-[#E0E5EC] rounded-2xl transition-all duration-200 font-body font-medium shadow-[5px_5px_10px_rgb(163,177,198,0.5),-5px_-5px_10px_rgba(255,255,255,0.4)] hover:shadow-[inset_3px_3px_6px_rgb(163,177,198,0.4),inset_-3px_-3px_6px_rgba(255,255,255,0.3)]"
                     onClick={() => setIsOpen(false)}
                   >
                     {item.label}
@@ -132,7 +128,7 @@ export default function Navigation() {
               <div className="mt-8">
                 <Link
                   href="/contact"
-                  className="block w-full px-6 py-3 bg-[#5E6AD2] text-white text-center rounded-lg font-medium hover:bg-[#6872D9] transition-colors duration-200"
+                  className="block w-full px-6 py-4 bg-[#6C63FF] text-white text-center rounded-2xl font-body font-medium hover:bg-[#8B84FF] transition-all duration-200 shadow-[5px_5px_10px_rgb(163,177,198,0.4),-5px_-5px_10px_rgba(255,255,255,0.3),inset_0_1px_0_rgba(255,255,255,0.2)] hover:shadow-[8px_8px_16px_rgb(163,177,198,0.5),-8px_-8px_16px_rgba(255,255,255,0.4),inset_0_1px_0_rgba(255,255,255,0.3)]"
                   onClick={() => setIsOpen(false)}
                 >
                   Get in Touch

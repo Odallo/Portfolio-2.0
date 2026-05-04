@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import AmbientBackground from "../src/components/ui/AmbientBackground";
 
-const SITE_URL = "https://odallo-portfolio.vercel.app"; // 🔁 Replace with your actual Vercel URL
+const SITE_URL = "https://odallo-portfolio.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -48,7 +47,7 @@ export const metadata: Metadata = {
     title: "Odallo Eugine | Software Developer",
     description:
       "Software Developer specializing in building reliable, scalable, and human-centered digital solutions.",
-    creator: "@odallo_eugine", // 🔁 Replace with your actual Twitter/X handle if you have one
+    creator: "@odallo_eugine",
   },
   alternates: {
     canonical: SITE_URL,
@@ -65,11 +64,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">
-        <AmbientBackground />
-        <div className="relative z-10">
-          {children}
-        </div>
+      <body className="antialiased bg-[#E0E5EC]">
+        {children}
       </body>
     </html>
   );
