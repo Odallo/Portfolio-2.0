@@ -33,13 +33,30 @@ export default function Navigation() {
       }`}>
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex items-center justify-between h-20">
-            {/* Logo */}
-            <Link
-              href="/"
-              className="text-2xl font-display font-bold text-[#3D4852] hover:text-[#6C63FF] transition-colors duration-200"
-            >
-              Odallo Eugine
-            </Link>
+{/* Logo - Neumorphic Icon */}
+      <Link
+        href="/"
+        className="flex items-center gap-3 group"
+      >
+        <div 
+          className="w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:-translate-y-1"
+          style={{
+            background: '#E0E5EC',
+            boxShadow: '5px 5px 10px rgb(163,177,198,0.6), -5px -5px 10px rgba(255,255,255,0.5)',
+          }}
+        >
+          <div className="relative">
+            <span className="text-2xl font-display font-bold text-[#6C63FF]">O</span>
+            <div 
+              className="absolute -top-1 -right-1.5 w-2 h-2 rounded-full"
+              style={{ background: '#38B2AC' }}
+            />
+          </div>
+        </div>
+        <span className="hidden sm:block text-lg font-display font-bold text-[#3D4852] group-hover:text-[#6C63FF] transition-colors duration-200">
+          Dev
+        </span>
+      </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-6">
