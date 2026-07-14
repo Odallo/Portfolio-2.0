@@ -12,12 +12,12 @@ const skillCategories = [
   {
     title: "Backend",
     skills: ["Node.js", "Python", "Laravel", "REST APIs", "GraphQL", "PostgreSQL"],
-    accent: colors.accent-purple,
+    accent: colors['accent-purple'],
   },
   {
     title: "Tools & DevOps",
     skills: ["Git", "VS Code", "Docker", "AWS", "Vercel", "Figma"],
-    accent: colors.accent-teal,
+    accent: colors['accent-teal'],
   },
 ];
 
@@ -40,7 +40,7 @@ export default function Skills() {
             style={{
               background: colors.surface,
               boxShadow: shadows.innerHighlight,
-              border: `1px solid ${colors.border-default}`,
+              border: `1px solid ${colors['border-default']}`,
             }}
           >
             <span
@@ -52,13 +52,13 @@ export default function Skills() {
           </div>
           <h2
             className={`${typography.h2.size} ${typography.h2.weight} mb-4`}
-            style={{ color: colors.foreground-secondary }}
+            style={{ color: colors['foreground-secondary'] }}
           >
             Skills & Expertise
           </h2>
           <p
             className={`${typography.body.size} max-w-2xl mx-auto font-body`}
-            style={{ color: colors.foreground-muted }}
+            style={{ color: colors['foreground-muted'] }}
           >
             Technologies and tools I use to bring ideas to life
           </p>
@@ -70,7 +70,7 @@ export default function Skills() {
             <Card key={index} variant="default" className="p-6">
               <h3
                 className={`text-lg font-display font-bold mb-6`}
-                style={{ color: colors.foreground-secondary }}
+                style={{ color: colors['foreground-secondary'] }}
               >
                 {category.title}
               </h3>
@@ -81,8 +81,8 @@ export default function Skills() {
                     className="px-3 py-1.5 text-sm font-body font-medium rounded-xl transition-all duration-200 hover:scale-105"
                     style={{
                       background: colors.surface,
-                      color: colors.foreground-muted,
-                      boxShadow: `0 0 0 1px ${colors.border-default}`,
+                      color: colors['foreground-muted'],
+                      boxShadow: `0 0 0 1px ${colors['border-default']}`,
                     }}
                   >
                     {skill}
@@ -98,11 +98,11 @@ export default function Skills() {
           <div className="text-center mb-12">
             <h3
               className={`${typography.h3.size} ${typography.h3.weight} mb-4`}
-              style={{ color: colors.foreground-secondary }}
+              style={{ color: colors['foreground-secondary'] }}
             >
               What I've Built
             </h3>
-            <p className="font-body" style={{ color: colors.foreground-muted }}>
+            <p className="font-body" style={{ color: colors['foreground-muted'] }}>
               Projects that showcase my skills and experience
             </p>
           </div>
@@ -129,10 +129,10 @@ export default function Skills() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-display font-bold mb-1" style={{ color: colors.foreground-secondary }}>
+                    <h4 className="font-display font-bold mb-1" style={{ color: colors['foreground-secondary'] }}>
                       {project.name}
                     </h4>
-                    <p className="text-sm" style={{ color: colors.foreground-muted }}>
+                    <p className="text-sm" style={{ color: colors['foreground-muted'] }}>
                       {project.desc}
                     </p>
                   </div>
@@ -147,13 +147,13 @@ export default function Skills() {
           <div className="p-8">
             <h3
               className={`${typography.h3.size} ${typography.h3.weight} mb-4`}
-              style={{ color: colors.foreground-secondary }}
+              style={{ color: colors['foreground-secondary'] }}
             >
               Currently Exploring
             </h3>
             <p
               className="mb-6 max-w-2xl mx-auto font-body"
-              style={{ color: colors.foreground-muted }}
+              style={{ color: colors['foreground-muted'] }}
             >
               I'm always learning and improving my skills. Currently diving deeper into
               system design, cloud architecture, and performance optimization.
@@ -168,7 +168,7 @@ export default function Skills() {
                     style={{
                       background: colors.surface,
                       color: colors.accent,
-                      boxShadow: `0 0 0 1px ${colors.border-accent}`,
+                      boxShadow: `0 0 0 1px ${colors['border-accent']}`,
                     }}
                   >
                     {topic}

@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { colors, shadows, radius, animations } from '../lib/design-tokens';
+import { colors, shadows, radius, animations } from '../../lib/design-tokens';
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -25,34 +25,41 @@ export default function Button({
   const baseClasses = `
     inline-flex items-center justify-center font-body font-medium
     transition-all ${animations.duration.normal} ${animations.easing.easeOut}
-    focus:outline-none focus-visible:ring-2 focus-visible:ring-[${colors.accent}] focus-visible:ring-offset-2 focus-visible:ring-offset-[${colors.surface-hover}]
+    focus:outline-none focus-visible:ring-2 focus-visible:ring-[${colors.accent}] focus-visible:ring-offset-2
     disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none
   `;
 
   const variantClasses = {
     primary: `
-      bg-[${colors.accent}] text-white
+      text-white
       ${shadows.button}
-      hover:bg-[${colors.accent-bright}]
-      ${shadows.buttonHover}
-      hover:-translate-y-1
+      hover:-translate-y-0.5
       active:translate-y-0
-      active:shadow-[inset_3px_3px_6px_rgb(163,177,198,0.2),inset_-1px_-1px_0_rgba(255,255,255,0.1)]
     `,
     secondary: `
-      bg-[${colors.surface-hover}] text-[${colors.foreground-secondary}]
       ${shadows.card}
-      hover:${shadows.cardHover}
-      hover:-translate-y-1
+      hover:-translate-y-0.5
       active:translate-y-0
-      active:shadow-[inset_3px_3px_6px_rgb(163,177,198,0.4),inset_-3px_-3px_6px_rgba(255,255,255,0.3)]
     `,
     ghost: `
-      bg-transparent text-[${colors.foreground-muted}]
-      hover:text-[${colors.foreground-secondary}] hover:bg-[${colors.surface-hover}]
-      hover:shadow-[inset_3px_3px_6px_rgb(163,177,198,0.2),inset_-3px_-3px_6px_rgba(255,255,255,0.1)]
-      active:shadow-[inset_2px_2px_4px_rgb(163,177,198,0.2),inset_-2px_-2px_4px_rgba(255,255,255,0.1)]
+      bg-transparent
+      hover:-translate-y-0.5
+      active:translate-y-0
     `
+  };
+
+  const variantStyles = {
+    primary: {
+      background: colors.accent,
+    },
+    secondary: {
+      background: colors['surface-hover'] || 'rgba(255,255,255,0.08)',
+      color: colors['foreground-secondary'] || '#E5E7EB',
+    },
+    ghost: {
+      background: 'transparent',
+      color: colors['foreground-muted'] || '#9CA3AF',
+    }
   };
 
   const sizeClasses = {
@@ -76,6 +83,7 @@ export default function Button({
           href={href}
           download
           className={combinedClasses}
+          style={variantStyles[variant]}
           onClick={onClick}
         >
           {content}
@@ -86,6 +94,7 @@ export default function Button({
       <a
         href={href}
         className={combinedClasses}
+        style={variantStyles[variant]}
         onClick={onClick}
       >
         {content}
@@ -96,6 +105,7 @@ export default function Button({
   return (
     <button
       className={combinedClasses}
+      style={variantStyles[variant]}
       onClick={onClick}
       disabled={disabled}
     >

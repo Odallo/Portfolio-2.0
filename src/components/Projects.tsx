@@ -1,5 +1,8 @@
+"use client";
+
 import Card from "./ui/Card";
 import Button from "./ui/Button";
+import { colors, shadows, typography } from "../lib/design-tokens";
 
 const projects = [
   {
@@ -88,21 +91,31 @@ export default function Projects() {
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
-          <div 
-            className="inline-block px-8 py-3 mb-6 rounded-full"
+          <div
+            className="inline-block px-6 py-2.5 mb-6 backdrop-blur-sm rounded-full"
             style={{
-              background: '#E0E5EC',
-              boxShadow: 'inset 4px 4px 8px rgb(163,177,198,0.5), inset -4px -4px 8px rgba(255,255,255,0.4)',
+              background: colors.surface,
+              boxShadow: shadows.innerHighlight,
+              border: `1px solid ${colors['border-default']}`,
             }}
           >
-            <span className="text-sm font-body font-medium text-[#6C63FF] tracking-wider uppercase">
+            <span
+              className="text-sm font-body font-medium uppercase tracking-wide"
+              style={{ color: colors.accent }}
+            >
               Portfolio
             </span>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-[#3D4852] mb-4">
+          <h2
+            className={`${typography.h2.size} ${typography.h2.weight} mb-4`}
+            style={{ color: colors['foreground-secondary'] }}
+          >
             Selected Projects
           </h2>
-          <p className="text-lg text-[#6B7280] max-w-2xl mx-auto font-body">
+          <p
+            className={`${typography.body.size} max-w-2xl mx-auto font-body`}
+            style={{ color: colors['foreground-muted'] }}
+          >
             A collection of projects that showcase my skills and passion for building
           </p>
         </div>
@@ -112,49 +125,58 @@ export default function Projects() {
           {projects.map((project, index) => (
             <Card
               key={project.title}
+              variant="default"
               className="p-6 h-full"
             >
               <div className="h-full flex flex-col">
                 {/* Title */}
-                <h3 className="text-xl font-display font-bold text-[#3D4852] mb-3">
+                <h3
+                  className={`${typography.h3.size} ${typography.h3.weight} mb-3`}
+                  style={{ color: colors['foreground-secondary'] }}
+                >
                   {project.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-[#6B7280] text-sm mb-5 leading-relaxed flex-grow font-body">
+                <p
+                  className="text-sm mb-5 leading-relaxed flex-grow font-body"
+                  style={{ color: colors['foreground-muted'] }}
+                >
                   {project.description.trim()}
                 </p>
 
-                {/* Highlights - Neumorphic Well */}
-                <div 
-                  className="p-4 mb-5 rounded-2xl"
+                {/* Highlights */}
+                <div
+                  className="p-4 mb-5 rounded-xl"
                   style={{
-                    background: '#E0E5EC',
-                    boxShadow: 'inset 4px 4px 8px rgb(163,177,198,0.4), inset -4px -4px 8px rgba(255,255,255,0.3)',
+                    background: colors.surface,
+                    boxShadow: shadows.innerHighlight,
+                    border: `1px solid ${colors['border-default']}`,
                   }}
                 >
                   <ul className="space-y-2">
                     {project.highlights.slice(0, 3).map((highlight, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm">
-                        <div 
+                      <li key={i} className="flex items-start gap-2 text-sm" style={{ color: colors['foreground-muted'] }}>
+                        <div
                           className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0"
-                          style={{ backgroundColor: '#6C63FF' }}
+                          style={{ backgroundColor: colors.accent }}
                         />
-                        <span className="text-[#6B7280]">{highlight}</span>
+                        <span>{highlight}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                {/* Tech Stack - Neumorphic Tags */}
+                {/* Tech Stack */}
                 <div className="flex flex-wrap gap-2 mb-5">
                   {project.tech.map((tech, i) => (
-                    <span 
+                    <span
                       key={i}
-                      className="px-3 py-1.5 text-xs font-body font-medium text-[#6B7280] rounded-xl"
+                      className="px-3 py-1.5 text-xs font-body font-medium rounded-xl transition-all duration-200 hover:scale-105"
                       style={{
-                        background: '#E0E5EC',
-                        boxShadow: '3px 3px 6px rgb(163,177,198,0.4), -3px -3px 6px rgba(255,255,255,0.3)',
+                        background: colors.surface,
+                        color: colors['foreground-muted'],
+                        boxShadow: `0 0 0 1px ${colors['border-default']}`,
                       }}
                     >
                       {tech}

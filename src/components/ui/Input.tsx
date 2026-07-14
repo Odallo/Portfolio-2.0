@@ -38,9 +38,9 @@ export default function Input({
   const combinedClasses = `${baseClasses} ${sizeClasses} ${className}`;
 
   const inputStyle = {
-    background: colors.background-subtle,
-    color: colors.foreground-secondary,
-    boxShadow: `inset 0 1px 2px rgba(0,0,0,0.3), 0 0 0 1px ${colors.border-default}`,
+    background: colors['background-subtle'],
+    color: colors['foreground-secondary'],
+    boxShadow: `inset 0 1px 2px rgba(0,0,0,0.3), 0 0 0 1px ${colors['border-default']}`,
   } as React.CSSProperties;
 
   const focusClasses = `
@@ -74,7 +74,7 @@ export default function Input({
   if (label) {
     return (
       <div className="space-y-2">
-        <label className={`text-sm font-body font-medium ml-1`} style={{ color: colors.foreground-muted }}>
+        <label className={`text-sm font-body font-medium ml-1`} style={{ color: colors['foreground-muted'] }}>
           {label}
           {required && <span className="ml-1" style={{ color: colors.accent }}>*</span>}
         </label>

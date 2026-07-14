@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Input from "./ui/Input";
 import Card from "./ui/Card";
-import Button from "./ui/Button";
+import { colors, shadows, typography } from "../lib/design-tokens";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -47,68 +47,93 @@ export default function Contact() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const selectClassName = `
-    w-full bg-[#E0E5EC] text-[#3D4852] rounded-2xl px-5 py-4 text-base
-    shadow-[inset_6px_6px_12px_rgb(163,177,198,0.6),inset_-6px_-6px_12px_rgba(255,255,255,0.5)]
-    transition-all duration-300 ease-out
-    focus:shadow-[inset_10px_10px_20px_rgb(163,177,198,0.7),inset_-10px_-10px_20px_rgba(255,255,255,0.6),0_0_0_2px_#6C63FF]
-    border-none outline-none cursor-pointer
-  `;
+  const selectStyle = {
+    width: '100%',
+    background: colors['background-subtle'],
+    color: colors['foreground-secondary'],
+    boxShadow: `inset 0 1px 2px rgba(0,0,0,0.3), 0 0 0 1px ${colors['border-default']}`,
+    border: 'none' as const,
+    outline: 'none' as const,
+    transition: 'all 300ms ease-out',
+    cursor: 'pointer' as const,
+  };
 
   return (
     <section className="py-20">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
-          <div 
-            className="inline-block px-8 py-3 mb-6 rounded-full"
+          <div
+            className="inline-block px-6 py-2.5 mb-6 backdrop-blur-sm rounded-full"
             style={{
-              background: '#E0E5EC',
-              boxShadow: 'inset 4px 4px 8px rgb(163,177,198,0.5), inset -4px -4px 8px rgba(255,255,255,0.4)',
+              background: colors.surface,
+              boxShadow: shadows.innerHighlight,
+              border: `1px solid ${colors['border-default']}`,
             }}
           >
-            <span className="text-sm font-body font-medium text-[#6C63FF] tracking-wider uppercase">
+            <span
+              className="text-sm font-body font-medium uppercase tracking-wide"
+              style={{ color: colors.accent }}
+            >
               Contact
             </span>
           </div>
-          <h2 className="text-4xl md:text-6xl font-display font-bold text-[#3D4852] mb-4">
+          <h2
+            className={`${typography.h2.size} ${typography.h2.weight} mb-4`}
+            style={{ color: colors['foreground-secondary'] }}
+          >
             Get In Touch
           </h2>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
-          {/* Contact Info - Neumorphic Card */}
+          {/* Contact Info */}
           <div>
-            <Card className="p-8 mb-8">
-              <p className="text-[#6B7280] mb-8 text-lg leading-relaxed font-body">
-                Ready to start your project? I respond within 24 hours and offer 
+            <Card variant="default" className="p-8 mb-8">
+              <p
+                className="mb-8 text-lg leading-relaxed font-body"
+                style={{ color: colors['foreground-muted'] }}
+              >
+                Ready to start your project? I respond within 24 hours and offer
                 free consultations to discuss your needs.
               </p>
 
               <div className="space-y-6 mb-8">
                 <div>
-                  <h3 className="text-lg font-display font-bold text-[#3D4852] mb-2">
+                  <h3
+                    className="text-lg font-display font-bold mb-2"
+                    style={{ color: colors['foreground-secondary'] }}
+                  >
                     Email
                   </h3>
-                  <a 
-                    href="mailto:odalloeugine@gmail.com" 
-                    className="text-[#6C63FF] text-lg hover:text-[#8B84FF] transition-colors font-body"
+                  <a
+                    href="mailto:odalloeugine@gmail.com"
+                    className="text-lg transition-colors font-body"
+                    style={{ color: colors.accent }}
                   >
                     odalloeugine@gmail.com
                   </a>
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-display font-bold text-[#3D4852] mb-2">
+                  <h3
+                    className="text-lg font-display font-bold mb-2"
+                    style={{ color: colors['foreground-secondary'] }}
+                  >
                     Response Time
                   </h3>
-                  <p className="text-[#6B7280] text-lg font-body">Within 24 hours</p>
+                  <p className="text-lg font-body" style={{ color: colors['foreground-muted'] }}>
+                    Within 24 hours
+                  </p>
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-display font-bold text-[#3D4852] mb-3">
+                  <h3
+                    className="text-lg font-display font-bold mb-3"
+                    style={{ color: colors['foreground-secondary'] }}
+                  >
                     Available For
                   </h3>
-                  <ul className="text-[#6B7280] space-y-2 text-lg font-body">
+                  <ul className="space-y-2 text-lg font-body" style={{ color: colors['foreground-muted'] }}>
                     {[
                       "Custom Website Development",
                       "Web Application Projects",
@@ -116,9 +141,9 @@ export default function Contact() {
                       "Consulting & Code Review"
                     ].map((item, i) => (
                       <li key={i} className="flex items-center gap-3">
-                        <div 
+                        <div
                           className="w-2 h-2 rounded-full flex-shrink-0"
-                          style={{ backgroundColor: '#6C63FF' }}
+                          style={{ backgroundColor: colors.accent }}
                         />
                         <span>{item}</span>
                       </li>
@@ -128,7 +153,7 @@ export default function Contact() {
               </div>
             </Card>
 
-            {/* Social Links - Neumorphic Buttons */}
+            {/* Social Links */}
             <div className="flex flex-wrap gap-4">
               <a
                 href="https://github.com/Odallo"
@@ -136,17 +161,13 @@ export default function Contact() {
                 rel="noopener noreferrer"
                 className="flex-1"
               >
-                <div 
-                  className="px-6 py-3 text-center text-base font-body font-medium text-[#3D4852] rounded-2xl transition-all duration-300 hover:-translate-y-1"
+                <div
+                  className="px-6 py-3 text-center text-base font-body font-medium rounded-2xl transition-all duration-300 hover:-translate-y-1"
                   style={{
-                    background: '#E0E5EC',
-                    boxShadow: '5px 5px 10px rgb(163,177,198,0.6), -5px -5px 10px rgba(255,255,255,0.5)',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = '8px 8px 16px rgb(163,177,198,0.7), -8px -8px 16px rgba(255,255,255,0.6)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.boxShadow = '5px 5px 10px rgb(163,177,198,0.6), -5px -5px 10px rgba(255,255,255,0.5)';
+                    background: colors['background-elevated'],
+                    color: colors['foreground-muted'],
+                    boxShadow: shadows.card,
+                    border: `1px solid ${colors['border-default']}`,
                   }}
                 >
                   GitHub
@@ -159,17 +180,13 @@ export default function Contact() {
                 rel="noopener noreferrer"
                 className="flex-1"
               >
-                <div 
-                  className="px-6 py-3 text-center text-base font-body font-medium text-[#3D4852] rounded-2xl transition-all duration-300 hover:-translate-y-1"
+                <div
+                  className="px-6 py-3 text-center text-base font-body font-medium rounded-2xl transition-all duration-300 hover:-translate-y-1"
                   style={{
-                    background: '#E0E5EC',
-                    boxShadow: '5px 5px 10px rgb(163,177,198,0.6), -5px -5px 10px rgba(255,255,255,0.5)',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = '8px 8px 16px rgb(163,177,198,0.7), -8px -8px 16px rgba(255,255,255,0.6)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.boxShadow = '5px 5px 10px rgb(163,177,198,0.6), -5px -5px 10px rgba(255,255,255,0.5)';
+                    background: colors['background-elevated'],
+                    color: colors['foreground-muted'],
+                    boxShadow: shadows.card,
+                    border: `1px solid ${colors['border-default']}`,
                   }}
                 >
                   LinkedIn
@@ -178,9 +195,12 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Contact Form - Neumorphic Card */}
-          <Card className="p-8">
-            <h3 className="text-2xl font-display font-bold text-[#3D4852] mb-6">
+          {/* Contact Form */}
+          <Card variant="default" className="p-8">
+            <h3
+              className={`${typography.h3.size} ${typography.h3.weight} mb-6`}
+              style={{ color: colors['foreground-secondary'] }}
+            >
               Quick Quote Form
             </h3>
 
@@ -205,16 +225,20 @@ export default function Contact() {
                 placeholder="your@email.com"
               />
 
-              <div className="space-y-3">
-                <label className="text-sm font-body font-medium text-[#3D4852] ml-1">
-                  Project Type <span className="text-[#6C63FF]">*</span>
+              <div className="space-y-2">
+                <label
+                  className="text-sm font-body font-medium ml-1"
+                  style={{ color: colors['foreground-muted'] }}
+                >
+                  Project Type <span style={{ color: colors.accent }}>*</span>
                 </label>
                 <select
                   name="projectType"
                   required
                   value={formData.projectType}
                   onChange={handleChange}
-                  className={selectClassName}
+                  className="w-full px-4 py-3 text-base rounded-xl outline-none transition-all duration-300 focus:shadow-[inset_0_2px_4px_rgba(0,0,0,0.4),0_0_0_2px_#6366F1]"
+                  style={selectStyle}
                 >
                   <option value="">Select a service</option>
                   <option value="Custom Website">Custom Website</option>
@@ -225,15 +249,19 @@ export default function Contact() {
               </div>
 
               <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-3">
-                  <label className="text-sm font-body font-medium text-[#3D4852] ml-1">
+                <div className="space-y-2">
+                  <label
+                    className="text-sm font-body font-medium ml-1"
+                    style={{ color: colors['foreground-muted'] }}
+                  >
                     Budget Range
                   </label>
                   <select
                     name="budget"
                     value={formData.budget}
                     onChange={handleChange}
-                    className={selectClassName}
+                    className="w-full px-4 py-3 text-base rounded-xl outline-none transition-all duration-300 focus:shadow-[inset_0_2px_4px_rgba(0,0,0,0.4),0_0_0_2px_#6366F1]"
+                    style={selectStyle}
                   >
                     <option value="">Select budget</option>
                     <option value="KES 25,000-50,000">KES 25,000-50,000</option>
@@ -243,15 +271,19 @@ export default function Contact() {
                   </select>
                 </div>
 
-                <div className="space-y-3">
-                  <label className="text-sm font-body font-medium text-[#3D4852] ml-1">
+                <div className="space-y-2">
+                  <label
+                    className="text-sm font-body font-medium ml-1"
+                    style={{ color: colors['foreground-muted'] }}
+                  >
                     Timeline
                   </label>
                   <select
                     name="timeline"
                     value={formData.timeline}
                     onChange={handleChange}
-                    className={selectClassName}
+                    className="w-full px-4 py-3 text-base rounded-xl outline-none transition-all duration-300 focus:shadow-[inset_0_2px_4px_rgba(0,0,0,0.4),0_0_0_2px_#6366F1]"
+                    style={selectStyle}
                   >
                     <option value="">Select timeline</option>
                     <option value="ASAP">ASAP</option>
@@ -278,28 +310,16 @@ export default function Contact() {
                 disabled={isSubmitting}
                 className="w-full py-4 text-lg font-body font-medium text-white rounded-2xl transition-all duration-300 hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
                 style={{
-                  background: '#6C63FF',
-                  boxShadow: '5px 5px 10px rgb(163,177,198,0.4), -5px -5px 10px rgba(255,255,255,0.3), inset 0 1px 0 rgba(255,255,255,0.2)',
-                }}
-                onMouseEnter={(e) => {
-                  if (!isSubmitting) {
-                    e.currentTarget.style.background = '#8B84FF';
-                    e.currentTarget.style.boxShadow = '8px 8px 16px rgb(163,177,198,0.5), -8px -8px 16px rgba(255,255,255,0.4), inset 0 1px 0 rgba(255,255,255,0.3)';
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (!isSubmitting) {
-                    e.currentTarget.style.background = '#6C63FF';
-                    e.currentTarget.style.boxShadow = '5px 5px 10px rgb(163,177,198,0.4), -5px -5px 10px rgba(255,255,255,0.3), inset 0 1px 0 rgba(255,255,255,0.2)';
-                  }
+                  background: colors.accent,
+                  boxShadow: shadows.accentGlow,
                 }}
               >
                 {isSubmitting ? 'Opening Email Client...' : 'Send Project Inquiry'}
               </button>
             </form>
 
-            <div className="mt-4 text-sm text-[#6B7280]">
-              <p>Clicking "Send Project Inquiry" will open your default email client with the form details pre-filled.</p>
+            <div className="mt-4 text-sm" style={{ color: colors['foreground-muted'] }}>
+              <p>Clicking &quot;Send Project Inquiry&quot; will open your default email client with the form details pre-filled.</p>
             </div>
           </Card>
         </div>
