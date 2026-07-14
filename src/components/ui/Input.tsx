@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import { colors, radius, animations } from '../../lib/design-tokens';
 
 interface InputProps {
   type?: 'text' | 'email' | 'password' | 'textarea';
@@ -26,18 +27,25 @@ export default function Input({
   name
 }: InputProps) {
   const baseClasses = `
-    w-full bg-[#E0E5EC] text-[#3D4852] placeholder-[#A0AEC0]
-    border-none outline-none
-    shadow-[inset_6px_6px_12px_rgb(163,177,198,0.6),inset_-6px_-6px_12px_rgba(255,255,255,0.5)]
-    transition-all duration-300 ease-out
-    focus:shadow-[inset_10px_10px_20px_rgb(163,177,198,0.7),inset_-10px_-10px_20px_rgba(255,255,255,0.6),0_0_0_2px_#6C63FF]
+    w-full border-none outline-none
+    transition-all ${animations.duration.normal} ${animations.easing.easeOut}
   `;
 
   const sizeClasses = type === 'textarea'
-    ? `px-5 py-4 text-base resize-none rounded-2xl`
-    : `px-5 py-4 text-base rounded-2xl`;
+    ? `px-4 py-3 text-base resize-none ${radius.xl}`
+    : `px-4 py-3 text-base ${radius.xl}`;
 
   const combinedClasses = `${baseClasses} ${sizeClasses} ${className}`;
+
+  const inputStyle = {
+    background: colors.background-subtle,
+    color: colors.foreground-secondary,
+    boxShadow: `inset 0 1px 2px rgba(0,0,0,0.3), 0 0 0 1px ${colors.border-default}`,
+  } as React.CSSProperties;
+
+  const focusClasses = `
+    focus:shadow-[inset_0_2px_4px_rgba(0,0,0,0.4),0_0_0_2px_${colors.accent}]
+  `;
 
   const inputElement = type === 'textarea' ? (
     <textarea
@@ -47,7 +55,8 @@ export default function Input({
       placeholder={placeholder}
       required={required}
       rows={rows}
-      className={combinedClasses}
+      className={`${combinedClasses} ${focusClasses}`}
+      style={inputStyle}
     />
   ) : (
     <input
@@ -57,16 +66,17 @@ export default function Input({
       onChange={onChange}
       placeholder={placeholder}
       required={required}
-      className={combinedClasses}
+      className={`${combinedClasses} ${focusClasses}`}
+      style={inputStyle}
     />
   );
 
   if (label) {
     return (
-      <div className="space-y-3">
-        <label className="text-sm font-body font-medium text-[#3D4852] ml-1">
+      <div className="space-y-2">
+        <label className={`text-sm font-body font-medium ml-1`} style={{ color: colors.foreground-muted }}>
           {label}
-          {required && <span className="text-[#6C63FF] ml-1">*</span>}
+          {required && <span className="ml-1" style={{ color: colors.accent }}>*</span>}
         </label>
         {inputElement}
       </div>
