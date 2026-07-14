@@ -16,9 +16,17 @@ interface InputProps {
 }
 
 export default function Input({ type = 'text', placeholder, name, value, onChange, required = false, className = '', as = 'input', rows }: InputProps) {
-  const base = `w-full px-4 py-3 bg-[${colors.surface}] text-[${colors.text}] outline-none transition-all duration-200 text-base`;
-
-  const styles = `${base} border border-[${colors.border}] focus:border-[${colors.accent}] placeholder:text-[${colors.muted}] ${className}`;
+  const style: React.CSSProperties = {
+    width: '100%',
+    padding: '12px 16px',
+    background: colors.surface,
+    color: colors.text,
+    border: `1px solid ${colors.border}`,
+    outline: 'none',
+    fontSize: '16px',
+    fontFamily: typography.body.fontFamily,
+    transition: 'border-color 0.2s',
+  };
 
   if (as === 'textarea') {
     return (
@@ -29,8 +37,8 @@ export default function Input({ type = 'text', placeholder, name, value, onChang
         onChange={onChange}
         required={required}
         rows={rows}
-        className={styles}
-        style={{ fontFamily: typography.body.fontFamily }}
+        className={className}
+        style={style}
       />
     );
   }
@@ -43,8 +51,8 @@ export default function Input({ type = 'text', placeholder, name, value, onChang
       value={value}
       onChange={onChange}
       required={required}
-      className={styles}
-      style={{ fontFamily: typography.body.fontFamily }}
+      className={className}
+      style={style}
     />
   );
 }
