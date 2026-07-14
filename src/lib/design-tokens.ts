@@ -1,44 +1,62 @@
 // Linear Design System Tokens
 export const colors = {
   // Background System
-  'background-deep': '#020203',
-  'background-base': '#050506', 
-  'background-elevated': '#0a0a0c',
-  'surface': 'rgba(255,255,255,0.05)',
+  'background-deep': '#050505',
+  'background-base': '#0A0A0A',
+  'background-elevated': '#111111',
+  'background-subtle': '#1A1A1A',
+  'surface': 'rgba(255,255,255,0.04)',
   'surface-hover': 'rgba(255,255,255,0.08)',
   
   // Typography
-  'foreground': '#EDEDEF',
-  'foreground-muted': '#8A8F98',
+  'foreground-primary': '#FFFFFF',
+  'foreground-secondary': '#E5E7EB',
+  'foreground-muted': '#9CA3AF',
   'foreground-subtle': 'rgba(255,255,255,0.60)',
   
-  // Accent Colors
-  'accent': '#5E6AD2',
-  'accent-bright': '#6872D9',
-  'accent-glow': 'rgba(94,106,210,0.3)',
+  // Accent Colors - Updated to a consistent blue-purple palette
+  'accent': '#6366F1',
+  'accent-bright': '#818CF8',
+  'accent-glow': 'rgba(99,102,241,0.2)',
+  'accent-teal': '#14B8A6',
+  'accent-purple': '#A855F7',
   
-  // Borders
-  'border-default': 'rgba(255,255,255,0.06)',
-  'border-hover': 'rgba(255,255,255,0.10)',
-  'border-accent': 'rgba(94,106,210,0.30)',
+  // Border System
+  'border-default': 'rgba(255,255,255,0.08)',
+  'border-hover': 'rgba(255,255,255,0.15)',
+  'border-accent': 'rgba(99,102,241,0.30)',
+  
+  // Semantic Colors
+  'error': '#EF4444',
+  'success': '#10B981',
+  'warning': '#F59E0B',
+  'info': '#3B82F6',
+  
+  // Overlay Colors
+  'overlay-dark': 'rgba(0,0,0,0.6)',
+  'overlay-light': 'rgba(255,255,255,0.05)',
+  
+  // Background Gradients
+  'gradient-primary': 'linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)',
+  'gradient-subtle': 'linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.1) 100%)',
 } as const;
 
 // Typography Scale
 export const typography = {
   display: {
-    size: 'text-7xl md:text-8xl',
-    weight: 'font-semibold',
-    tracking: 'tracking-[-0.03em]',
+    size: 'text-6xl md:text-8xl',
+    weight: 'font-bold',
+    tracking: 'tracking-[-0.04em]',
     leading: 'leading-tight'
   },
   h1: {
-    size: 'text-5xl md:text-6xl',
-    weight: 'font-semibold', 
-    tracking: 'tracking-tight',
+    size: 'text-4xl md:text-6xl',
+    weight: 'font-bold', 
+    tracking: 'tracking-[-0.02em]',
     leading: 'leading-tight'
   },
   h2: {
-    size: 'text-3xl md:text-4xl',
+    size: 'text-3xl md:text-5xl',
     weight: 'font-semibold',
     tracking: 'tracking-tight', 
     leading: 'leading-tight'
@@ -47,25 +65,25 @@ export const typography = {
     size: 'text-xl md:text-2xl',
     weight: 'font-semibold',
     tracking: 'tracking-tight',
-    leading: 'leading-tight'
+    leading: 'leading-snug'
   },
   bodyLarge: {
     size: 'text-lg md:text-xl',
     weight: 'font-normal',
-    tracking: '',
+    tracking: 'tracking-normal',
     leading: 'leading-relaxed'
   },
   body: {
-    size: 'text-sm md:text-base',
+    size: 'text-base md:text-lg',
     weight: 'font-normal',
-    tracking: '',
+    tracking: 'tracking-normal',
     leading: 'leading-relaxed'
   },
-  label: {
-    size: 'text-xs',
-    weight: 'font-mono',
-    tracking: 'tracking-widest',
-    leading: ''
+  caption: {
+    size: 'text-sm',
+    weight: 'font-normal',
+    tracking: 'tracking-wide',
+    leading: 'leading-normal'
   }
 } as const;
 
