@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Input from "./ui/Input";
 import Card from "./ui/Card";
 import { colors, typography } from "../lib/design-tokens";
 
 export default function Contact() {
+  const [visible, setVisible] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,30 +17,28 @@ export default function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      { threshold: 0.1 }
+    );
+    const el = document.getElementById('contact');
+    if (el) observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
     if (!formData.name || !formData.email || !formData.projectType) {
-      alert("Please fill in all required fields (Name, Email, and Project Type).");
+      alert("Please fill in all required fields.");
       return;
     }
-
     setIsSubmitting(true);
-
     const subject = encodeURIComponent(`Project Inquiry from ${formData.name}`);
     const body = encodeURIComponent(
-      `Name: ${formData.name}\n` +
-      `Email: ${formData.email}\n` +
-      `Project Type: ${formData.projectType}\n` +
-      `Budget: ${formData.budget || 'Not specified'}\n` +
-      `Timeline: ${formData.timeline || 'Not specified'}\n\n` +
-      `Message:\n${formData.message || 'No additional message'}\n\n` +
-      `---\n` +
-      `Sent from portfolio website`
+      `Name: ${formData.name}\nEmail: ${formData.email}\nProject Type: ${formData.projectType}\nBudget: ${formData.budget || 'Not specified'}\nTimeline: ${formData.timeline || 'Not specified'}\n\nMessage:\n${formData.message || 'No additional message'}`
     );
-
     window.location.href = `mailto:odalloeugine@gmail.com?subject=${subject}&body=${body}`;
-
     setIsSubmitting(false);
   };
 
@@ -49,113 +48,118 @@ export default function Contact() {
 
   const selectStyle = {
     width: '100%',
-    background: 'transparent',
+    background: colors.surface,
     color: colors.text,
     border: `1px solid ${colors.border}`,
     outline: 'none' as const,
-    transition: 'border-color 200ms ease',
-    cursor: 'pointer' as const,
-    fontFamily: typography.body.fontFamily,
     padding: '12px 16px',
-    fontSize: '16px',
+    fontSize: '14px',
+    fontFamily: typography.body.fontFamily,
+    cursor: 'pointer' as const,
+    transition: 'border-color 200ms',
   };
 
   return (
-    <section className="py-20">
-      <div className="max-w-6xl mx-auto px-6">
-        {/* Header */}
-        <div className="mb-16">
+    <section id="contact" className="py-24 md:py-32 px-6">
+      <div className="max-w-6xl mx-auto">
+        {/* Section label */}
+        <div className="flex items-center gap-4 mb-12">
           <span
-            className="text-xs uppercase tracking-widest block mb-4"
-            style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
+            className="text-xs uppercase tracking-widest"
+            style={{ fontFamily: typography.mono.fontFamily, color: colors.accent }}
           >
-            04 / Contact
+            04
           </span>
-          <h2
-            className="text-4xl md:text-5xl font-bold mb-4"
-            style={{ fontFamily: typography.display.fontFamily, color: colors.text }}
+          <span className="w-12 h-px" style={{ background: colors.border }} />
+          <span
+            className="text-xs uppercase tracking-widest"
+            style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
           >
-            Get In Touch
-          </h2>
-          <div className="w-16 h-px mb-6" style={{ background: colors.accent }} />
+            Contact
+          </span>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Contact Info */}
-          <div>
-            <Card className="p-8 mb-8">
-              <p
-                className="mb-8 text-lg leading-relaxed"
-                style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
-              >
-                Ready to start your project? I respond within 24 hours and offer
-                free consultations to discuss your needs.
-              </p>
+        <h2
+          className="text-3xl md:text-4xl font-bold mb-4"
+          style={{ fontFamily: typography.display.fontFamily }}
+        >
+          Let&apos;s Work Together
+        </h2>
+        <p
+          className="text-base mb-16 max-w-xl"
+          style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}
+        >
+          Have a project in mind? I&apos;d love to hear about it. I respond within 24 hours.
+        </p>
 
-              <div className="space-y-6 mb-8">
+        <div className={`grid md:grid-cols-2 gap-12 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          {/* Contact Info */}
+          <div className="space-y-6">
+            <Card hover={false}>
+              <h3
+                className="text-lg font-bold mb-4"
+                style={{ fontFamily: typography.display.fontFamily }}
+              >
+                Get in touch
+              </h3>
+              <div className="space-y-4">
                 <div>
-                  <h3
-                    className="text-lg font-bold mb-2"
-                    style={{ fontFamily: typography.display.fontFamily, color: colors.text }}
+                  <span
+                    className="text-xs uppercase tracking-wider block mb-1"
+                    style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
                   >
                     Email
-                  </h3>
+                  </span>
                   <a
                     href="mailto:odalloeugine@gmail.com"
-                    className="text-lg transition-colors"
+                    className="text-sm transition-colors"
                     style={{ fontFamily: typography.body.fontFamily, color: colors.accent }}
                   >
                     odalloeugine@gmail.com
                   </a>
                 </div>
-
                 <div>
-                  <h3
-                    className="text-lg font-bold mb-2"
-                    style={{ fontFamily: typography.display.fontFamily, color: colors.text }}
+                  <span
+                    className="text-xs uppercase tracking-wider block mb-1"
+                    style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
                   >
                     Response Time
-                  </h3>
-                  <p
-                    className="text-lg"
-                    style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
+                  </span>
+                  <span
+                    className="text-sm"
+                    style={{ fontFamily: typography.body.fontFamily, color: colors.text }}
                   >
                     Within 24 hours
-                  </p>
+                  </span>
                 </div>
-
                 <div>
-                  <h3
-                    className="text-lg font-bold mb-3"
-                    style={{ fontFamily: typography.display.fontFamily, color: colors.text }}
+                  <span
+                    className="text-xs uppercase tracking-wider block mb-1"
+                    style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
                   >
                     Available For
-                  </h3>
-                  <ul
-                    className="space-y-2 text-lg"
-                    style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
-                  >
-                    {[
-                      "Custom Website Development",
-                      "Web Application Projects",
-                      "E-commerce Solutions",
-                      "Consulting & Code Review"
-                    ].map((item, i) => (
-                      <li key={i} className="flex items-center gap-3">
-                        <div
-                          className="w-2 h-2 flex-shrink-0"
-                          style={{ background: colors.accent }}
-                        />
-                        <span>{item}</span>
-                      </li>
+                  </span>
+                  <div className="flex flex-wrap gap-2 mt-1">
+                    {["Web Development", "E-commerce", "Consulting"].map((item) => (
+                      <span
+                        key={item}
+                        className="px-2 py-1 text-xs"
+                        style={{
+                          fontFamily: typography.mono.fontFamily,
+                          color: colors.muted,
+                          background: colors.surface,
+                          border: `1px solid ${colors.border}`,
+                        }}
+                      >
+                        {item}
+                      </span>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               </div>
             </Card>
 
-            {/* Social Links */}
-            <div className="flex flex-wrap gap-4">
+            <div className="flex gap-3">
               <a
                 href="https://github.com/Odallo"
                 target="_blank"
@@ -163,10 +167,10 @@ export default function Contact() {
                 className="flex-1"
               >
                 <div
-                  className="px-6 py-3 text-center text-base font-medium transition-colors duration-200"
+                  className="px-4 py-3 text-center text-sm font-medium transition-all duration-200"
                   style={{
                     fontFamily: typography.body.fontFamily,
-                    color: colors.textMuted,
+                    color: colors.muted,
                     border: `1px solid ${colors.border}`,
                   }}
                   onMouseEnter={(e) => {
@@ -175,13 +179,12 @@ export default function Contact() {
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.borderColor = colors.border;
-                    e.currentTarget.style.color = colors.textMuted;
+                    e.currentTarget.style.color = colors.muted;
                   }}
                 >
                   GitHub
                 </div>
               </a>
-
               <a
                 href="https://www.linkedin.com/in/odallo-eugine/"
                 target="_blank"
@@ -189,10 +192,10 @@ export default function Contact() {
                 className="flex-1"
               >
                 <div
-                  className="px-6 py-3 text-center text-base font-medium transition-colors duration-200"
+                  className="px-4 py-3 text-center text-sm font-medium transition-all duration-200"
                   style={{
                     fontFamily: typography.body.fontFamily,
-                    color: colors.textMuted,
+                    color: colors.muted,
                     border: `1px solid ${colors.border}`,
                   }}
                   onMouseEnter={(e) => {
@@ -201,7 +204,7 @@ export default function Contact() {
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.borderColor = colors.border;
-                    e.currentTarget.style.color = colors.textMuted;
+                    e.currentTarget.style.color = colors.muted;
                   }}
                 >
                   LinkedIn
@@ -210,25 +213,17 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Contact Form */}
-          <Card className="p-8">
-            <h3
-              className="text-2xl font-bold mb-6"
-              style={{ fontFamily: typography.display.fontFamily, color: colors.text }}
-            >
-              Quick Quote Form
-            </h3>
-
-            <form onSubmit={handleSubmit} className="space-y-5">
+          {/* Form */}
+          <Card hover={false}>
+            <form onSubmit={handleSubmit} className="space-y-4">
               <Input
                 type="text"
                 name="name"
                 required
                 value={formData.name}
                 onChange={handleChange}
-                placeholder="Your Name"
+                placeholder="Your name"
               />
-
               <Input
                 type="email"
                 name="email"
@@ -237,13 +232,12 @@ export default function Contact() {
                 onChange={handleChange}
                 placeholder="your@email.com"
               />
-
-              <div className="space-y-2">
+              <div className="space-y-1">
                 <label
-                  className="text-sm font-medium ml-1"
-                  style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
+                  className="text-xs uppercase tracking-wider"
+                  style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
                 >
-                  Project Type <span style={{ color: colors.accent }}>*</span>
+                  Project Type *
                 </label>
                 <select
                   name="projectType"
@@ -259,14 +253,13 @@ export default function Contact() {
                   <option value="Other">Other</option>
                 </select>
               </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-1">
                   <label
-                    className="text-sm font-medium ml-1"
-                    style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
+                    className="text-xs uppercase tracking-wider"
+                    style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
                   >
-                    Budget Range
+                    Budget
                   </label>
                   <select
                     name="budget"
@@ -274,18 +267,17 @@ export default function Contact() {
                     onChange={handleChange}
                     style={selectStyle}
                   >
-                    <option value="">Select budget</option>
-                    <option value="KES 25,000-50,000">KES 25,000-50,000</option>
-                    <option value="KES 50,000-100,000">KES 50,000-100,000</option>
-                    <option value="KES 100,000-200,000">KES 100,000-200,000</option>
-                    <option value="KES 200,000+">KES 200,000+</option>
+                    <option value="">Select</option>
+                    <option value="KES 25,000-50,000">KES 25k-50k</option>
+                    <option value="KES 50,000-100,000">KES 50k-100k</option>
+                    <option value="KES 100,000-200,000">KES 100k-200k</option>
+                    <option value="KES 200,000+">KES 200k+</option>
                   </select>
                 </div>
-
-                <div className="space-y-2">
+                <div className="space-y-1">
                   <label
-                    className="text-sm font-medium ml-1"
-                    style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
+                    className="text-xs uppercase tracking-wider"
+                    style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
                   >
                     Timeline
                   </label>
@@ -295,7 +287,7 @@ export default function Contact() {
                     onChange={handleChange}
                     style={selectStyle}
                   >
-                    <option value="">Select timeline</option>
+                    <option value="">Select</option>
                     <option value="ASAP">ASAP</option>
                     <option value="1-2 weeks">1-2 weeks</option>
                     <option value="2-4 weeks">2-4 weeks</option>
@@ -304,7 +296,6 @@ export default function Contact() {
                   </select>
                 </div>
               </div>
-
               <Input
                 as="textarea"
                 name="message"
@@ -313,23 +304,19 @@ export default function Contact() {
                 placeholder="Tell me about your project..."
                 rows={4}
               />
-
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 text-lg font-medium text-white transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-3 text-sm font-medium uppercase tracking-wider transition-all duration-200 disabled:opacity-50"
                 style={{
-                  fontFamily: typography.body.fontFamily,
+                  fontFamily: typography.display.fontFamily,
                   background: colors.accent,
+                  color: colors.bg,
                 }}
               >
-                {isSubmitting ? 'Opening Email Client...' : 'Send Project Inquiry'}
+                {isSubmitting ? 'Opening Email...' : 'Send Message'}
               </button>
             </form>
-
-            <div className="mt-4 text-sm" style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}>
-              <p>Clicking &quot;Send Project Inquiry&quot; will open your default email client with the form details pre-filled.</p>
-            </div>
           </Card>
         </div>
       </div>

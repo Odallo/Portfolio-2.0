@@ -16,9 +16,9 @@ interface InputProps {
 }
 
 export default function Input({ type = 'text', placeholder, name, value, onChange, required = false, className = '', as = 'input', rows }: InputProps) {
-  const baseStyles = `w-full px-4 py-3 bg-transparent border text-base outline-none transition-colors duration-200 font-body`;
+  const base = `w-full px-4 py-3 bg-[${colors.surface}] text-[${colors.text}] outline-none transition-all duration-200 text-base`;
 
-  const styles = `${baseStyles} border-[${colors.border}] focus:border-[${colors.accent}] text-[${colors.text}] placeholder:text-[${colors.textMuted}] ${className}`;
+  const styles = `${base} border border-[${colors.border}] focus:border-[${colors.accent}] placeholder:text-[${colors.muted}] ${className}`;
 
   if (as === 'textarea') {
     return (

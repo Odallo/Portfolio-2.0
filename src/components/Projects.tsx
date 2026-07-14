@@ -1,191 +1,192 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Card from "./ui/Card";
 import Button from "./ui/Button";
 import { colors, typography } from "../lib/design-tokens";
 
 const projects = [
   {
-    title: "MiniRDBMS – PesaPal Junior Dev Challenge 2026",
-    description: `
-      A lightweight relational database management system implemented from scratch
-      using Python. The system supports SQL-like commands and demonstrates core
-      database engine concepts such as parsing, execution, storage, and indexing.
-    `,
+    title: "MiniRDBMS",
+    subtitle: "PesaPal Junior Dev Challenge 2026",
+    description: "A lightweight relational database management system from scratch in Python. Supports SQL-like commands and demonstrates core database engine concepts — parsing, execution, storage, and indexing.",
     highlights: [
-      "Implemented SQL-like syntax: CREATE, INSERT, SELECT, UPDATE, DELETE, JOIN",
-      "Designed JSON-based persistent storage with primary key indexing",
-      "Built a layered architecture: parser → engine → storage → REPL",
-      "Included an interactive CLI and a demo Flask web interface",
+      "SQL-like syntax: CREATE, INSERT, SELECT, UPDATE, DELETE, JOIN",
+      "JSON-based persistent storage with primary key indexing",
+      "Layered architecture: parser → engine → storage → REPL",
+      "Interactive CLI and demo Flask web interface",
     ],
-    tech: ["Python", "Flask", "Data Structures", "System Design"],
+    tech: ["Python", "Flask", "Data Structures"],
     github: "https://github.com/Odallo/Pesa-Pal",
-    demo: undefined,
   },
   {
-    title: "Weather Application (Decoupled Architecture)",
-    description: `
-      A production-style weather application with a Next.js + TypeScript frontend
-      and a Laravel backend, focused on clean separation of concerns and reliable
-      API integration.
-    `,
+    title: "Weather App",
+    subtitle: "Decoupled Architecture",
+    description: "A production-style weather application with a Next.js + TypeScript frontend and a Laravel backend. Focused on clean separation of concerns and reliable API integration.",
     highlights: [
-      "Consumed OpenWeatherMap API through a clean REST interface",
-      "Handled async data loading, errors, and user input gracefully",
-      "Applied decoupled frontend–backend architecture principles",
+      "OpenWeatherMap API through a clean REST interface",
+      "Async data loading with graceful error handling",
+      "Decoupled frontend–backend architecture",
     ],
-    tech: ["Next.js", "TypeScript", "Laravel", "REST APIs"],
+    tech: ["Next.js", "TypeScript", "Laravel"],
     github: "https://github.com/Odallo/weather-app",
-    demo: undefined,
   },
   {
     title: "CLI Goal Tracker",
-    description: `
-      A local-first command-line application for tracking goals and monthly progress,
-      designed to be simple, fast, and future cloud-ready.
-    `,
+    subtitle: "Local-first Productivity",
+    description: "A command-line application for tracking goals and monthly progress. Simple, fast, and future cloud-ready.",
     highlights: [
-      "Implemented persistent storage using SQLite",
-      "Designed a clear and predictable CLI interface",
-      "Focused on correctness and usability over complexity",
+      "Persistent storage using SQLite",
+      "Clear and predictable CLI interface",
+      "Correctness and usability over complexity",
     ],
     tech: ["Node.js", "TypeScript", "SQLite"],
     github: "https://github.com/Odallo/goaltrack",
-    demo: undefined,
   },
   {
     title: "Hotel Management System",
-    description: `
-      A system for managing reservations, customer records, and reporting, built
-      around real-world operational workflows.
-    `,
+    subtitle: "Operations Platform",
+    description: "A system for managing reservations, customer records, and reporting, built around real-world operational workflows.",
     highlights: [
-      "Translated business processes into application logic",
-      "Designed database-backed features with consistency",
-      "Strengthened structured system design fundamentals",
+      "Business processes translated into application logic",
+      "Database-backed features with consistency",
+      "Structured system design fundamentals",
     ],
     tech: ["Java", "Databases"],
     github: "https://github.com/Odallo/hotel-management-system",
-    demo: undefined,
-  },
-  {
-    title: "Ayoayo Game (JavaScript)",
-    description: `
-      A JavaScript implementation of the traditional Ayoayo game, adapted from an
-      original Java design as part of a take-home assignment.
-    `,
-    highlights: [
-      "Converted object-oriented game logic to JavaScript",
-      "Implemented accurate turn-based rules",
-      "Improved problem-solving under assignment constraints",
-    ],
-    tech: ["JavaScript", "Game Logic"],
-    github: "https://github.com/Odallo/ayoayo-game",
-    demo: undefined,
   },
 ];
 
 export default function Projects() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      { threshold: 0.05 }
+    );
+    const el = document.getElementById('projects');
+    if (el) observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="py-24 md:py-32">
-      <div className="max-w-6xl mx-auto px-6">
-        {/* Header */}
-        <div className="mb-16">
+    <section id="projects" className="py-24 md:py-32 px-6">
+      <div className="max-w-6xl mx-auto">
+        {/* Section label */}
+        <div className="flex items-center gap-4 mb-12">
           <span
-            className="text-xs uppercase tracking-widest block mb-4"
-            style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
+            className="text-xs uppercase tracking-widest"
+            style={{ fontFamily: typography.mono.fontFamily, color: colors.accent }}
           >
-            02 / Work
+            02
           </span>
-          <h2
-            className="text-4xl md:text-5xl font-bold mb-4"
-            style={{ fontFamily: typography.display.fontFamily, color: colors.text }}
+          <span className="w-12 h-px" style={{ background: colors.border }} />
+          <span
+            className="text-xs uppercase tracking-widest"
+            style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
           >
-            Selected Projects
-          </h2>
-          <div className="w-16 h-px mb-6" style={{ background: colors.accent }} />
-          <p
-            className="text-lg max-w-2xl"
-            style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
-          >
-            A collection of projects that showcase my skills and passion for building
-          </p>
+            Work
+          </span>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
+        <h2
+          className="text-3xl md:text-4xl font-bold mb-4"
+          style={{ fontFamily: typography.display.fontFamily }}
+        >
+          Selected Projects
+        </h2>
+        <p
+          className="text-base mb-16 max-w-xl"
+          style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}
+        >
+          A selection of projects that showcase problem-solving and technical skills.
+        </p>
+
+        <div className="space-y-6">
           {projects.map((project, index) => (
-            <Card key={project.title} className="p-6 h-full">
-              <div className="h-full flex flex-col">
-                {/* Project Number */}
-                <span
-                  className="text-xs uppercase tracking-widest mb-4 block"
-                  style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
-                >
-                  Project {String(index + 1).padStart(2, '0')}
-                </span>
-
-                {/* Title */}
-                <h3
-                  className="text-xl font-bold mb-3"
-                  style={{ fontFamily: typography.display.fontFamily, color: colors.text }}
-                >
-                  {project.title}
-                </h3>
-
-                {/* Description */}
-                <p
-                  className="text-sm mb-5 leading-relaxed flex-grow"
-                  style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
-                >
-                  {project.description.trim()}
-                </p>
-
-                {/* Highlights */}
-                <div className="p-4 mb-5" style={{ border: `1px solid ${colors.border}` }}>
-                  <ul className="space-y-2">
-                    {project.highlights.slice(0, 3).map((highlight, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm" style={{ color: colors.textMuted }}>
-                        <div
-                          className="w-1.5 h-1.5 mt-1.5 flex-shrink-0"
-                          style={{ background: colors.accent }}
-                        />
-                        <span style={{ fontFamily: typography.body.fontFamily }}>{highlight}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2 mb-5">
-                  {project.tech.map((tech, i) => (
+            <div
+              key={project.title}
+              className={`transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+              style={{ transitionDelay: `${index * 0.1}s` }}
+            >
+              <Card className="group">
+                <div className="grid md:grid-cols-12 gap-6 items-start">
+                  {/* Left: Project info */}
+                  <div className="md:col-span-5">
                     <span
-                      key={i}
-                      className="px-3 py-1.5 text-xs uppercase tracking-wider"
-                      style={{
-                        fontFamily: typography.body.fontFamily,
-                        color: colors.textMuted,
-                        border: `1px solid ${colors.border}`,
-                      }}
+                      className="text-xs mb-2 block"
+                      style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
                     >
-                      {tech}
+                      {project.subtitle}
                     </span>
-                  ))}
-                </div>
+                    <h3
+                      className="text-xl md:text-2xl font-bold mb-3"
+                      style={{ fontFamily: typography.display.fontFamily }}
+                    >
+                      {project.title}
+                    </h3>
+                    <p
+                      className="text-sm mb-4 leading-relaxed"
+                      style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}
+                    >
+                      {project.description}
+                    </p>
 
-                {/* Actions */}
-                <div className="flex gap-3 mt-auto">
-                  <Button href={project.github} variant="secondary">
-                    GitHub
-                  </Button>
-                  {project.demo && (
-                    <Button href={project.demo} variant="primary">
-                      Live Demo
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.tech.map((t) => (
+                        <span
+                          key={t}
+                          className="px-2 py-1 text-xs"
+                          style={{
+                            fontFamily: typography.mono.fontFamily,
+                            color: colors.accent,
+                            background: `${colors.accent}10`,
+                          }}
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+
+                    <Button href={project.github} variant="secondary">
+                      View on GitHub →
                     </Button>
-                  )}
+                  </div>
+
+                  {/* Right: Highlights */}
+                  <div className="md:col-span-7">
+                    <div
+                      className="p-5 h-full"
+                      style={{ background: colors.surface, border: `1px solid ${colors.border}` }}
+                    >
+                      <span
+                        className="text-xs uppercase tracking-wider mb-4 block"
+                        style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
+                      >
+                        Key Features
+                      </span>
+                      <ul className="space-y-3">
+                        {project.highlights.map((h, i) => (
+                          <li key={i} className="flex items-start gap-3">
+                            <span
+                              className="mt-1.5 w-1.5 h-1.5 flex-shrink-0"
+                              style={{ background: colors.green }}
+                            />
+                            <span
+                              className="text-sm"
+                              style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}
+                            >
+                              {h}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </Card>
+              </Card>
+            </div>
           ))}
         </div>
       </div>

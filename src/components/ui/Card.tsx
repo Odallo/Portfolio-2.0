@@ -6,14 +6,16 @@ import { colors } from '../../lib/design-tokens';
 interface CardProps {
   children: React.ReactNode;
   className?: string;
+  hover?: boolean;
 }
 
-export default function Card({ children, className = '' }: CardProps) {
+export default function Card({ children, className = '', hover = true }: CardProps) {
   return (
     <div
-      className={`p-6 border transition-colors duration-200 hover:border-[${colors['border-strong']}] ${className}`}
+      className={`p-6 transition-all duration-300 ${hover ? 'hover:border-[#3F3F46] hover:-translate-y-1' : ''} ${className}`}
       style={{
-        borderColor: colors.border,
+        background: colors.card,
+        border: `1px solid ${colors.border}`,
       }}
     >
       {children}

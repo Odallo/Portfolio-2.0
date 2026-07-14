@@ -1,165 +1,150 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Card from "./Card";
 import { colors, typography } from "../../lib/design-tokens";
 
 const skillCategories = [
   {
     title: "Frontend",
-    skills: ["React", "Next.js", "TypeScript", "TailwindCSS", "JavaScript", "HTML/CSS"],
+    icon: "◆",
+    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "JavaScript", "HTML/CSS"],
   },
   {
     title: "Backend",
+    icon: "◆",
     skills: ["Node.js", "Python", "Laravel", "REST APIs", "GraphQL", "PostgreSQL"],
   },
   {
-    title: "Tools & DevOps",
+    title: "Tools",
+    icon: "◆",
     skills: ["Git", "VS Code", "Docker", "AWS", "Vercel", "Figma"],
   },
 ];
 
-const projects = [
-  { name: "MiniRDBMS", desc: "Lightweight relational database engine" },
-  { name: "Weather App", desc: "Full-stack weather application" },
-  { name: "CLI Goal Tracker", desc: "Command-line productivity tool" },
-  { name: "Hotel Management System", desc: "Complete booking platform" },
-  { name: "Ayoayo Game", desc: "Traditional African board game" },
-];
-
 export default function Skills() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      { threshold: 0.1 }
+    );
+    const el = document.getElementById('skills');
+    if (el) observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="py-24 md:py-32">
-      <div className="max-w-6xl mx-auto px-6">
-        {/* Header */}
-        <div className="mb-16">
+    <section id="skills" className="py-24 md:py-32 px-6">
+      <div className="max-w-6xl mx-auto">
+        {/* Section label */}
+        <div className="flex items-center gap-4 mb-12">
           <span
-            className="text-xs uppercase tracking-widest block mb-4"
-            style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
+            className="text-xs uppercase tracking-widest"
+            style={{ fontFamily: typography.mono.fontFamily, color: colors.accent }}
           >
-            03 / Skills
+            03
           </span>
-          <h2
-            className="text-4xl md:text-5xl font-bold mb-4"
-            style={{ fontFamily: typography.display.fontFamily, color: colors.text }}
+          <span className="w-12 h-px" style={{ background: colors.border }} />
+          <span
+            className="text-xs uppercase tracking-widest"
+            style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
           >
-            Skills & Expertise
-          </h2>
-          <div className="w-16 h-px mb-6" style={{ background: colors.accent }} />
-          <p
-            className="text-lg max-w-2xl"
-            style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
-          >
-            Technologies and tools I use to bring ideas to life
-          </p>
+            Skills
+          </span>
         </div>
 
-        {/* Skills Grid */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <h2
+          className="text-3xl md:text-4xl font-bold mb-4"
+          style={{ fontFamily: typography.display.fontFamily }}
+        >
+          What I Work With
+        </h2>
+        <p
+          className="text-base mb-16 max-w-xl"
+          style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}
+        >
+          Technologies and tools I use regularly to build and ship products.
+        </p>
+
+        <div className="grid md:grid-cols-3 gap-6 mb-16">
           {skillCategories.map((category, index) => (
-            <Card key={index} className="p-6">
-              <h3
-                className="text-lg font-bold mb-6"
-                style={{ fontFamily: typography.display.fontFamily, color: colors.text }}
-              >
-                {category.title}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill, skillIndex) => (
-                  <span
-                    key={skillIndex}
-                    className="px-3 py-1.5 text-sm uppercase tracking-wider"
-                    style={{
-                      fontFamily: typography.body.fontFamily,
-                      color: colors.textMuted,
-                      border: `1px solid ${colors.border}`,
-                    }}
+            <div
+              key={category.title}
+              className={`transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+              style={{ transitionDelay: `${index * 0.1}s` }}
+            >
+              <Card>
+                <div className="flex items-center gap-3 mb-5">
+                  <span style={{ color: colors.accent, fontSize: '8px' }}>{category.icon}</span>
+                  <h3
+                    className="text-sm font-semibold uppercase tracking-wider"
+                    style={{ fontFamily: typography.display.fontFamily }}
                   >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </Card>
+                    {category.title}
+                  </h3>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {category.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-3 py-1.5 text-sm"
+                      style={{
+                        fontFamily: typography.body.fontFamily,
+                        color: colors.muted,
+                        background: colors.surface,
+                        border: `1px solid ${colors.border}`,
+                      }}
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </Card>
+            </div>
           ))}
         </div>
 
-        {/* What I've Built */}
-        <div className="mb-16">
-          <div className="mb-12">
-            <h3
-              className="text-2xl font-bold mb-4"
-              style={{ fontFamily: typography.display.fontFamily, color: colors.text }}
-            >
-              What I&apos;ve Built
-            </h3>
-            <p style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}>
-              Projects that showcase my skills and experience
-            </p>
-          </div>
-
-          <Card className="p-8">
-            <div className="grid md:grid-cols-2 gap-6">
-              {projects.map((project, index) => (
-                <div key={index} className="flex items-start gap-4">
-                  <div
-                    className="w-5 h-5 flex-shrink-0 mt-1 flex items-center justify-center"
-                    style={{ border: `1px solid ${colors.accent}` }}
+        {/* Currently learning */}
+        <div
+          className={`transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+          style={{ transitionDelay: '0.35s' }}
+        >
+          <Card hover={false}>
+            <div className="flex flex-col md:flex-row md:items-center gap-6">
+              <div className="flex-1">
+                <h3
+                  className="text-lg font-bold mb-2"
+                  style={{ fontFamily: typography.display.fontFamily }}
+                >
+                  Currently Exploring
+                </h3>
+                <p
+                  className="text-sm"
+                  style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}
+                >
+                  Always learning, always improving. Here&apos;s what I&apos;m focused on right now.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {['System Design', 'Cloud Architecture', 'Performance Optimization'].map((topic) => (
+                  <span
+                    key={topic}
+                    className="px-3 py-1.5 text-sm"
+                    style={{
+                      fontFamily: typography.mono.fontFamily,
+                      color: colors.accent,
+                      border: `1px solid ${colors.accent}40`,
+                    }}
                   >
-                    <div className="w-2 h-2" style={{ background: colors.accent }} />
-                  </div>
-                  <div>
-                    <h4
-                      className="font-bold mb-1"
-                      style={{ fontFamily: typography.display.fontFamily, color: colors.text }}
-                    >
-                      {project.name}
-                    </h4>
-                    <p
-                      className="text-sm"
-                      style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
-                    >
-                      {project.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
+                    {topic}
+                  </span>
+                ))}
+              </div>
             </div>
           </Card>
         </div>
-
-        {/* Currently Learning */}
-        <Card className="text-center p-8">
-          <h3
-            className="text-2xl font-bold mb-4"
-            style={{ fontFamily: typography.display.fontFamily, color: colors.text }}
-          >
-            Currently Exploring
-          </h3>
-          <p
-            className="mb-6 max-w-2xl mx-auto"
-            style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
-          >
-            I&apos;m always learning and improving my skills. Currently diving deeper into
-            system design, cloud architecture, and performance optimization.
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-3">
-            {["Advanced TypeScript", "System Design", "Cloud Architecture", "Performance Optimization"].map(
-              (topic, i) => (
-                <span
-                  key={i}
-                  className="px-4 py-2 text-sm uppercase tracking-wider"
-                  style={{
-                    fontFamily: typography.body.fontFamily,
-                    color: colors.accent,
-                    border: `1px solid ${colors.accent}`,
-                  }}
-                >
-                  {topic}
-                </span>
-              )
-            )}
-          </div>
-        </Card>
       </div>
     </section>
   );

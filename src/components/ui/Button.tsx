@@ -5,20 +5,22 @@ import { colors, typography } from '../../lib/design-tokens';
 
 interface ButtonProps {
   children: React.ReactNode;
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary' | 'ghost';
   className?: string;
   onClick?: () => void;
   href?: string;
 }
 
 export default function Button({ children, variant = 'primary', className = '', onClick, href }: ButtonProps) {
-  const baseStyles = `px-6 py-3 font-mono text-sm uppercase tracking-wider transition-colors duration-200 cursor-pointer border-0`;
+  const base = `inline-flex items-center justify-center px-6 py-3 text-sm font-medium tracking-wide transition-all duration-200 cursor-pointer`;
 
-  const variantStyles = variant === 'primary'
-    ? `bg-[${colors.accent}] text-white hover:bg-[${colors['accent-hover']}]`
-    : `bg-transparent border border-current hover:bg-[${colors.background}]`;
+  const variants: Record<string, string> = {
+    primary: `bg-[${colors.accent}] text-[${colors.bg}] hover:bg-[${colors['accent-hover']}]`,
+    secondary: `bg-transparent text-[${colors.text}] border border-[${colors.border}] hover:border-[${colors.accent}] hover:text-[${colors.accent}]`,
+    ghost: `bg-transparent text-[${colors.muted}] hover:text-[${colors.text}]`,
+  };
 
-  const allStyles = `${baseStyles} ${variantStyles} ${className}`;
+  const allStyles = `${base} ${variants[variant]} ${className}`;
 
   if (href) {
     return (
