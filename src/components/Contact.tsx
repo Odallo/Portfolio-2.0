@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Input from "./ui/Input";
 import Card from "./ui/Card";
-import { colors, shadows, typography } from "../lib/design-tokens";
+import { colors, typography } from "../lib/design-tokens";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -49,49 +49,44 @@ export default function Contact() {
 
   const selectStyle = {
     width: '100%',
-    background: colors['background-subtle'],
-    color: colors['foreground-secondary'],
-    boxShadow: `inset 0 1px 2px rgba(0,0,0,0.3), 0 0 0 1px ${colors['border-default']}`,
-    border: 'none' as const,
+    background: 'transparent',
+    color: colors.text,
+    border: `1px solid ${colors.border}`,
     outline: 'none' as const,
-    transition: 'all 300ms ease-out',
+    transition: 'border-color 200ms ease',
     cursor: 'pointer' as const,
+    fontFamily: typography.body.fontFamily,
+    padding: '12px 16px',
+    fontSize: '16px',
   };
 
   return (
     <section className="py-20">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <div
-            className="inline-block px-6 py-2.5 mb-6 backdrop-blur-sm rounded-full"
-            style={{
-              background: colors.surface,
-              boxShadow: shadows.innerHighlight,
-              border: `1px solid ${colors['border-default']}`,
-            }}
+        {/* Header */}
+        <div className="mb-16">
+          <span
+            className="text-xs uppercase tracking-widest block mb-4"
+            style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
           >
-            <span
-              className="text-sm font-body font-medium uppercase tracking-wide"
-              style={{ color: colors.accent }}
-            >
-              Contact
-            </span>
-          </div>
+            04 / Contact
+          </span>
           <h2
-            className={`${typography.h2.size} ${typography.h2.weight} mb-4`}
-            style={{ color: colors['foreground-secondary'] }}
+            className="text-4xl md:text-5xl font-bold mb-4"
+            style={{ fontFamily: typography.display.fontFamily, color: colors.text }}
           >
             Get In Touch
           </h2>
+          <div className="w-16 h-px mb-6" style={{ background: colors.accent }} />
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
           {/* Contact Info */}
           <div>
-            <Card variant="default" className="p-8 mb-8">
+            <Card className="p-8 mb-8">
               <p
-                className="mb-8 text-lg leading-relaxed font-body"
-                style={{ color: colors['foreground-muted'] }}
+                className="mb-8 text-lg leading-relaxed"
+                style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
               >
                 Ready to start your project? I respond within 24 hours and offer
                 free consultations to discuss your needs.
@@ -100,15 +95,15 @@ export default function Contact() {
               <div className="space-y-6 mb-8">
                 <div>
                   <h3
-                    className="text-lg font-display font-bold mb-2"
-                    style={{ color: colors['foreground-secondary'] }}
+                    className="text-lg font-bold mb-2"
+                    style={{ fontFamily: typography.display.fontFamily, color: colors.text }}
                   >
                     Email
                   </h3>
                   <a
                     href="mailto:odalloeugine@gmail.com"
-                    className="text-lg transition-colors font-body"
-                    style={{ color: colors.accent }}
+                    className="text-lg transition-colors"
+                    style={{ fontFamily: typography.body.fontFamily, color: colors.accent }}
                   >
                     odalloeugine@gmail.com
                   </a>
@@ -116,24 +111,30 @@ export default function Contact() {
 
                 <div>
                   <h3
-                    className="text-lg font-display font-bold mb-2"
-                    style={{ color: colors['foreground-secondary'] }}
+                    className="text-lg font-bold mb-2"
+                    style={{ fontFamily: typography.display.fontFamily, color: colors.text }}
                   >
                     Response Time
                   </h3>
-                  <p className="text-lg font-body" style={{ color: colors['foreground-muted'] }}>
+                  <p
+                    className="text-lg"
+                    style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
+                  >
                     Within 24 hours
                   </p>
                 </div>
 
                 <div>
                   <h3
-                    className="text-lg font-display font-bold mb-3"
-                    style={{ color: colors['foreground-secondary'] }}
+                    className="text-lg font-bold mb-3"
+                    style={{ fontFamily: typography.display.fontFamily, color: colors.text }}
                   >
                     Available For
                   </h3>
-                  <ul className="space-y-2 text-lg font-body" style={{ color: colors['foreground-muted'] }}>
+                  <ul
+                    className="space-y-2 text-lg"
+                    style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
+                  >
                     {[
                       "Custom Website Development",
                       "Web Application Projects",
@@ -142,8 +143,8 @@ export default function Contact() {
                     ].map((item, i) => (
                       <li key={i} className="flex items-center gap-3">
                         <div
-                          className="w-2 h-2 rounded-full flex-shrink-0"
-                          style={{ backgroundColor: colors.accent }}
+                          className="w-2 h-2 flex-shrink-0"
+                          style={{ background: colors.accent }}
                         />
                         <span>{item}</span>
                       </li>
@@ -162,12 +163,19 @@ export default function Contact() {
                 className="flex-1"
               >
                 <div
-                  className="px-6 py-3 text-center text-base font-body font-medium rounded-2xl transition-all duration-300 hover:-translate-y-1"
+                  className="px-6 py-3 text-center text-base font-medium transition-colors duration-200"
                   style={{
-                    background: colors['background-elevated'],
-                    color: colors['foreground-muted'],
-                    boxShadow: shadows.card,
-                    border: `1px solid ${colors['border-default']}`,
+                    fontFamily: typography.body.fontFamily,
+                    color: colors.textMuted,
+                    border: `1px solid ${colors.border}`,
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = colors.accent;
+                    e.currentTarget.style.color = colors.accent;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = colors.border;
+                    e.currentTarget.style.color = colors.textMuted;
                   }}
                 >
                   GitHub
@@ -181,12 +189,19 @@ export default function Contact() {
                 className="flex-1"
               >
                 <div
-                  className="px-6 py-3 text-center text-base font-body font-medium rounded-2xl transition-all duration-300 hover:-translate-y-1"
+                  className="px-6 py-3 text-center text-base font-medium transition-colors duration-200"
                   style={{
-                    background: colors['background-elevated'],
-                    color: colors['foreground-muted'],
-                    boxShadow: shadows.card,
-                    border: `1px solid ${colors['border-default']}`,
+                    fontFamily: typography.body.fontFamily,
+                    color: colors.textMuted,
+                    border: `1px solid ${colors.border}`,
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = colors.accent;
+                    e.currentTarget.style.color = colors.accent;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = colors.border;
+                    e.currentTarget.style.color = colors.textMuted;
                   }}
                 >
                   LinkedIn
@@ -196,10 +211,10 @@ export default function Contact() {
           </div>
 
           {/* Contact Form */}
-          <Card variant="default" className="p-8">
+          <Card className="p-8">
             <h3
-              className={`${typography.h3.size} ${typography.h3.weight} mb-6`}
-              style={{ color: colors['foreground-secondary'] }}
+              className="text-2xl font-bold mb-6"
+              style={{ fontFamily: typography.display.fontFamily, color: colors.text }}
             >
               Quick Quote Form
             </h3>
@@ -208,7 +223,6 @@ export default function Contact() {
               <Input
                 type="text"
                 name="name"
-                label="Name"
                 required
                 value={formData.name}
                 onChange={handleChange}
@@ -218,7 +232,6 @@ export default function Contact() {
               <Input
                 type="email"
                 name="email"
-                label="Email"
                 required
                 value={formData.email}
                 onChange={handleChange}
@@ -227,8 +240,8 @@ export default function Contact() {
 
               <div className="space-y-2">
                 <label
-                  className="text-sm font-body font-medium ml-1"
-                  style={{ color: colors['foreground-muted'] }}
+                  className="text-sm font-medium ml-1"
+                  style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
                 >
                   Project Type <span style={{ color: colors.accent }}>*</span>
                 </label>
@@ -237,7 +250,6 @@ export default function Contact() {
                   required
                   value={formData.projectType}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 text-base rounded-xl outline-none transition-all duration-300 focus:shadow-[inset_0_2px_4px_rgba(0,0,0,0.4),0_0_0_2px_#6366F1]"
                   style={selectStyle}
                 >
                   <option value="">Select a service</option>
@@ -251,8 +263,8 @@ export default function Contact() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <label
-                    className="text-sm font-body font-medium ml-1"
-                    style={{ color: colors['foreground-muted'] }}
+                    className="text-sm font-medium ml-1"
+                    style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
                   >
                     Budget Range
                   </label>
@@ -260,7 +272,6 @@ export default function Contact() {
                     name="budget"
                     value={formData.budget}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 text-base rounded-xl outline-none transition-all duration-300 focus:shadow-[inset_0_2px_4px_rgba(0,0,0,0.4),0_0_0_2px_#6366F1]"
                     style={selectStyle}
                   >
                     <option value="">Select budget</option>
@@ -273,8 +284,8 @@ export default function Contact() {
 
                 <div className="space-y-2">
                   <label
-                    className="text-sm font-body font-medium ml-1"
-                    style={{ color: colors['foreground-muted'] }}
+                    className="text-sm font-medium ml-1"
+                    style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
                   >
                     Timeline
                   </label>
@@ -282,7 +293,6 @@ export default function Contact() {
                     name="timeline"
                     value={formData.timeline}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 text-base rounded-xl outline-none transition-all duration-300 focus:shadow-[inset_0_2px_4px_rgba(0,0,0,0.4),0_0_0_2px_#6366F1]"
                     style={selectStyle}
                   >
                     <option value="">Select timeline</option>
@@ -296,9 +306,8 @@ export default function Contact() {
               </div>
 
               <Input
-                type="textarea"
+                as="textarea"
                 name="message"
-                label="Project Details"
                 value={formData.message}
                 onChange={handleChange}
                 placeholder="Tell me about your project..."
@@ -308,17 +317,17 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 text-lg font-body font-medium text-white rounded-2xl transition-all duration-300 hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-4 text-lg font-medium text-white transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 style={{
+                  fontFamily: typography.body.fontFamily,
                   background: colors.accent,
-                  boxShadow: shadows.accentGlow,
                 }}
               >
                 {isSubmitting ? 'Opening Email Client...' : 'Send Project Inquiry'}
               </button>
             </form>
 
-            <div className="mt-4 text-sm" style={{ color: colors['foreground-muted'] }}>
+            <div className="mt-4 text-sm" style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}>
               <p>Clicking &quot;Send Project Inquiry&quot; will open your default email client with the form details pre-filled.</p>
             </div>
           </Card>

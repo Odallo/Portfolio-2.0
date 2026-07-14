@@ -1,6 +1,7 @@
 import Navigation from "../../src/components/Navigation";
 import Card from "../../src/components/ui/Card";
 import Button from "../../src/components/ui/Button";
+import { colors, typography } from "../../src/lib/design-tokens";
 
 export default function ServicesPage() {
   const services = [
@@ -64,22 +65,24 @@ export default function ServicesPage() {
       <section className="py-24 md:py-32 min-h-screen relative">
         <div className="max-w-6xl mx-auto px-6 relative z-10">
           {/* Header */}
-          <div className="text-center mb-16">
-            <div 
-              className="inline-block px-8 py-3 mb-6 rounded-full"
-              style={{
-                background: '#E0E5EC',
-                boxShadow: 'inset 4px 4px 8px rgb(163,177,198,0.5), inset -4px -4px 8px rgba(255,255,255,0.4)',
-              }}
+          <div className="mb-16">
+            <span
+              className="text-xs uppercase tracking-widest block mb-4"
+              style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
             >
-              <span className="text-sm font-body font-medium text-[#6C63FF] tracking-wider uppercase">
-                Services
-              </span>
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-[#3D4852] mb-4">
+              Services
+            </span>
+            <h1
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4"
+              style={{ fontFamily: typography.display.fontFamily, color: colors.text }}
+            >
               Services & Pricing
             </h1>
-            <p className="text-lg text-[#6B7280] max-w-2xl mx-auto font-body">
+            <div className="w-16 h-px mb-6" style={{ background: colors.accent }} />
+            <p
+              className="text-lg max-w-2xl"
+              style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
+            >
               Professional web development services tailored to your business needs
             </p>
           </div>
@@ -87,18 +90,12 @@ export default function ServicesPage() {
           {/* Services Grid */}
           <div className="grid md:grid-cols-3 gap-8 mb-24">
             {services.map((service) => (
-              <Card
-                key={service.title}
-                className="relative"
-              >
+              <Card key={service.title} className="relative">
                 {service.popular && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <span 
-                      className="px-4 py-1.5 text-white text-xs font-body font-medium rounded-full"
-                      style={{
-                        background: '#6C63FF',
-                        boxShadow: '3px 3px 6px rgb(163,177,198,0.4), -3px -3px 6px rgba(255,255,255,0.3)',
-                      }}
+                    <span
+                      className="px-4 py-1.5 text-white text-xs font-medium uppercase tracking-wider"
+                      style={{ background: colors.accent }}
                     >
                       Most Popular
                     </span>
@@ -106,31 +103,47 @@ export default function ServicesPage() {
                 )}
 
                 <div className="p-6">
-                  <h3 className="text-xl font-display font-bold text-[#3D4852] mb-2">
+                  <h3
+                    className="text-xl font-bold mb-2"
+                    style={{ fontFamily: typography.display.fontFamily, color: colors.text }}
+                  >
                     {service.title}
                   </h3>
-                  <p className="text-[#6B7280] text-sm mb-6 font-body">
+                  <p
+                    className="text-sm mb-6"
+                    style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
+                  >
                     {service.description}
                   </p>
 
                   <div className="mb-6">
-                    <span className="text-2xl font-display font-bold text-[#3D4852]">
+                    <span
+                      className="text-2xl font-bold"
+                      style={{ fontFamily: typography.display.fontFamily, color: colors.text }}
+                    >
                       {service.price}
                     </span>
-                    <p className="text-xs text-[#6B7280] mt-1 font-body">
+                    <p
+                      className="text-xs mt-1"
+                      style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
+                    >
                       {service.priceNote}
                     </p>
                   </div>
 
-                  {/* Features - Neumorphic Inset */}
                   <ul className="space-y-3 mb-8">
                     {service.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-start gap-3">
-                        <div 
-                          className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0"
-                          style={{ backgroundColor: '#6C63FF' }}
+                        <div
+                          className="w-1.5 h-1.5 mt-2 flex-shrink-0"
+                          style={{ background: colors.accent }}
                         />
-                        <span className="text-[#6B7280] text-sm">{feature}</span>
+                        <span
+                          className="text-sm"
+                          style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
+                        >
+                          {feature}
+                        </span>
                       </li>
                     ))}
                   </ul>
@@ -138,7 +151,6 @@ export default function ServicesPage() {
                   <Button
                     href="/contact"
                     variant={service.popular ? 'primary' : 'secondary'}
-                    className="w-full"
                   >
                     Get Started
                   </Button>
@@ -149,11 +161,14 @@ export default function ServicesPage() {
 
           {/* Process Section */}
           <div className="mb-24">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-[#3D4852] mb-4">
+            <div className="mb-12">
+              <h2
+                className="text-3xl md:text-4xl font-bold mb-4"
+                style={{ fontFamily: typography.display.fontFamily, color: colors.text }}
+              >
                 My Process
               </h2>
-              <p className="text-[#6B7280] font-body">
+              <p style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}>
                 A streamlined approach to delivering exceptional results
               </p>
             </div>
@@ -162,21 +177,28 @@ export default function ServicesPage() {
               {processSteps.map((item, i) => (
                 <Card key={i} className="text-center">
                   <div className="p-6">
-                    {/* Step Number - Neumorphic Inset */}
-                    <div 
-                      className="w-14 h-14 mx-auto mb-4 rounded-2xl flex items-center justify-center text-lg font-display font-bold"
+                    <div
+                      className="w-14 h-14 mx-auto mb-4 flex items-center justify-center text-lg font-bold"
                       style={{
-                        background: '#E0E5EC',
-                        boxShadow: 'inset 4px 4px 8px rgb(163,177,198,0.5), inset -4px -4px 8px rgba(255,255,255,0.4)',
-                        color: '#6C63FF',
+                        border: `1px solid ${colors.border}`,
+                        fontFamily: typography.display.fontFamily,
+                        color: colors.accent,
                       }}
                     >
                       {item.step}
                     </div>
-                    <h4 className="font-display font-bold text-[#3D4852] mb-2">
+                    <h4
+                      className="font-bold mb-2"
+                      style={{ fontFamily: typography.display.fontFamily, color: colors.text }}
+                    >
                       {item.title}
                     </h4>
-                    <p className="text-[#6B7280] text-sm font-body">{item.desc}</p>
+                    <p
+                      className="text-sm"
+                      style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
+                    >
+                      {item.desc}
+                    </p>
                   </div>
                 </Card>
               ))}
@@ -186,18 +208,24 @@ export default function ServicesPage() {
           {/* CTA Section */}
           <Card className="text-center">
             <div className="p-8 md:p-12">
-              <h2 className="text-2xl md:text-3xl font-display font-bold text-[#3D4852] mb-4">
+              <h2
+                className="text-2xl md:text-3xl font-bold mb-4"
+                style={{ fontFamily: typography.display.fontFamily, color: colors.text }}
+              >
                 Ready to Get Started?
               </h2>
-              <p className="text-[#6B7280] mb-8 max-w-xl mx-auto font-body">
+              <p
+                className="mb-8 max-w-xl mx-auto"
+                style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
+              >
                 Get a free quote for your project. I respond within 24 hours with a detailed proposal.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button href="/contact" variant="primary" size="lg">
+                <Button href="/contact" variant="primary">
                   Get a Free Quote
                 </Button>
-                <Button href="/projects" variant="secondary" size="lg">
+                <Button href="/projects" variant="secondary">
                   View My Work
                 </Button>
               </div>

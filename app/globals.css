@@ -1,272 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
-:root {
-  /* Neumorphic Base Colors */
-  --neu-base: #E0E5EC;
-  --neu-foreground: #3D4852;
-  --neu-muted: #6B7280;
-  --neu-accent: #6C63FF;
-  --neu-accent-light: #8B84FF;
-  --neu-accent-secondary: #38B2AC;
-  
-  /* Shadow Colors */
-  --neu-shadow-light: rgba(255, 255, 255, 0.5);
-  --neu-shadow-dark: rgb(163, 177, 198, 0.6);
-}
-
 @theme inline {
-  --color-neu-base: var(--neu-base);
-  --color-neu-foreground: var(--neu-foreground);
-  --color-neu-muted: var(--neu-muted);
-  --color-neu-accent: var(--neu-accent);
-  --color-neu-accent-light: var(--neu-accent-light);
-  --color-neu-accent-secondary: var(--neu-accent-secondary);
-  
-  --font-display: 'Plus Jakarta Sans', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
+  --font-display: 'JetBrains Mono', monospace;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }
 
-/* Base Neumorphic Background */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background-color: var(--neu-base);
-  color: var(--neu-foreground);
-  font-family: 'DM Sans', sans-serif;
+  background-color: #FAFAFA;
+  color: #111111;
+  font-family: 'Inter', sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Neumorphic Element Base */
-.neu-extruded {
-  background: var(--neu-base);
-  box-shadow: 
-    9px 9px 16px rgb(163,177,198,0.6), 
-    -9px -9px 16px rgba(255,255,255,0.5);
-  border-radius: 32px;
-}
-
-.neu-extruded-hover {
-  box-shadow: 
-    12px 12px 20px rgb(163,177,198,0.7), 
-    -12px -12px 20px rgba(255,255,255,0.6);
-}
-
-.neu-inset {
-  background: var(--neu-base);
-  box-shadow: 
-    inset 6px 6px 10px rgb(163,177,198,0.6), 
-    inset -6px -6px 10px rgba(255,255,255,0.5);
-  border-radius: 16px;
-}
-
-.neu-inset-deep {
-  background: var(--neu-base);
-  box-shadow: 
-    inset 10px 10px 20px rgb(163,177,198,0.7), 
-    inset -10px -10px 20px rgba(255,255,255,0.6);
-  border-radius: 16px;
-}
-
-.neu-inset-sm {
-  background: var(--neu-base);
-  box-shadow: 
-    inset 3px 3px 6px rgb(163,177,198,0.6), 
-    inset -3px -3px 6px rgba(255,255,255,0.5);
-  border-radius: 12px;
-}
-
-/* Neumorphic Button Styles */
-.neu-btn {
-  background: var(--neu-base);
-  box-shadow: 
-    5px 5px 10px rgb(163,177,198,0.6), 
-    -5px -5px 10px rgba(255,255,255,0.5);
-  border-radius: 16px;
-  transition: all 300ms ease-out;
-}
-
-.neu-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 
-    8px 8px 16px rgb(163,177,198,0.7), 
-    -8px -8px 16px rgba(255,255,255,0.6);
-}
-
-.neu-btn:active {
-  transform: translateY(0);
-  box-shadow: 
-    inset 3px 3px 6px rgb(163,177,198,0.6), 
-    inset -3px -3px 6px rgba(255,255,255,0.5);
-}
-
-.neu-btn-primary {
-  background: var(--neu-accent);
+::selection {
+  background-color: #2563EB;
   color: white;
-  box-shadow: 
-    5px 5px 10px rgb(163,177,198,0.4), 
-    -5px -5px 10px rgba(255,255,255,0.3),
-    inset 0 1px 0 rgba(255,255,255,0.2);
-  border-radius: 16px;
 }
 
-.neu-btn-primary:hover {
-  background: var(--neu-accent-light);
-  transform: translateY(-2px);
-  box-shadow: 
-    8px 8px 16px rgb(163,177,198,0.5), 
-    -8px -8px 16px rgba(255,255,255,0.4),
-    inset 0 1px 0 rgba(255,255,255,0.3);
-}
-
-.neu-btn-primary:active {
-  transform: translateY(0);
-  box-shadow: 
-    inset 3px 3px 6px rgba(0,0,0,0.2),
-    inset -1px -1px 0 rgba(255,255,255,0.1);
-}
-
-/* Neumorphic Card */
-.neu-card {
-  background: var(--neu-base);
-  border-radius: 32px;
-  box-shadow: 
-    9px 9px 16px rgb(163,177,198,0.6), 
-    -9px -9px 16px rgba(255,255,255,0.5);
-  transition: all 300ms ease-out;
-}
-
-.neu-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 
-    12px 12px 24px rgb(163,177,198,0.7), 
-    -12px -12px 24px rgba(255,255,255,0.6);
-}
-
-/* Neumorphic Input */
-.neu-input {
-  background: var(--neu-base);
-  border: none;
-  border-radius: 16px;
-  box-shadow: 
-    inset 6px 6px 10px rgb(163,177,198,0.6), 
-    inset -6px -6px 10px rgba(255,255,255,0.5);
-  padding: 16px 20px;
-  font-family: 'DM Sans', sans-serif;
-  color: var(--neu-foreground);
-  outline: none;
-  transition: all 300ms ease-out;
-}
-
-.neu-input:focus {
-  box-shadow: 
-    inset 10px 10px 20px rgb(163,177,198,0.7), 
-    inset -10px -10px 20px rgba(255,255,255,0.6),
-    0 0 0 2px var(--neu-accent);
-}
-
-.neu-input::placeholder {
-  color: #A0AEC0;
-}
-
-/* Neumorphic Icon Well */
-.neu-icon-well {
-  background: var(--neu-base);
-  border-radius: 16px;
-  box-shadow: 
-    inset 6px 6px 12px rgb(163,177,198,0.6), 
-    inset -6px -6px 12px rgba(255,255,255,0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Typography Classes */
-.font-display {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-}
-
-.font-body {
-  font-family: 'DM Sans', sans-serif;
-}
-
-/* Heading Styles */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--neu-foreground);
-}
-
-/* Focus States */
-.focus-ring {
-  outline: none;
-  box-shadow: 0 0 0 2px var(--neu-base), 0 0 0 4px var(--neu-accent);
-}
-
-/* Scrollbar Styling */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--neu-base);
+  background: #FAFAFA;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgb(163,177,198,0.6);
-  border-radius: 4px;
+  background: #D4D4D8;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(163,177,198,0.8);
-}
-
-/* Smooth Scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Floating Animation for Decorations */
-@keyframes float {
-  0%, 100% { 
-    transform: translateY(0) translateX(0); 
-  }
-  25% { 
-    transform: translateY(-10px) translateX(5px); 
-  }
-  50% { 
-    transform: translateY(-5px) translateX(-5px); 
-  }
-  75% { 
-    transform: translateY(-15px) translateX(3px); 
-  }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-/* Neumorphic Decorative Circles */
-.neu-circle-outer {
-  background: var(--neu-base);
-  border-radius: 50%;
-  box-shadow: 
-    9px 9px 16px rgb(163,177,198,0.6), 
-    -9px -9px 16px rgba(255,255,255,0.5);
-}
-
-.neu-circle-inner {
-  background: var(--neu-base);
-  border-radius: 50%;
-  box-shadow: 
-    inset 4px 4px 8px rgb(163,177,198,0.5), 
-    inset -4px -4px 8px rgba(255,255,255,0.4);
-}
-
-/* Mobile Navigation */
-@media (max-width: 768px) {
-  body {
-    font-size: 14px;
-  }
+  background: #A1A1AA;
 }

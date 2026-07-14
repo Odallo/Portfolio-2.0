@@ -2,7 +2,7 @@
 
 import Card from "./ui/Card";
 import Button from "./ui/Button";
-import { colors, shadows, typography } from "../lib/design-tokens";
+import { colors, typography } from "../lib/design-tokens";
 
 const projects = [
   {
@@ -90,31 +90,23 @@ export default function Projects() {
     <section className="py-24 md:py-32">
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div
-            className="inline-block px-6 py-2.5 mb-6 backdrop-blur-sm rounded-full"
-            style={{
-              background: colors.surface,
-              boxShadow: shadows.innerHighlight,
-              border: `1px solid ${colors['border-default']}`,
-            }}
+        <div className="mb-16">
+          <span
+            className="text-xs uppercase tracking-widest block mb-4"
+            style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
           >
-            <span
-              className="text-sm font-body font-medium uppercase tracking-wide"
-              style={{ color: colors.accent }}
-            >
-              Portfolio
-            </span>
-          </div>
+            02 / Work
+          </span>
           <h2
-            className={`${typography.h2.size} ${typography.h2.weight} mb-4`}
-            style={{ color: colors['foreground-secondary'] }}
+            className="text-4xl md:text-5xl font-bold mb-4"
+            style={{ fontFamily: typography.display.fontFamily, color: colors.text }}
           >
             Selected Projects
           </h2>
+          <div className="w-16 h-px mb-6" style={{ background: colors.accent }} />
           <p
-            className={`${typography.body.size} max-w-2xl mx-auto font-body`}
-            style={{ color: colors['foreground-muted'] }}
+            className="text-lg max-w-2xl"
+            style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
           >
             A collection of projects that showcase my skills and passion for building
           </p>
@@ -123,45 +115,42 @@ export default function Projects() {
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
-            <Card
-              key={project.title}
-              variant="default"
-              className="p-6 h-full"
-            >
+            <Card key={project.title} className="p-6 h-full">
               <div className="h-full flex flex-col">
+                {/* Project Number */}
+                <span
+                  className="text-xs uppercase tracking-widest mb-4 block"
+                  style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
+                >
+                  Project {String(index + 1).padStart(2, '0')}
+                </span>
+
                 {/* Title */}
                 <h3
-                  className={`${typography.h3.size} ${typography.h3.weight} mb-3`}
-                  style={{ color: colors['foreground-secondary'] }}
+                  className="text-xl font-bold mb-3"
+                  style={{ fontFamily: typography.display.fontFamily, color: colors.text }}
                 >
                   {project.title}
                 </h3>
 
                 {/* Description */}
                 <p
-                  className="text-sm mb-5 leading-relaxed flex-grow font-body"
-                  style={{ color: colors['foreground-muted'] }}
+                  className="text-sm mb-5 leading-relaxed flex-grow"
+                  style={{ fontFamily: typography.body.fontFamily, color: colors.textMuted }}
                 >
                   {project.description.trim()}
                 </p>
 
                 {/* Highlights */}
-                <div
-                  className="p-4 mb-5 rounded-xl"
-                  style={{
-                    background: colors.surface,
-                    boxShadow: shadows.innerHighlight,
-                    border: `1px solid ${colors['border-default']}`,
-                  }}
-                >
+                <div className="p-4 mb-5" style={{ border: `1px solid ${colors.border}` }}>
                   <ul className="space-y-2">
                     {project.highlights.slice(0, 3).map((highlight, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm" style={{ color: colors['foreground-muted'] }}>
+                      <li key={i} className="flex items-start gap-2 text-sm" style={{ color: colors.textMuted }}>
                         <div
-                          className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0"
-                          style={{ backgroundColor: colors.accent }}
+                          className="w-1.5 h-1.5 mt-1.5 flex-shrink-0"
+                          style={{ background: colors.accent }}
                         />
-                        <span>{highlight}</span>
+                        <span style={{ fontFamily: typography.body.fontFamily }}>{highlight}</span>
                       </li>
                     ))}
                   </ul>
@@ -172,11 +161,11 @@ export default function Projects() {
                   {project.tech.map((tech, i) => (
                     <span
                       key={i}
-                      className="px-3 py-1.5 text-xs font-body font-medium rounded-xl transition-all duration-200 hover:scale-105"
+                      className="px-3 py-1.5 text-xs uppercase tracking-wider"
                       style={{
-                        background: colors.surface,
-                        color: colors['foreground-muted'],
-                        boxShadow: `0 0 0 1px ${colors['border-default']}`,
+                        fontFamily: typography.body.fontFamily,
+                        color: colors.textMuted,
+                        border: `1px solid ${colors.border}`,
                       }}
                     >
                       {tech}
@@ -186,21 +175,11 @@ export default function Projects() {
 
                 {/* Actions */}
                 <div className="flex gap-3 mt-auto">
-                  <Button
-                    href={project.github}
-                    variant="secondary"
-                    size="sm"
-                    className="flex-1"
-                  >
+                  <Button href={project.github} variant="secondary">
                     GitHub
                   </Button>
                   {project.demo && (
-                    <Button
-                      href={project.demo}
-                      variant="primary"
-                      size="sm"
-                      className="flex-1"
-                    >
+                    <Button href={project.demo} variant="primary">
                       Live Demo
                     </Button>
                   )}
