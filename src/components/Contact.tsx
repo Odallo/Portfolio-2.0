@@ -79,12 +79,12 @@ export default function Contact() {
           </span>
         </div>
 
-        <h2
+        <h1
           className="text-3xl md:text-4xl font-bold mb-4"
           style={{ fontFamily: typography.display.fontFamily }}
         >
           Let&apos;s Work Together
-        </h2>
+        </h1>
         <p
           className="text-base mb-16 max-w-xl"
           style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}
@@ -95,7 +95,7 @@ export default function Contact() {
         <div className={`grid md:grid-cols-2 gap-12 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           {/* Contact Info */}
           <div className="space-y-6">
-            <Card hover={false}>
+            <Card>
               <h3
                 className="text-lg font-bold mb-4"
                 style={{ fontFamily: typography.display.fontFamily }}
@@ -214,32 +214,54 @@ export default function Contact() {
           </div>
 
           {/* Form */}
-          <Card hover={false}>
+          <Card>
             <form onSubmit={handleSubmit} className="space-y-4">
-              <Input
-                type="text"
-                name="name"
-                required
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Your name"
-              />
-              <Input
-                type="email"
-                name="email"
-                required
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="your@email.com"
-              />
               <div className="space-y-1">
                 <label
+                  htmlFor="name"
+                  className="text-xs uppercase tracking-wider"
+                  style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
+                >
+                  Name *
+                </label>
+                <Input
+                  type="text"
+                  name="name"
+                  id="name"
+                  required
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Your name"
+                />
+              </div>
+              <div className="space-y-1">
+                <label
+                  htmlFor="email"
+                  className="text-xs uppercase tracking-wider"
+                  style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
+                >
+                  Email *
+                </label>
+                <Input
+                  type="email"
+                  name="email"
+                  id="email"
+                  required
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="your@email.com"
+                />
+              </div>
+              <div className="space-y-1">
+                <label
+                  htmlFor="projectType"
                   className="text-xs uppercase tracking-wider"
                   style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
                 >
                   Project Type *
                 </label>
                 <select
+                  id="projectType"
                   name="projectType"
                   required
                   value={formData.projectType}
@@ -256,12 +278,14 @@ export default function Contact() {
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1">
                   <label
+                    htmlFor="budget"
                     className="text-xs uppercase tracking-wider"
                     style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
                   >
                     Budget
                   </label>
                   <select
+                    id="budget"
                     name="budget"
                     value={formData.budget}
                     onChange={handleChange}
@@ -276,12 +300,14 @@ export default function Contact() {
                 </div>
                 <div className="space-y-1">
                   <label
+                    htmlFor="timeline"
                     className="text-xs uppercase tracking-wider"
                     style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
                   >
                     Timeline
                   </label>
                   <select
+                    id="timeline"
                     name="timeline"
                     value={formData.timeline}
                     onChange={handleChange}
@@ -296,17 +322,28 @@ export default function Contact() {
                   </select>
                 </div>
               </div>
-              <Input
-                as="textarea"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="Tell me about your project..."
-                rows={4}
-              />
+              <div className="space-y-1">
+                <label
+                  htmlFor="message"
+                  className="text-xs uppercase tracking-wider"
+                  style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
+                >
+                  Message
+                </label>
+                <Input
+                  as="textarea"
+                  name="message"
+                  id="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Tell me about your project..."
+                  rows={4}
+                />
+              </div>
               <button
                 type="submit"
                 disabled={isSubmitting}
+                aria-label="Send message"
                 className="w-full py-3 text-sm font-medium uppercase tracking-wider transition-all duration-200 disabled:opacity-50"
                 style={{
                   fontFamily: typography.display.fontFamily,

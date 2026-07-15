@@ -29,7 +29,7 @@ const projects = [
       "Decoupled frontend–backend architecture",
     ],
     tech: ["Next.js", "TypeScript", "Laravel"],
-    github: "https://github.com/Odallo/weather-app",
+    github: "https://github.com/Odallo",
   },
   {
     title: "CLI Goal Tracker",
@@ -41,7 +41,7 @@ const projects = [
       "Correctness and usability over complexity",
     ],
     tech: ["Node.js", "TypeScript", "SQLite"],
-    github: "https://github.com/Odallo/goaltrack",
+    github: "https://github.com/Odallo/Personal-Goal-Tracker-2025",
   },
   {
     title: "Hotel Management System",
@@ -52,8 +52,8 @@ const projects = [
       "Database-backed features with consistency",
       "Structured system design fundamentals",
     ],
-    tech: ["Java", "Databases"],
-    github: "https://github.com/Odallo/hotel-management-system",
+    tech: ["PHP", "Laravel", "Databases"],
+    github: "https://github.com/Odallo/Management-System",
   },
 ];
 
@@ -90,12 +90,12 @@ export default function Projects() {
           </span>
         </div>
 
-        <h2
+        <h1
           className="text-3xl md:text-4xl font-bold mb-4"
           style={{ fontFamily: typography.display.fontFamily }}
         >
           Selected Projects
-        </h2>
+        </h1>
         <p
           className="text-base mb-16 max-w-xl"
           style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}

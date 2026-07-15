@@ -1,9 +1,32 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+const siteUrl = "https://odallo-portfolio.vercel.app";
+
 export const metadata: Metadata = {
-  title: "Odallo Eugine — Software Developer",
-  description: "Portfolio of Odallo Eugine, a software developer building reliable, scalable digital solutions.",
+  title: {
+    default: "Odallo Eugine — Software Developer",
+    template: "%s | Odallo Eugine",
+  },
+  description: "Software developer building reliable, scalable digital solutions with React, Next.js, TypeScript, and Python. Available for freelance and full-time opportunities.",
+  metadataBase: new URL(siteUrl),
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "Odallo Eugine — Software Developer",
+    title: "Odallo Eugine — Software Developer",
+    description: "Software developer building reliable, scalable digital solutions with React, Next.js, TypeScript, and Python.",
+    url: siteUrl,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Odallo Eugine — Software Developer",
+    description: "Software developer building reliable, scalable digital solutions with React, Next.js, TypeScript, and Python.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

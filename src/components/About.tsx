@@ -46,6 +46,8 @@ export default function About() {
                 alt="Odallo Eugine"
                 width={320}
                 height={320}
+                loading="eager"
+                priority
                 className="w-full aspect-square object-cover"
                 style={{ filter: 'grayscale(30%)' }}
               />
@@ -75,12 +77,12 @@ export default function About() {
 
           {/* Content */}
           <div className={`md:col-span-3 space-y-6 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: '0.15s' }}>
-            <h2
+            <h1
               className="text-3xl md:text-4xl font-bold mb-4"
               style={{ fontFamily: typography.display.fontFamily }}
             >
               About Me
-            </h2>
+            </h1>
 
             <p
               className="text-base leading-relaxed"

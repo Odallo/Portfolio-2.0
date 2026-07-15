@@ -55,12 +55,12 @@ export default function Skills() {
           </span>
         </div>
 
-        <h2
+        <h1
           className="text-3xl md:text-4xl font-bold mb-4"
           style={{ fontFamily: typography.display.fontFamily }}
         >
           What I Work With
-        </h2>
+        </h1>
         <p
           className="text-base mb-16 max-w-xl"
           style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}
@@ -77,7 +77,7 @@ export default function Skills() {
             >
               <Card>
                 <div className="flex items-center gap-3 mb-5">
-                  <span style={{ color: colors.accent, fontSize: '8px' }}>{category.icon}</span>
+                  <span style={{ color: colors.accent, fontSize: '12px' }}>{category.icon}</span>
                   <h3
                     className="text-sm font-semibold uppercase tracking-wider"
                     style={{ fontFamily: typography.display.fontFamily }}
@@ -111,7 +111,7 @@ export default function Skills() {
           className={`transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           style={{ transitionDelay: '0.35s' }}
         >
-          <Card hover={false}>
+          <Card>
             <div className="flex flex-col md:flex-row md:items-center gap-6">
               <div className="flex-1">
                 <h3

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Navigation from "../../src/components/Navigation";
 import Card from "../../src/components/ui/Card";
 import Button from "../../src/components/ui/Button";
+import Footer from "../../src/components/Footer";
 import { colors, typography } from "../../src/lib/design-tokens";
 
 const services = [
@@ -121,12 +122,12 @@ export default function ServicesPage() {
                   )}
 
                   <div className="p-2">
-                    <h3
+                    <h2
                       className="text-xl font-bold mb-2"
                       style={{ fontFamily: typography.display.fontFamily }}
                     >
                       {service.title}
-                    </h3>
+                    </h2>
                     <p
                       className="text-sm mb-6"
                       style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}
@@ -198,12 +199,12 @@ export default function ServicesPage() {
                       >
                         {item.step}
                       </span>
-                      <h4
+                      <h3
                         className="font-bold mb-1"
                         style={{ fontFamily: typography.display.fontFamily }}
                       >
                         {item.title}
-                      </h4>
+                      </h3>
                       <p
                         className="text-sm"
                         style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}
@@ -218,7 +219,7 @@ export default function ServicesPage() {
           </div>
 
           {/* CTA */}
-          <Card hover={false}>
+          <Card>
             <div className="p-8 md:p-12 text-center">
               <h2
                 className="text-2xl md:text-3xl font-bold mb-4"
@@ -240,6 +241,7 @@ export default function ServicesPage() {
           </Card>
         </div>
       </section>
+      <Footer />
     </main>
   );
 }

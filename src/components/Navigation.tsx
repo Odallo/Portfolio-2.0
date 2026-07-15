@@ -68,6 +68,7 @@ export default function Navigation() {
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden p-2"
               style={{ color: colors.text }}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 {isOpen ? <path d="M6 18L18 6M6 6l12 12" /> : <path d="M4 6h16M4 12h16M4 18h16" />}
@@ -84,7 +85,7 @@ export default function Navigation() {
             className="absolute top-0 right-0 h-full w-72 p-6"
             style={{ background: colors.surface, borderLeft: `1px solid ${colors.border}` }}
           >
-            <button onClick={() => setIsOpen(false)} className="absolute top-4 right-4 p-2" style={{ color: colors.text }}>
+            <button onClick={() => setIsOpen(false)} className="absolute top-4 right-4 p-2" style={{ color: colors.text }} aria-label="Close menu">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <path d="M6 18L18 6M6 6l12 12" />
               </svg>

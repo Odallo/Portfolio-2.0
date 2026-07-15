@@ -7,6 +7,7 @@ interface InputProps {
   type?: string;
   placeholder?: string;
   name?: string;
+  id?: string;
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   required?: boolean;
@@ -15,7 +16,7 @@ interface InputProps {
   rows?: number;
 }
 
-export default function Input({ type = 'text', placeholder, name, value, onChange, required = false, className = '', as = 'input', rows }: InputProps) {
+export default function Input({ type = 'text', placeholder, name, id, value, onChange, required = false, className = '', as = 'input', rows }: InputProps) {
   const style: React.CSSProperties = {
     width: '100%',
     padding: '12px 16px',
@@ -32,6 +33,7 @@ export default function Input({ type = 'text', placeholder, name, value, onChang
     return (
       <textarea
         name={name}
+        id={id}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
@@ -44,15 +46,16 @@ export default function Input({ type = 'text', placeholder, name, value, onChang
   }
 
   return (
-    <input
-      type={type}
-      name={name}
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
-      required={required}
-      className={className}
-      style={style}
-    />
+      <input
+        type={type}
+        name={name}
+        id={id}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        required={required}
+        className={className}
+        style={style}
+      />
   );
 }
