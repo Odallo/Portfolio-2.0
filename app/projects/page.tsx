@@ -9,6 +9,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Projects | Odallo Eugine",
     description: "Selected projects by Odallo Eugine including MiniRDBMS, Weather App, CLI Goal Tracker, and Hotel Management System.",
+    images: ["/og-image.svg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og-image.svg"],
   },
   alternates: {
     canonical: "/projects",

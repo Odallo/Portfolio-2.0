@@ -101,6 +101,9 @@ export default function Projects() {
           style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}
         >
           A selection of projects that showcase problem-solving and technical skills.
+          Each project represents a unique challenge and the opportunity to learn and
+          grow as a developer. From database systems to web applications, these projects
+          demonstrate my ability to work across the full stack.
         </p>
 
         <div className="space-y-6">

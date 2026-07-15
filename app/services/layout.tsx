@@ -6,6 +6,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Services & Pricing | Odallo Eugine",
     description: "Professional web development services by Odallo Eugine: starter websites, business websites, and e-commerce solutions.",
+    images: ["/og-image.svg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og-image.svg"],
   },
   alternates: {
     canonical: "/services",

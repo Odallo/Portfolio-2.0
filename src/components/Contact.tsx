@@ -89,7 +89,10 @@ export default function Contact() {
           className="text-base mb-16 max-w-xl"
           style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}
         >
-          Have a project in mind? I&apos;d love to hear about it. I respond within 24 hours.
+          Have a project in mind? I&apos;d love to hear about it. Whether you need a
+          custom website, a web application, or e-commerce solution, I can help bring
+          your vision to life. I respond within 24 hours and provide detailed proposals
+          for every project.
         </p>
 
         <div className={`grid md:grid-cols-2 gap-12 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>

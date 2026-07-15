@@ -98,6 +98,9 @@ export default function ServicesPage() {
               style={{ fontFamily: typography.body.fontFamily, color: colors.muted, transitionDelay: '0.1s' }}
             >
               Professional web development services tailored to your business needs.
+              From small business websites to complex web applications, I deliver
+              high-quality solutions with transparent pricing and clear communication
+              throughout the project lifecycle.
             </p>
           </div>
 

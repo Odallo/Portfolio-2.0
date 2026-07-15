@@ -9,6 +9,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Contact Odallo Eugine",
     description: "Get in touch with Odallo Eugine for web development projects, consulting, or collaboration opportunities.",
+    images: ["/og-image.svg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og-image.svg"],
   },
   alternates: {
     canonical: "/contact",

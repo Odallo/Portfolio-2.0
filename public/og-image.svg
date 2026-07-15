@@ -1,0 +1,27 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#0A0A0A"/>
+  
+  <!-- Subtle grid pattern -->
+  <defs>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#27272A" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.3"/>
+  
+  <!-- Accent glow -->
+  <circle cx="900" cy="150" r="200" fill="#F59E0B" opacity="0.08" filter="blur(80px)"/>
+  
+  <!-- Name -->
+  <text x="100" y="280" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="bold" fill="#F5F5F5">Odallo</text>
+  <text x="100" y="360" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="bold" fill="#F59E0B">Eugine</text>
+  
+  <!-- Title -->
+  <text x="100" y="420" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="#A1A1AA">Software Developer</text>
+  
+  <!-- Tagline -->
+  <text x="100" y="470" font-family="system-ui, -apple-system, sans-serif" font-size="18" fill="#A1A1AA">Building reliable, scalable digital solutions</text>
+  
+  <!-- Tech stack -->
+  <text x="100" y="540" font-family="monospace" font-size="14" fill="#F59E0B">React • Next.js • TypeScript • Python</text>
+</svg>

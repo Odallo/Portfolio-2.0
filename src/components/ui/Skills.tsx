@@ -65,7 +65,9 @@ export default function Skills() {
           className="text-base mb-16 max-w-xl"
           style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}
         >
-          Technologies and tools I use regularly to build and ship products.
+          Technologies and tools I use regularly to build and ship products. I believe
+          in using the right tool for the job and continuously expanding my skill set
+          to stay current with industry best practices and emerging technologies.
         </p>
 
         <div className="grid md:grid-cols-3 gap-6 mb-16">

@@ -63,8 +63,10 @@ export default function Hero() {
           style={{ fontFamily: typography.body.fontFamily, color: colors.muted, transitionDelay: '0.3s' }}
         >
           I build reliable, scalable digital solutions with clean code
-          and modern technologies. Currently looking for opportunities
-          to grow as an engineer.
+          and modern technologies. Specializing in React, Next.js, and TypeScript
+          on the frontend, with backend experience in Node.js, Python, and Laravel.
+          Currently looking for opportunities to grow as an engineer and contribute
+          to meaningful projects that make a difference.
         </p>
 
         {/* CTA */}

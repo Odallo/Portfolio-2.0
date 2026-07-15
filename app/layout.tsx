@@ -17,15 +17,27 @@ export const metadata: Metadata = {
     title: "Odallo Eugine — Software Developer",
     description: "Software developer building reliable, scalable digital solutions with React, Next.js, TypeScript, and Python.",
     url: siteUrl,
+    images: [
+      {
+        url: `${siteUrl}/og-image.svg`,
+        width: 1200,
+        height: 630,
+        alt: "Odallo Eugine — Software Developer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Odallo Eugine — Software Developer",
     description: "Software developer building reliable, scalable digital solutions with React, Next.js, TypeScript, and Python.",
+    images: [`${siteUrl}/og-image.svg`],
   },
   robots: {
     index: true,
     follow: true,
+  },
+  alternates: {
+    canonical: siteUrl,
   },
 };
 

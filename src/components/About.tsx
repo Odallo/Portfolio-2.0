@@ -48,6 +48,7 @@ export default function About() {
                 height={320}
                 loading="eager"
                 priority
+                fetchPriority="high"
                 className="w-full aspect-square object-cover"
                 style={{ filter: 'grayscale(30%)' }}
               />
@@ -101,6 +102,27 @@ export default function About() {
               I specialize in React, Next.js, and TypeScript on the frontend, with
               experience in Node.js, Python, and Laravel on the backend. I care about
               writing code that other developers can read and maintain.
+            </p>
+
+            <p
+              className="text-base leading-relaxed"
+              style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}
+            >
+              When I&apos;m not coding, I&apos;m usually exploring new technologies, contributing
+              to open-source projects, or working on personal projects that challenge me
+              to think differently about problem-solving. I believe in continuous learning
+              and staying curious about the ever-evolving tech landscape.
+            </p>
+
+            <p
+              className="text-base leading-relaxed"
+              style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}
+            >
+              My approach to development is practical and user-focused. I believe that
+              great software isn&apos;t just about writing code — it&apos;s about understanding
+              the problem deeply and crafting solutions that are both elegant and
+              effective. I&apos;m always looking for opportunities to collaborate with
+              teams that share this philosophy.
             </p>
 
             <div className="pt-4">
