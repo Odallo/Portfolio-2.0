@@ -16,6 +16,7 @@ export default function Contact() {
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -27,18 +28,37 @@ export default function Contact() {
     return () => observer.disconnect();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.projectType) {
       alert("Please fill in all required fields.");
       return;
     }
     setIsSubmitting(true);
-    const subject = encodeURIComponent(`Project Inquiry from ${formData.name}`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\nProject Type: ${formData.projectType}\nBudget: ${formData.budget || 'Not specified'}\nTimeline: ${formData.timeline || 'Not specified'}\n\nMessage:\n${formData.message || 'No additional message'}`
-    );
-    window.location.href = `mailto:odalloeugine@gmail.com?subject=${subject}&body=${body}`;
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: "579158ed-1c67-41cf-a05a-90581cbb8e95",
+          name: formData.name,
+          email: formData.email,
+          projectType: formData.projectType,
+          budget: formData.budget || "Not specified",
+          timeline: formData.timeline || "Not specified",
+          message: formData.message || "No additional message",
+        }),
+      });
+      const result = await response.json();
+      if (result.success) {
+        setSubmitted(true);
+        setFormData({ name: "", email: "", projectType: "", budget: "", timeline: "", message: "" });
+      } else {
+        alert("Something went wrong. Please try again or email me directly.");
+      }
+    } catch {
+      alert("Something went wrong. Please try again or email me directly.");
+    }
     setIsSubmitting(false);
   };
 
@@ -218,6 +238,35 @@ export default function Contact() {
 
           {/* Form */}
           <Card>
+            {submitted ? (
+              <div className="text-center py-12">
+                <span
+                  className="text-4xl block mb-4"
+                  style={{ color: colors.green }}
+                >
+                  ✓
+                </span>
+                <h3
+                  className="text-xl font-bold mb-2"
+                  style={{ fontFamily: typography.display.fontFamily }}
+                >
+                  Message Sent!
+                </h3>
+                <p
+                  className="text-sm mb-6"
+                  style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}
+                >
+                  Thanks for reaching out. I&apos;ll get back to you within 24 hours.
+                </p>
+                <button
+                  onClick={() => setSubmitted(false)}
+                  className="text-sm underline transition-colors duration-200"
+                  style={{ fontFamily: typography.mono.fontFamily, color: colors.accent }}
+                >
+                  Send another message
+                </button>
+              </div>
+            ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-1">
                 <label
@@ -354,9 +403,10 @@ export default function Contact() {
                   color: colors.bg,
                 }}
               >
-                {isSubmitting ? 'Opening Email...' : 'Send Message'}
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
             </form>
+            )}
           </Card>
         </div>
       </div>
