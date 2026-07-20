@@ -1,39 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import useWeb3Forms from "@web3forms/react";
 import Card from "./ui/Card";
 import { colors, typography } from "../lib/design-tokens";
-
-interface FormData {
-  name: string;
-  email: string;
-  projectType: string;
-  budget: string;
-  timeline: string;
-  message: string;
-}
 
 export default function Contact() {
   const [visible, setVisible] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const { register, reset, handleSubmit: formSubmit, formState: { isSubmitting } } = useForm<FormData>();
-
-  const { submit: onSubmit } = useWeb3Forms({
-    access_key: "579158ed-1c67-41cf-a05a-90581cbb8e95",
-    settings: {
-      from_name: "Odallo Eugine Portfolio",
-      subject: "New Contact Message",
-    },
-    onSuccess: () => {
-      setIsSuccess(true);
-      reset();
-    },
-    onError: () => {
-      setIsSuccess(false);
-    },
-  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -44,6 +18,42 @@ export default function Contact() {
     if (el) observer.observe(el);
     return () => observer.disconnect();
   }, []);
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    formData.append("access_key", "579158ed-1c67-41cf-a05a-90581cbb8e95");
+    formData.append("subject", "New Contact Message from Portfolio");
+    formData.append("from_name", "Odallo Eugine Portfolio");
+
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: json,
+      });
+      const data = await res.json();
+      if (data.success) {
+        setIsSuccess(true);
+        form.reset();
+      } else {
+        alert("Something went wrong. Please try again or email me directly.");
+      }
+    } catch {
+      alert("Something went wrong. Please try again or email me directly.");
+    }
+
+    setIsSubmitting(false);
+  };
 
   const selectStyle = {
     width: '100%',
@@ -56,6 +66,18 @@ export default function Contact() {
     fontFamily: typography.body.fontFamily,
     cursor: 'pointer' as const,
     transition: 'border-color 200ms',
+  };
+
+  const inputStyle: React.CSSProperties = {
+    width: '100%',
+    padding: '12px 16px',
+    background: colors.surface,
+    color: colors.text,
+    border: `1px solid ${colors.border}`,
+    outline: 'none',
+    fontSize: '16px',
+    fontFamily: typography.body.fontFamily,
+    transition: 'border-color 0.2s',
   };
 
   return (
@@ -246,7 +268,7 @@ export default function Contact() {
                 </button>
               </div>
             ) : (
-            <form onSubmit={formSubmit(onSubmit)} className="space-y-4">
+            <form onSubmit={onSubmit} className="space-y-4">
               <div className="space-y-1">
                 <label
                   htmlFor="name"
@@ -258,20 +280,10 @@ export default function Contact() {
                 <input
                   type="text"
                   id="name"
+                  name="name"
                   required
-                  {...register("name", { required: true })}
                   placeholder="Your name"
-                  style={{
-                    width: '100%',
-                    padding: '12px 16px',
-                    background: colors.surface,
-                    color: colors.text,
-                    border: `1px solid ${colors.border}`,
-                    outline: 'none',
-                    fontSize: '16px',
-                    fontFamily: typography.body.fontFamily,
-                    transition: 'border-color 0.2s',
-                  }}
+                  style={inputStyle}
                 />
               </div>
               <div className="space-y-1">
@@ -285,20 +297,10 @@ export default function Contact() {
                 <input
                   type="email"
                   id="email"
+                  name="email"
                   required
-                  {...register("email", { required: true })}
                   placeholder="your@email.com"
-                  style={{
-                    width: '100%',
-                    padding: '12px 16px',
-                    background: colors.surface,
-                    color: colors.text,
-                    border: `1px solid ${colors.border}`,
-                    outline: 'none',
-                    fontSize: '16px',
-                    fontFamily: typography.body.fontFamily,
-                    transition: 'border-color 0.2s',
-                  }}
+                  style={inputStyle}
                 />
               </div>
               <div className="space-y-1">
@@ -311,8 +313,8 @@ export default function Contact() {
                 </label>
                 <select
                   id="projectType"
+                  name="projectType"
                   required
-                  {...register("projectType", { required: true })}
                   style={selectStyle}
                 >
                   <option value="">Select a service</option>
@@ -333,7 +335,7 @@ export default function Contact() {
                   </label>
                   <select
                     id="budget"
-                    {...register("budget")}
+                    name="budget"
                     style={selectStyle}
                   >
                     <option value="">Select</option>
@@ -353,7 +355,7 @@ export default function Contact() {
                   </label>
                   <select
                     id="timeline"
-                    {...register("timeline")}
+                    name="timeline"
                     style={selectStyle}
                   >
                     <option value="">Select</option>
@@ -375,19 +377,11 @@ export default function Contact() {
                 </label>
                 <textarea
                   id="message"
-                  {...register("message")}
+                  name="message"
                   placeholder="Tell me about your project..."
                   rows={4}
                   style={{
-                    width: '100%',
-                    padding: '12px 16px',
-                    background: colors.surface,
-                    color: colors.text,
-                    border: `1px solid ${colors.border}`,
-                    outline: 'none',
-                    fontSize: '16px',
-                    fontFamily: typography.body.fontFamily,
-                    transition: 'border-color 0.2s',
+                    ...inputStyle,
                     resize: 'vertical',
                   }}
                 />
