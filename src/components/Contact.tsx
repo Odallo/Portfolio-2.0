@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import useWeb3Forms from "@web3forms/react";
-import Input from "./ui/Input";
 import Card from "./ui/Card";
 import { colors, typography } from "../lib/design-tokens";
 
@@ -256,12 +255,23 @@ export default function Contact() {
                 >
                   Name *
                 </label>
-                <Input
+                <input
                   type="text"
                   id="name"
                   required
                   {...register("name", { required: true })}
                   placeholder="Your name"
+                  style={{
+                    width: '100%',
+                    padding: '12px 16px',
+                    background: colors.surface,
+                    color: colors.text,
+                    border: `1px solid ${colors.border}`,
+                    outline: 'none',
+                    fontSize: '16px',
+                    fontFamily: typography.body.fontFamily,
+                    transition: 'border-color 0.2s',
+                  }}
                 />
               </div>
               <div className="space-y-1">
@@ -272,12 +282,23 @@ export default function Contact() {
                 >
                   Email *
                 </label>
-                <Input
+                <input
                   type="email"
                   id="email"
                   required
                   {...register("email", { required: true })}
                   placeholder="your@email.com"
+                  style={{
+                    width: '100%',
+                    padding: '12px 16px',
+                    background: colors.surface,
+                    color: colors.text,
+                    border: `1px solid ${colors.border}`,
+                    outline: 'none',
+                    fontSize: '16px',
+                    fontFamily: typography.body.fontFamily,
+                    transition: 'border-color 0.2s',
+                  }}
                 />
               </div>
               <div className="space-y-1">
