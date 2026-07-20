@@ -19,8 +19,7 @@ interface FormData {
 export default function Contact() {
   const [visible, setVisible] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { register, reset, handleSubmit: formSubmit } = useForm<FormData>();
+  const { register, reset, handleSubmit: formSubmit, formState: { isSubmitting } } = useForm<FormData>();
 
   const { submit: onSubmit } = useWeb3Forms({
     access_key: "579158ed-1c67-41cf-a05a-90581cbb8e95",
@@ -30,12 +29,10 @@ export default function Contact() {
     },
     onSuccess: () => {
       setIsSuccess(true);
-      setIsSubmitting(false);
       reset();
     },
     onError: () => {
       setIsSuccess(false);
-      setIsSubmitting(false);
     },
   });
 
@@ -250,10 +247,7 @@ export default function Contact() {
                 </button>
               </div>
             ) : (
-            <form onSubmit={formSubmit(async (data) => {
-              setIsSubmitting(true);
-              await onSubmit(data);
-            })} className="space-y-4">
+            <form onSubmit={formSubmit(onSubmit)} className="space-y-4">
               <div className="space-y-1">
                 <label
                   htmlFor="name"
