@@ -1,22 +1,43 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import useWeb3Forms from "@web3forms/react";
 import Input from "./ui/Input";
 import Card from "./ui/Card";
 import { colors, typography } from "../lib/design-tokens";
 
+interface FormData {
+  name: string;
+  email: string;
+  projectType: string;
+  budget: string;
+  timeline: string;
+  message: string;
+}
+
 export default function Contact() {
   const [visible, setVisible] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    projectType: "",
-    budget: "",
-    timeline: "",
-    message: ""
-  });
+  const [isSuccess, setIsSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const { register, reset, handleSubmit: formSubmit } = useForm<FormData>();
+
+  const { submit: onSubmit } = useWeb3Forms({
+    access_key: "579158ed-1c67-41cf-a05a-90581cbb8e95",
+    settings: {
+      from_name: "Odallo Eugine Portfolio",
+      subject: "New Contact Message",
+    },
+    onSuccess: () => {
+      setIsSuccess(true);
+      setIsSubmitting(false);
+      reset();
+    },
+    onError: () => {
+      setIsSuccess(false);
+      setIsSubmitting(false);
+    },
+  });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -27,48 +48,6 @@ export default function Contact() {
     if (el) observer.observe(el);
     return () => observer.disconnect();
   }, []);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.name || !formData.email || !formData.projectType) {
-      alert("Please fill in all required fields.");
-      return;
-    }
-    setIsSubmitting(true);
-    try {
-      const form = e.target as HTMLFormElement;
-      const formDataObj = new FormData(form);
-      formDataObj.append("access_key", "579158ed-1c67-41cf-a05a-90581cbb8e95");
-      formDataObj.append("subject", `New Inquiry from ${formData.name}`);
-      formDataObj.append("from_name", formData.name);
-
-      const object = Object.fromEntries(formDataObj);
-      const json = JSON.stringify(object);
-
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: json,
-      });
-      const result = await response.json();
-      if (result.success) {
-        setSubmitted(true);
-        setFormData({ name: "", email: "", projectType: "", budget: "", timeline: "", message: "" });
-      } else {
-        alert("Something went wrong. Please try again or email me directly.");
-      }
-    } catch {
-      alert("Something went wrong. Please try again or email me directly.");
-    }
-    setIsSubmitting(false);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   const selectStyle = {
     width: '100%',
@@ -242,7 +221,7 @@ export default function Contact() {
 
           {/* Form */}
           <Card>
-            {submitted ? (
+            {isSuccess ? (
               <div className="text-center py-12">
                 <span
                   className="text-4xl block mb-4"
@@ -263,7 +242,7 @@ export default function Contact() {
                   Thanks for reaching out. I&apos;ll get back to you within 24 hours.
                 </p>
                 <button
-                  onClick={() => setSubmitted(false)}
+                  onClick={() => setIsSuccess(false)}
                   className="text-sm underline transition-colors duration-200"
                   style={{ fontFamily: typography.mono.fontFamily, color: colors.accent }}
                 >
@@ -271,7 +250,10 @@ export default function Contact() {
                 </button>
               </div>
             ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={formSubmit(async (data) => {
+              setIsSubmitting(true);
+              await onSubmit(data);
+            })} className="space-y-4">
               <div className="space-y-1">
                 <label
                   htmlFor="name"
@@ -282,11 +264,9 @@ export default function Contact() {
                 </label>
                 <Input
                   type="text"
-                  name="name"
                   id="name"
                   required
-                  value={formData.name}
-                  onChange={handleChange}
+                  {...register("name", { required: true })}
                   placeholder="Your name"
                 />
               </div>
@@ -300,11 +280,9 @@ export default function Contact() {
                 </label>
                 <Input
                   type="email"
-                  name="email"
                   id="email"
                   required
-                  value={formData.email}
-                  onChange={handleChange}
+                  {...register("email", { required: true })}
                   placeholder="your@email.com"
                 />
               </div>
@@ -318,10 +296,8 @@ export default function Contact() {
                 </label>
                 <select
                   id="projectType"
-                  name="projectType"
                   required
-                  value={formData.projectType}
-                  onChange={handleChange}
+                  {...register("projectType", { required: true })}
                   style={selectStyle}
                 >
                   <option value="">Select a service</option>
@@ -342,9 +318,7 @@ export default function Contact() {
                   </label>
                   <select
                     id="budget"
-                    name="budget"
-                    value={formData.budget}
-                    onChange={handleChange}
+                    {...register("budget")}
                     style={selectStyle}
                   >
                     <option value="">Select</option>
@@ -364,9 +338,7 @@ export default function Contact() {
                   </label>
                   <select
                     id="timeline"
-                    name="timeline"
-                    value={formData.timeline}
-                    onChange={handleChange}
+                    {...register("timeline")}
                     style={selectStyle}
                   >
                     <option value="">Select</option>
@@ -386,14 +358,23 @@ export default function Contact() {
                 >
                   Message
                 </label>
-                <Input
-                  as="textarea"
-                  name="message"
+                <textarea
                   id="message"
-                  value={formData.message}
-                  onChange={handleChange}
+                  {...register("message")}
                   placeholder="Tell me about your project..."
                   rows={4}
+                  style={{
+                    width: '100%',
+                    padding: '12px 16px',
+                    background: colors.surface,
+                    color: colors.text,
+                    border: `1px solid ${colors.border}`,
+                    outline: 'none',
+                    fontSize: '16px',
+                    fontFamily: typography.body.fontFamily,
+                    transition: 'border-color 0.2s',
+                    resize: 'vertical',
+                  }}
                 />
               </div>
               <button
