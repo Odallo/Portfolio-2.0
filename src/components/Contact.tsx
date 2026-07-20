@@ -36,18 +36,22 @@ export default function Contact() {
     }
     setIsSubmitting(true);
     try {
+      const form = e.target as HTMLFormElement;
+      const formDataObj = new FormData(form);
+      formDataObj.append("access_key", "579158ed-1c67-41cf-a05a-90581cbb8e95");
+      formDataObj.append("subject", `New Inquiry from ${formData.name}`);
+      formDataObj.append("from_name", formData.name);
+
+      const object = Object.fromEntries(formDataObj);
+      const json = JSON.stringify(object);
+
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          access_key: "579158ed-1c67-41cf-a05a-90581cbb8e95",
-          name: formData.name,
-          email: formData.email,
-          projectType: formData.projectType,
-          budget: formData.budget || "Not specified",
-          timeline: formData.timeline || "Not specified",
-          message: formData.message || "No additional message",
-        }),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: json,
       });
       const result = await response.json();
       if (result.success) {
