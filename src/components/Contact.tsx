@@ -1,20 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, type FormEvent } from "react";
 import Card from "./ui/Card";
 import { colors, typography } from "../lib/design-tokens";
 
 export default function Contact() {
   const [visible, setVisible] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("submitted") === "true") {
-      setSubmitted(true);
-      window.history.replaceState({}, "", "/contact");
-    }
-  }, []);
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -25,6 +18,31 @@ export default function Contact() {
     if (el) observer.observe(el);
     return () => observer.disconnect();
   }, []);
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setSubmitting(true);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    formData.append("access_key", "579158ed-1c67-41cf-a05a-90581cbb8e95");
+    formData.append("subject", "New Contact Message from Portfolio");
+    formData.append("from_name", "Odallo Eugine Portfolio");
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSubmitted(true);
+      }
+    } catch {
+      // silent
+    } finally {
+      setSubmitting(false);
+    }
+  }
 
   const selectStyle = {
     width: '100%',
@@ -195,15 +213,10 @@ export default function Contact() {
                 </button>
               </div>
             ) : (
-              <form
-                action="https://api.web3forms.com/submit"
-                method="POST"
-                className="space-y-4"
-              >
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <input type="hidden" name="access_key" value="579158ed-1c67-41cf-a05a-90581cbb8e95" />
                 <input type="hidden" name="subject" value="New Contact Message from Portfolio" />
                 <input type="hidden" name="from_name" value="Odallo Eugine Portfolio" />
-                <input type="hidden" name="redirect" value="https://odallo-portfolio.vercel.app/contact?submitted=true" />
 
                 <div className="space-y-1">
                   <label htmlFor="name" className="text-xs uppercase tracking-wider" style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}>
@@ -264,10 +277,11 @@ export default function Contact() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full py-3 text-sm font-medium uppercase tracking-wider transition-all duration-200"
+                  disabled={submitting}
+                  className="w-full py-3 text-sm font-medium uppercase tracking-wider transition-all duration-200 disabled:opacity-50"
                   style={{ fontFamily: typography.display.fontFamily, background: colors.accent, color: colors.bg }}
                 >
-                  Send Message
+                  {submitting ? "Sending..." : "Send Message"}
                 </button>
               </form>
             )}
