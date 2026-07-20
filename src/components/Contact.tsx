@@ -46,10 +46,10 @@ export default function Contact() {
         setIsSuccess(true);
         form.reset();
       } else {
-        alert("Something went wrong. Please try again or email me directly.");
+        alert("Error: " + (data.message || "Unknown error"));
       }
-    } catch {
-      alert("Something went wrong. Please try again or email me directly.");
+    } catch (err) {
+      alert("Fetch error: " + (err instanceof Error ? err.message : String(err)));
     }
 
     setIsSubmitting(false);
