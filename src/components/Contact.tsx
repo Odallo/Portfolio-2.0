@@ -6,8 +6,7 @@ import { colors, typography } from "../lib/design-tokens";
 
 export default function Contact() {
   const [visible, setVisible] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -18,42 +17,6 @@ export default function Contact() {
     if (el) observer.observe(el);
     return () => observer.disconnect();
   }, []);
-
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-    formData.append("access_key", "579158ed-1c67-41cf-a05a-90581cbb8e95");
-    formData.append("subject", "New Contact Message from Portfolio");
-    formData.append("from_name", "Odallo Eugine Portfolio");
-
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
-
-    try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: json,
-      });
-      const data = await res.json();
-      if (data.success) {
-        setIsSuccess(true);
-        form.reset();
-      } else {
-        alert("Error: " + (data.message || "Unknown error"));
-      }
-    } catch (err) {
-      alert("Fetch error: " + (err instanceof Error ? err.message : String(err)));
-    }
-
-    setIsSubmitting(false);
-  };
 
   const selectStyle = {
     width: '100%',
@@ -83,7 +46,6 @@ export default function Contact() {
   return (
     <section id="contact" className="py-24 md:py-32 px-6">
       <div className="max-w-6xl mx-auto">
-        {/* Section label */}
         <div className="flex items-center gap-4 mb-12">
           <span
             className="text-xs uppercase tracking-widest"
@@ -117,7 +79,6 @@ export default function Contact() {
         </p>
 
         <div className={`grid md:grid-cols-2 gap-12 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          {/* Contact Info */}
           <div className="space-y-6">
             <Card>
               <h3
@@ -184,52 +145,22 @@ export default function Contact() {
             </Card>
 
             <div className="flex gap-3">
-              <a
-                href="https://github.com/Odallo"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1"
-              >
+              <a href="https://github.com/Odallo" target="_blank" rel="noopener noreferrer" className="flex-1">
                 <div
                   className="px-4 py-3 text-center text-sm font-medium transition-all duration-200"
-                  style={{
-                    fontFamily: typography.body.fontFamily,
-                    color: colors.muted,
-                    border: `1px solid ${colors.border}`,
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = colors.accent;
-                    e.currentTarget.style.color = colors.accent;
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = colors.border;
-                    e.currentTarget.style.color = colors.muted;
-                  }}
+                  style={{ fontFamily: typography.body.fontFamily, color: colors.muted, border: `1px solid ${colors.border}` }}
+                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = colors.accent; e.currentTarget.style.color = colors.accent; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = colors.border; e.currentTarget.style.color = colors.muted; }}
                 >
                   GitHub
                 </div>
               </a>
-              <a
-                href="https://www.linkedin.com/in/odallo-eugine/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1"
-              >
+              <a href="https://www.linkedin.com/in/odallo-eugine/" target="_blank" rel="noopener noreferrer" className="flex-1">
                 <div
                   className="px-4 py-3 text-center text-sm font-medium transition-all duration-200"
-                  style={{
-                    fontFamily: typography.body.fontFamily,
-                    color: colors.muted,
-                    border: `1px solid ${colors.border}`,
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = colors.accent;
-                    e.currentTarget.style.color = colors.accent;
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = colors.border;
-                    e.currentTarget.style.color = colors.muted;
-                  }}
+                  style={{ fontFamily: typography.body.fontFamily, color: colors.muted, border: `1px solid ${colors.border}` }}
+                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = colors.accent; e.currentTarget.style.color = colors.accent; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = colors.border; e.currentTarget.style.color = colors.muted; }}
                 >
                   LinkedIn
                 </div>
@@ -237,30 +168,18 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Form */}
           <Card>
-            {isSuccess ? (
+            {submitted ? (
               <div className="text-center py-12">
-                <span
-                  className="text-4xl block mb-4"
-                  style={{ color: colors.green }}
-                >
-                  ✓
-                </span>
-                <h3
-                  className="text-xl font-bold mb-2"
-                  style={{ fontFamily: typography.display.fontFamily }}
-                >
+                <span className="text-4xl block mb-4" style={{ color: colors.green }}>✓</span>
+                <h3 className="text-xl font-bold mb-2" style={{ fontFamily: typography.display.fontFamily }}>
                   Message Sent!
                 </h3>
-                <p
-                  className="text-sm mb-6"
-                  style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}
-                >
+                <p className="text-sm mb-6" style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}>
                   Thanks for reaching out. I&apos;ll get back to you within 24 hours.
                 </p>
                 <button
-                  onClick={() => setIsSuccess(false)}
+                  onClick={() => setSubmitted(false)}
                   className="text-sm underline transition-colors duration-200"
                   style={{ fontFamily: typography.mono.fontFamily, color: colors.accent }}
                 >
@@ -268,138 +187,82 @@ export default function Contact() {
                 </button>
               </div>
             ) : (
-            <form onSubmit={onSubmit} className="space-y-4">
-              <div className="space-y-1">
-                <label
-                  htmlFor="name"
-                  className="text-xs uppercase tracking-wider"
-                  style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
-                >
-                  Name *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  placeholder="Your name"
-                  style={inputStyle}
-                />
-              </div>
-              <div className="space-y-1">
-                <label
-                  htmlFor="email"
-                  className="text-xs uppercase tracking-wider"
-                  style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
-                >
-                  Email *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  placeholder="your@email.com"
-                  style={inputStyle}
-                />
-              </div>
-              <div className="space-y-1">
-                <label
-                  htmlFor="projectType"
-                  className="text-xs uppercase tracking-wider"
-                  style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
-                >
-                  Project Type *
-                </label>
-                <select
-                  id="projectType"
-                  name="projectType"
-                  required
-                  style={selectStyle}
-                >
-                  <option value="">Select a service</option>
-                  <option value="Custom Website">Custom Website</option>
-                  <option value="Web Application">Web Application</option>
-                  <option value="E-commerce">E-commerce</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-              <div className="grid grid-cols-2 gap-3">
-                <div className="space-y-1">
-                  <label
-                    htmlFor="budget"
-                    className="text-xs uppercase tracking-wider"
-                    style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
-                  >
-                    Budget
-                  </label>
-                  <select
-                    id="budget"
-                    name="budget"
-                    style={selectStyle}
-                  >
-                    <option value="">Select</option>
-                    <option value="KES 45,000-55,000">KES 45k-55k</option>
-                    <option value="KES 85,000-130,000">KES 85k-130k</option>
-                    <option value="KES 150,000-250,000">KES 150k-250k</option>
-                    <option value="KES 250,000+">KES 250k+</option>
-                  </select>
-                </div>
-                <div className="space-y-1">
-                  <label
-                    htmlFor="timeline"
-                    className="text-xs uppercase tracking-wider"
-                    style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
-                  >
-                    Timeline
-                  </label>
-                  <select
-                    id="timeline"
-                    name="timeline"
-                    style={selectStyle}
-                  >
-                    <option value="">Select</option>
-                    <option value="ASAP">ASAP</option>
-                    <option value="1-2 weeks">1-2 weeks</option>
-                    <option value="2-4 weeks">2-4 weeks</option>
-                    <option value="1-2 months">1-2 months</option>
-                    <option value="Flexible">Flexible</option>
-                  </select>
-                </div>
-              </div>
-              <div className="space-y-1">
-                <label
-                  htmlFor="message"
-                  className="text-xs uppercase tracking-wider"
-                  style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
-                >
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  placeholder="Tell me about your project..."
-                  rows={4}
-                  style={{
-                    ...inputStyle,
-                    resize: 'vertical',
-                  }}
-                />
-              </div>
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                aria-label="Send message"
-                className="w-full py-3 text-sm font-medium uppercase tracking-wider transition-all duration-200 disabled:opacity-50"
-                style={{
-                  fontFamily: typography.display.fontFamily,
-                  background: colors.accent,
-                  color: colors.bg,
-                }}
+              <form
+                action="https://api.web3forms.com/submit"
+                method="POST"
+                onSubmit={() => setSubmitted(true)}
+                className="space-y-4"
               >
-                {isSubmitting ? 'Sending...' : 'Send Message'}
-              </button>
-            </form>
+                <input type="hidden" name="access_key" value="579158ed-1c67-41cf-a05a-90581cbb8e95" />
+                <input type="hidden" name="subject" value="New Contact Message from Portfolio" />
+                <input type="hidden" name="from_name" value="Odallo Eugine Portfolio" />
+                <input type="hidden" name="redirect" value="https://odallo-portfolio.vercel.app/contact?submitted=true" />
+
+                <div className="space-y-1">
+                  <label htmlFor="name" className="text-xs uppercase tracking-wider" style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}>
+                    Name *
+                  </label>
+                  <input type="text" id="name" name="name" required placeholder="Your name" style={inputStyle} />
+                </div>
+                <div className="space-y-1">
+                  <label htmlFor="email" className="text-xs uppercase tracking-wider" style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}>
+                    Email *
+                  </label>
+                  <input type="email" id="email" name="email" required placeholder="your@email.com" style={inputStyle} />
+                </div>
+                <div className="space-y-1">
+                  <label htmlFor="projectType" className="text-xs uppercase tracking-wider" style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}>
+                    Project Type *
+                  </label>
+                  <select id="projectType" name="projectType" required style={selectStyle}>
+                    <option value="">Select a service</option>
+                    <option value="Custom Website">Custom Website</option>
+                    <option value="Web Application">Web Application</option>
+                    <option value="E-commerce">E-commerce</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="space-y-1">
+                    <label htmlFor="budget" className="text-xs uppercase tracking-wider" style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}>
+                      Budget
+                    </label>
+                    <select id="budget" name="budget" style={selectStyle}>
+                      <option value="">Select</option>
+                      <option value="KES 45,000-55,000">KES 45k-55k</option>
+                      <option value="KES 85,000-130,000">KES 85k-130k</option>
+                      <option value="KES 150,000-250,000">KES 150k-250k</option>
+                      <option value="KES 250,000+">KES 250k+</option>
+                    </select>
+                  </div>
+                  <div className="space-y-1">
+                    <label htmlFor="timeline" className="text-xs uppercase tracking-wider" style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}>
+                      Timeline
+                    </label>
+                    <select id="timeline" name="timeline" style={selectStyle}>
+                      <option value="">Select</option>
+                      <option value="ASAP">ASAP</option>
+                      <option value="1-2 weeks">1-2 weeks</option>
+                      <option value="2-4 weeks">2-4 weeks</option>
+                      <option value="1-2 months">1-2 months</option>
+                      <option value="Flexible">Flexible</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="space-y-1">
+                  <label htmlFor="message" className="text-xs uppercase tracking-wider" style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}>
+                    Message
+                  </label>
+                  <textarea id="message" name="message" placeholder="Tell me about your project..." rows={4} style={{ ...inputStyle, resize: 'vertical' as const }} />
+                </div>
+                <button
+                  type="submit"
+                  className="w-full py-3 text-sm font-medium uppercase tracking-wider transition-all duration-200"
+                  style={{ fontFamily: typography.display.fontFamily, background: colors.accent, color: colors.bg }}
+                >
+                  Send Message
+                </button>
+              </form>
             )}
           </Card>
         </div>
