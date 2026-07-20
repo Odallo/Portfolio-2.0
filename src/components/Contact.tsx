@@ -9,6 +9,14 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("submitted") === "true") {
+      setSubmitted(true);
+      window.history.replaceState({}, "", "/contact");
+    }
+  }, []);
+
+  useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) setVisible(true); },
       { threshold: 0.1 }
@@ -190,7 +198,6 @@ export default function Contact() {
               <form
                 action="https://api.web3forms.com/submit"
                 method="POST"
-                onSubmit={() => setSubmitted(true)}
                 className="space-y-4"
               >
                 <input type="hidden" name="access_key" value="579158ed-1c67-41cf-a05a-90581cbb8e95" />
