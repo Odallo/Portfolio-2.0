@@ -19,7 +19,7 @@ const services = [
       "2 Revision Rounds",
       "1 Month Support"
     ],
-    price: "KES 35,000 – 45,000",
+    price: "KES 45,000 – 55,000",
     priceNote: "Perfect for small businesses",
     popular: false
   },
@@ -34,7 +34,7 @@ const services = [
       "3 Revision Rounds",
       "2 Months Support"
     ],
-    price: "KES 60,000 – 120,000",
+    price: "KES 85,000 – 130,000",
     priceNote: "For dynamic business needs",
     popular: true
   },
@@ -49,7 +49,7 @@ const services = [
       "Admin Panel",
       "3 Months Support"
     ],
-    price: "KES 100,000 – 200,000",
+    price: "KES 150,000 – 250,000",
     priceNote: "Full e-commerce solution",
     popular: false
   }

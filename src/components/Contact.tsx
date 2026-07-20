@@ -295,10 +295,10 @@ export default function Contact() {
                     style={selectStyle}
                   >
                     <option value="">Select</option>
-                    <option value="KES 25,000-50,000">KES 25k-50k</option>
-                    <option value="KES 50,000-100,000">KES 50k-100k</option>
-                    <option value="KES 100,000-200,000">KES 100k-200k</option>
-                    <option value="KES 200,000+">KES 200k+</option>
+                    <option value="KES 45,000-55,000">KES 45k-55k</option>
+                    <option value="KES 85,000-130,000">KES 85k-130k</option>
+                    <option value="KES 150,000-250,000">KES 150k-250k</option>
+                    <option value="KES 250,000+">KES 250k+</option>
                   </select>
                 </div>
                 <div className="space-y-1">
