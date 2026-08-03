@@ -25,7 +25,7 @@ const services = [
   },
   {
     title: "Business Website",
-    description: "Advanced websites with dynamic features for growing businesses.",
+    description: "Advanced websites with custom admin dashboards, user management, and database integration for growing businesses.",
     features: [
       "Up to 10 pages",
       "Admin Dashboard",
@@ -40,10 +40,10 @@ const services = [
   },
   {
     title: "E-commerce",
-    description: "Complete online stores with payment processing and inventory management.",
+    description: "Complete online stores with M-Pesa and card payment processing, plus inventory management.",
     features: [
       "Product Catalog",
-      "Payment Integration",
+      "M-Pesa & Card Payments (Daraja API)",
       "Shopping Cart",
       "Order Management",
       "Admin Panel",
@@ -97,10 +97,10 @@ export default function ServicesPage() {
               className={`text-base max-w-xl transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
               style={{ fontFamily: typography.body.fontFamily, color: colors.muted, transitionDelay: '0.1s' }}
             >
-              Professional web development services tailored to your business needs.
-              From small business websites to complex web applications, I deliver
-              high-quality solutions with transparent pricing and clear communication
-              throughout the project lifecycle.
+              Custom-built websites and web applications — not templates. From small
+              business sites to e-commerce with M-Pesa payments and admin dashboards,
+              I build what AI website builders can&apos;t, with transparent pricing,
+              ongoing support, and clear communication throughout the project lifecycle.
             </p>
           </div>
 
@@ -177,6 +177,78 @@ export default function ServicesPage() {
                 </Card>
               </div>
             ))}
+          </div>
+
+          {/* Maintenance Retainer */}
+          <div className="mb-24">
+            <Card>
+              <div className="grid md:grid-cols-3 gap-8 items-center">
+                <div className="md:col-span-2 space-y-4">
+                  <div className="flex items-center gap-4">
+                    <span
+                      className="text-xs uppercase tracking-widest"
+                      style={{ fontFamily: typography.mono.fontFamily, color: colors.accent }}
+                    >
+                      Ongoing
+                    </span>
+                    <span className="w-12 h-px" style={{ background: colors.border }} />
+                  </div>
+                  <h2
+                    className="text-2xl md:text-3xl font-bold"
+                    style={{ fontFamily: typography.display.fontFamily }}
+                  >
+                    Maintenance &amp; Support
+                  </h2>
+                  <p
+                    className="text-sm leading-relaxed"
+                    style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}
+                  >
+                    Websites need care after launch. A monthly retainer keeps your site
+                    fast, secure, and up to date — so you never worry about updates,
+                    downtime, or small fixes piling up.
+                  </p>
+                  <ul className="grid sm:grid-cols-2 gap-2 pt-2">
+                    {[
+                      "Security & core updates",
+                      "Uptime monitoring",
+                      "Content & copy edits",
+                      "Monthly backups",
+                      "Performance checks",
+                      "Priority support",
+                    ].map((feature) => (
+                      <li key={feature} className="flex items-center gap-2">
+                        <span className="w-1 h-1 flex-shrink-0" style={{ background: colors.green }} />
+                        <span
+                          className="text-sm"
+                          style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}
+                        >
+                          {feature}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="text-left md:text-right space-y-4">
+                  <div>
+                    <span
+                      className="text-2xl font-bold block"
+                      style={{ fontFamily: typography.display.fontFamily, color: colors.accent }}
+                    >
+                      From KES 5,000
+                    </span>
+                    <span
+                      className="text-xs"
+                      style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
+                    >
+                      per month · no lock-in
+                    </span>
+                  </div>
+                  <Button href="/contact" variant="secondary">
+                    Get Started
+                  </Button>
+                </div>
+              </div>
+            </Card>
           </div>
 
           {/* Process */}

@@ -18,25 +18,25 @@ export default function PrivacyPolicyPage() {
         <div className="max-w-3xl mx-auto">
           <h1
             className="text-3xl md:text-4xl font-bold mb-8"
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+            style={{ fontFamily: "var(--font-display), sans-serif" }}
           >
             Privacy Policy
           </h1>
           <p
             className="text-sm mb-8"
-            style={{ fontFamily: "'Inter', sans-serif", color: "#A1A1AA" }}
+            style={{ fontFamily: "var(--font-body), sans-serif", color: "#A1A1AA" }}
           >
             Last updated: July 2026
           </p>
 
           <div
             className="space-y-6 text-sm leading-relaxed"
-            style={{ fontFamily: "'Inter', sans-serif", color: "#A1A1AA" }}
+            style={{ fontFamily: "var(--font-body), sans-serif", color: "#A1A1AA" }}
           >
             <div>
               <h2
                 className="text-lg font-semibold mb-3"
-                style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#F5F5F5" }}
+                style={{ fontFamily: "var(--font-display), sans-serif", color: "#F5F5F5" }}
               >
                 1. Information I Collect
               </h2>
@@ -48,7 +48,7 @@ export default function PrivacyPolicyPage() {
             <div>
               <h2
                 className="text-lg font-semibold mb-3"
-                style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#F5F5F5" }}
+                style={{ fontFamily: "var(--font-display), sans-serif", color: "#F5F5F5" }}
               >
                 2. How I Use Your Information
               </h2>
@@ -60,7 +60,7 @@ export default function PrivacyPolicyPage() {
             <div>
               <h2
                 className="text-lg font-semibold mb-3"
-                style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#F5F5F5" }}
+                style={{ fontFamily: "var(--font-display), sans-serif", color: "#F5F5F5" }}
               >
                 3. Third-Party Services
               </h2>
@@ -72,7 +72,7 @@ export default function PrivacyPolicyPage() {
             <div>
               <h2
                 className="text-lg font-semibold mb-3"
-                style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#F5F5F5" }}
+                style={{ fontFamily: "var(--font-display), sans-serif", color: "#F5F5F5" }}
               >
                 4. Cookies
               </h2>
@@ -84,7 +84,7 @@ export default function PrivacyPolicyPage() {
             <div>
               <h2
                 className="text-lg font-semibold mb-3"
-                style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#F5F5F5" }}
+                style={{ fontFamily: "var(--font-display), sans-serif", color: "#F5F5F5" }}
               >
                 5. Data Retention
               </h2>
@@ -96,7 +96,7 @@ export default function PrivacyPolicyPage() {
             <div>
               <h2
                 className="text-lg font-semibold mb-3"
-                style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#F5F5F5" }}
+                style={{ fontFamily: "var(--font-display), sans-serif", color: "#F5F5F5" }}
               >
                 6. Changes to This Policy
               </h2>
@@ -108,7 +108,7 @@ export default function PrivacyPolicyPage() {
             <div>
               <h2
                 className="text-lg font-semibold mb-3"
-                style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#F5F5F5" }}
+                style={{ fontFamily: "var(--font-display), sans-serif", color: "#F5F5F5" }}
               >
                 7. Contact
               </h2>

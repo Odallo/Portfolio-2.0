@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { colors, typography } from "../lib/design-tokens";
+import Button from "./ui/Button";
 
 export default function About() {
   const [visible, setVisible] = useState(false);
@@ -73,6 +74,12 @@ export default function About() {
                   {tech}
                 </span>
               ))}
+            </div>
+
+            <div className="mt-6">
+              <Button href="/resume.pdf" variant="secondary" download>
+                Download Resume ↓
+              </Button>
             </div>
           </div>
 

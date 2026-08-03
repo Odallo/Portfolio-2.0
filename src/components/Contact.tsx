@@ -11,8 +11,8 @@ export default function Contact() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get("submitted") === "true") {
-      setSubmitted(true);
       window.history.replaceState({}, "", "/contact");
+      setTimeout(() => setSubmitted(true), 0);
     }
   }, []);
 

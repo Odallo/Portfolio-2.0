@@ -11,14 +11,15 @@ export const colors = {
   green: '#22C55E',
 } as const;
 
+// Font families are defined as CSS variables injected by next/font in the root layout.
 export const typography = {
   display: {
-    fontFamily: "'Space Grotesk', sans-serif",
+    fontFamily: "var(--font-display), sans-serif",
   },
   body: {
-    fontFamily: "'Inter', sans-serif",
+    fontFamily: "var(--font-body), sans-serif",
   },
   mono: {
-    fontFamily: "'JetBrains Mono', monospace",
+    fontFamily: "var(--font-mono), monospace",
   },
 } as const;

@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Link from 'next/link';
 import { colors, typography } from '../../lib/design-tokens';
 
 interface ButtonProps {
@@ -9,9 +10,10 @@ interface ButtonProps {
   className?: string;
   onClick?: () => void;
   href?: string;
+  download?: string | boolean;
 }
 
-export default function Button({ children, variant = 'primary', className = '', onClick, href }: ButtonProps) {
+export default function Button({ children, variant = 'primary', className = '', onClick, href, download }: ButtonProps) {
   const baseStyle: React.CSSProperties = {
     display: 'inline-flex',
     alignItems: 'center',
@@ -46,10 +48,29 @@ export default function Button({ children, variant = 'primary', className = '', 
   const style = { ...baseStyle, ...variantStyles[variant] };
 
   if (href) {
+    const isHttp = /^https?:/.test(href);
+    const isSpecialScheme = /^(mailto:|tel:)/.test(href);
+
+    // Plain <a> for external and download links, next/link for internal routes
+    if (isHttp || isSpecialScheme || download) {
+      return (
+        <a
+          href={href}
+          className={className}
+          style={style}
+          download={download}
+          target={isHttp ? '_blank' : undefined}
+          rel={isHttp ? 'noopener noreferrer' : undefined}
+        >
+          {children}
+        </a>
+      );
+    }
+
     return (
-      <a href={href} className={className} style={style}>
+      <Link href={href} className={className} style={style}>
         {children}
-      </a>
+      </Link>
     );
   }
 

@@ -76,6 +76,7 @@ export default function Hero() {
         >
           <Button href="/projects" variant="primary">View My Work</Button>
           <Button href="/contact" variant="secondary">Get in Touch</Button>
+          <Button href="/resume.pdf" variant="ghost" download>Download Resume ↓</Button>
         </div>
 
         {/* Terminal hint */}
