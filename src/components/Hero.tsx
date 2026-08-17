@@ -65,8 +65,8 @@ export default function Hero() {
           I build reliable, scalable digital solutions with clean code
           and modern technologies. Specializing in React, Next.js, and TypeScript
           on the frontend, with backend experience in Node.js, Python, and Laravel.
-          Currently looking for opportunities to grow as an engineer and contribute
-          to meaningful projects that make a difference.
+          Open to opportunities where I can grow as an engineer and ship products
+          that solve real problems.
         </p>
 
         {/* CTA */}

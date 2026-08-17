@@ -99,8 +99,8 @@ export default function ServicesPage() {
             >
               Custom-built websites and web applications — not templates. From small
               business sites to e-commerce with M-Pesa payments and admin dashboards,
-              I build what AI website builders can&apos;t, with transparent pricing,
-              ongoing support, and clear communication throughout the project lifecycle.
+              I build what AI website builders can&apos;t: code you own, features that
+              fit your workflow, and support after launch.
             </p>
           </div>
 

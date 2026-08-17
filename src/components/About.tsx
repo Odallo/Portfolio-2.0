@@ -115,10 +115,10 @@ export default function About() {
               className="text-base leading-relaxed"
               style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}
             >
-              When I&apos;m not coding, I&apos;m usually exploring new technologies, contributing
-              to open-source projects, or working on personal projects that challenge me
-              to think differently about problem-solving. I believe in continuous learning
-              and staying curious about the ever-evolving tech landscape.
+              Outside work, I explore new technologies, contribute to open-source projects,
+              and build personal tools that solve problems I actually face. I stay curious
+              by reading documentation, experimenting with side projects, and learning from
+              other developers&apos; work.
             </p>
 
             <p

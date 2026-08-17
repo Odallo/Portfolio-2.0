@@ -65,9 +65,9 @@ export default function Skills() {
           className="text-base mb-16 max-w-xl"
           style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}
         >
-          Technologies and tools I use regularly to build and ship products. I believe
-          in using the right tool for the job and continuously expanding my skill set
-          to stay current with industry best practices and emerging technologies.
+          Technologies and tools I use regularly to build and ship products. I pick tools
+          based on what fits the problem — not what&apos;s trending. Always learning, always
+          expanding what I can build.
         </p>
 
         <div className="grid md:grid-cols-3 gap-6 mb-16">
@@ -126,7 +126,8 @@ export default function Skills() {
                   className="text-sm"
                   style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}
                 >
-                  Always learning, always improving. Here&apos;s what I&apos;m focused on right now.
+                  What I&apos;m learning right now — system design, cloud architecture,
+                  and performance optimization.
                 </p>
               </div>
               <div className="flex flex-wrap gap-2">
