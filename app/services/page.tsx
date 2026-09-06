@@ -20,8 +20,7 @@ const services = [
       "1 Month Support"
     ],
     price: "KES 25,000 – 35,000",
-    originalPrice: "KES 45,000 – 55,000",
-    priceNote: "Introductory price · Limited time",
+    priceNote: "Perfect for small businesses",
     popular: false
   },
   {
@@ -36,8 +35,7 @@ const services = [
       "2 Months Support"
     ],
     price: "KES 50,000 – 80,000",
-    originalPrice: "KES 85,000 – 130,000",
-    priceNote: "Introductory price · Most value",
+    priceNote: "For dynamic business needs",
     popular: true
   },
   {
@@ -52,8 +50,7 @@ const services = [
       "3 Months Support"
     ],
     price: "KES 90,000 – 150,000",
-    originalPrice: "KES 150,000 – 250,000",
-    priceNote: "Introductory price · Save up to 40%",
+    priceNote: "Full e-commerce solution",
     popular: false
   }
 ];
@@ -96,20 +93,6 @@ export default function ServicesPage() {
             >
               Services & Pricing
             </h1>
-            {/* Launch Offer Banner */}
-            <div
-              className={`inline-flex items-center gap-2 px-3 py-2 text-xs font-medium mb-4 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-              style={{
-                background: `${colors.accent}15`,
-                border: `1px solid ${colors.accent}30`,
-                color: colors.accent,
-                fontFamily: typography.mono.fontFamily,
-                transitionDelay: '0.05s'
-              }}
-            >
-              <span className="w-2 h-2 rounded-full animate-pulse flex-shrink-0" style={{ background: colors.accent }} />
-              Limited Time Launch Pricing — Save up to 40% · Prices increase after first 10 clients
-            </div>
             <p
               className={`text-base max-w-xl transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
               style={{ fontFamily: typography.body.fontFamily, color: colors.muted, transitionDelay: '0.1s' }}
@@ -130,22 +113,13 @@ export default function ServicesPage() {
                 style={{ transitionDelay: `${0.15 + index * 0.1}s` }}
               >
                 <Card className={`relative ${service.popular ? 'border-[#F59E0B]' : ''}`}>
-                  {service.popular ? (
+                  {service.popular && (
                     <div className="absolute -top-3 left-6">
                       <span
                         className="px-3 py-1 text-xs font-medium uppercase tracking-wider"
                         style={{ background: colors.accent, color: colors.bg, fontFamily: typography.mono.fontFamily }}
                       >
-                        Popular · Launch Offer
-                      </span>
-                    </div>
-                  ) : (
-                    <div className="absolute -top-3 left-6">
-                      <span
-                        className="px-3 py-1 text-xs font-medium uppercase tracking-wider"
-                        style={{ background: colors.surface, color: colors.accent, border: `1px solid ${colors.accent}30`, fontFamily: typography.mono.fontFamily }}
-                      >
-                        Launch Offer
+                        Popular
                       </span>
                     </div>
                   )}
@@ -165,26 +139,15 @@ export default function ServicesPage() {
                     </p>
 
                     <div className="mb-6">
-                      <div className="flex flex-wrap items-baseline gap-2">
-                        <span
-                          className="text-2xl font-bold"
-                          style={{ fontFamily: typography.display.fontFamily, color: colors.accent }}
-                        >
-                          {service.price}
-                        </span>
-                        {/* Original price struck through to show value */}
-                        {(service as any).originalPrice && (
-                          <span
-                            className="text-sm line-through"
-                            style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}
-                          >
-                            {(service as any).originalPrice}
-                          </span>
-                        )}
-                      </div>
+                      <span
+                        className="text-2xl font-bold"
+                        style={{ fontFamily: typography.display.fontFamily, color: colors.accent }}
+                      >
+                        {service.price}
+                      </span>
                       <p
                         className="text-xs mt-1"
-                        style={{ fontFamily: typography.mono.fontFamily, color: colors.accent }}
+                        style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
                       >
                         {service.priceNote}
                       </p>
@@ -268,22 +231,10 @@ export default function ServicesPage() {
                 <div className="text-left md:text-right space-y-4">
                   <div>
                     <span
-                      className="inline-flex items-center px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider mb-2"
-                      style={{ background: `${colors.accent}15`, border: `1px solid ${colors.accent}30`, color: colors.accent, fontFamily: typography.mono.fontFamily }}
-                    >
-                      Launch Offer
-                    </span>
-                    <span
                       className="text-2xl font-bold block"
                       style={{ fontFamily: typography.display.fontFamily, color: colors.accent }}
                     >
                       From KES 3,000
-                    </span>
-                    <span
-                      className="text-xs line-through block"
-                      style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}
-                    >
-                      Regularly KES 5,000
                     </span>
                     <span
                       className="text-xs"
