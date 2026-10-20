@@ -43,7 +43,7 @@ export default function About() {
           <div className={`md:col-span-2 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="relative mb-6">
               <Image
-                src="/WhatsApp Image 2026-01-27 at 23.26.06.jpeg"
+                src="/odallo-eugine.jpg"
                 alt="Odallo Eugine"
                 width={320}
                 height={320}

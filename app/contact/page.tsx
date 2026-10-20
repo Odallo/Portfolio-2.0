@@ -1,4 +1,5 @@
 import Contact from "../../src/components/Contact";
+import Testimonials from "../../src/components/Testimonials";
 import Navigation from "../../src/components/Navigation";
 import Footer from "../../src/components/Footer";
 import type { Metadata } from "next";
@@ -25,6 +26,7 @@ export default function ContactPage() {
     <main>
       <Navigation />
       <Contact />
+      <Testimonials />
       <Footer />
     </main>
   );

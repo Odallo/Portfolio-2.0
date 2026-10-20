@@ -103,11 +103,35 @@ export default function Contact() {
                     Email
                   </span>
                   <a
-                    href="mailto:odalloeugine@gmail.com"
+                    href="mailto:odaloeugine@gmail.com"
                     className="text-sm transition-colors"
                     style={{ fontFamily: typography.body.fontFamily, color: colors.accent }}
                   >
-                    odalloeugine@gmail.com
+                    odaloeugine@gmail.com
+                  </a>
+                </div>
+                <div>
+                  <span
+                    className="text-xs uppercase tracking-wider block mb-1"
+                    style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
+                  >
+                    Phone / WhatsApp
+                  </span>
+                  <a
+                    href="tel:+254797706866"
+                    className="text-sm transition-colors"
+                    style={{ fontFamily: typography.body.fontFamily, color: colors.accent }}
+                  >
+                    +254 797706866
+                  </a>
+                  <a
+                    href="https://wa.me/254797706866"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs block mt-1 transition-colors"
+                    style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
+                  >
+                    Chat on WhatsApp →
                   </a>
                 </div>
                 <div>

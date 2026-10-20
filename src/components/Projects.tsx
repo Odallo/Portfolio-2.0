@@ -5,7 +5,31 @@ import Card from "./ui/Card";
 import Button from "./ui/Button";
 import { colors, typography } from "../lib/design-tokens";
 
-const projects = [
+type Project = {
+  title: string;
+  subtitle: string;
+  description: string;
+  highlights: string[];
+  tech: string[];
+  github: string;
+  website?: string;
+};
+
+const projects: Project[] = [
+  {
+    title: "Pulse Diagnostics",
+    subtitle: "Live E-commerce · M-Pesa",
+    description: "A live online store for a Nairobi medical, lab and hospital supplies supplier. Customers browse, add to cart and order, while the team manages products and orders from a private admin panel.",
+    highlights: [
+      "Product catalog with categories, search, cart and checkout",
+      "Lipa na M-Pesa Paybill payment flow with order tracking",
+      "Private admin: add/edit/delete products, image upload, stock and order status (Confirm / Delivered / Cancel)",
+      "Hosted database + Supabase storage; built for countrywide delivery",
+    ],
+    tech: ["Next.js", "TypeScript", "Tailwind", "M-Pesa", "Supabase"],
+    github: "https://github.com/Odallo/PulseDiagnosticss",
+    website: "https://pulse-diagnosticss.vercel.app/",
+  },
   {
     title: "MiniRDBMS",
     subtitle: "PesaPal Junior Dev Challenge 2026",
@@ -29,7 +53,7 @@ const projects = [
       "Decoupled frontend–backend architecture",
     ],
     tech: ["Next.js", "TypeScript", "Laravel"],
-    github: "https://github.com/Odallo",
+    github: "https://github.com/Odallo/WeatherApplication",
   },
   {
     title: "CLI Goal Tracker",
@@ -152,9 +176,16 @@ export default function Projects() {
                       ))}
                     </div>
 
-                    <Button href={project.github} variant="secondary">
-                      View on GitHub →
-                    </Button>
+                    <div className="flex flex-wrap gap-3">
+                      <Button href={project.github} variant="secondary">
+                        View on GitHub →
+                      </Button>
+                      {project.website && (
+                        <Button href={project.website} variant="secondary">
+                          Live Site →
+                        </Button>
+                      )}
+                    </div>
                   </div>
 
                   {/* Right: Highlights */}

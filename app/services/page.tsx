@@ -52,6 +52,20 @@ const services = [
     price: "KES 90,000 – 150,000",
     priceNote: "Full e-commerce solution",
     popular: false
+  },
+  {
+    title: "Community / NGO",
+    description: "Websites for community organisations, schools, churches and non-profits — built at a friendly rate because the work matters.",
+    features: [
+      "Up to 6 pages",
+      "Programs & registration forms",
+      "M-Pesa / donation integration",
+      "Volunteer & partner portal",
+      "1 Month Support"
+    ],
+    price: "Friendly rates",
+    priceNote: "Discounted for mission-driven organisations",
+    popular: false
   }
 ];
 
@@ -105,7 +119,7 @@ export default function ServicesPage() {
           </div>
 
           {/* Services Grid */}
-          <div className="grid md:grid-cols-3 gap-6 mb-24">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
             {services.map((service, index) => (
               <div
                 key={service.title}

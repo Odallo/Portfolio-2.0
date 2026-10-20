@@ -115,10 +115,10 @@ export default function PrivacyPolicyPage() {
               <p>
                 If you have questions about this privacy policy, you can reach me at{" "}
                 <a
-                  href="mailto:odalloeugine@gmail.com"
+                  href="mailto:odaloeugine@gmail.com"
                   style={{ color: "#F59E0B" }}
                 >
-                  odalloeugine@gmail.com
+                  odaloeugine@gmail.com
                 </a>
                 .
               </p>
