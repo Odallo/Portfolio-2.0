@@ -52,20 +52,6 @@ const services = [
     price: "KES 120,000",
     priceNote: "Includes M-Pesa checkout",
     popular: false
-  },
-  {
-    title: "Community / NGO",
-    description: "Websites for community organisations, schools, churches and non-profits — built at a friendly rate because the work matters.",
-    features: [
-      "Up to 6 pages",
-      "Programs & registration forms",
-      "M-Pesa / donation integration",
-      "Volunteer & partner forms",
-      "1 Month Support"
-    ],
-    price: "KES 65,000",
-    priceNote: "Discounted for registered non-profits",
-    popular: false
   }
 ];
 
@@ -119,7 +105,7 @@ export default function ServicesPage() {
           </div>
 
           {/* Services Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
             {services.map((service, index) => (
               <div
                 key={service.title}
@@ -207,7 +193,7 @@ export default function ServicesPage() {
             style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
           >
             Starting prices, not final ones — you get a fixed quote before any work
-            begins. All four sit at the lower end of Nairobi market rates for the same
+            begins. All three sit at the lower end of Nairobi market rates for the same
             scope. Domain, hosting and Safaricom/Daraja fees are billed at cost and
             paid directly by you, so nothing is marked up.
           </p>

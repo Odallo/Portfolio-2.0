@@ -17,13 +17,6 @@ const offerings = [
       "Catalogue, cart, checkout and Lipa na M-Pesa — with an admin panel for products and orders.",
     includes: ["M-Pesa checkout", "Order management", "Stock control", "3 months support"],
   },
-  {
-    title: "Non-profit & community",
-    price: "From KES 65,000",
-    description:
-      "Programmes, schedules, registrations and volunteer forms — at a discounted rate for mission-led organisations.",
-    includes: ["Programme pages", "Online registration", "Volunteer forms", "1 month support"],
-  },
 ];
 
 export default function HomeServices() {
@@ -60,7 +53,7 @@ export default function HomeServices() {
           no lock-in, no monthly ransom to keep your own site online.
         </p>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 gap-6">
           {offerings.map((item) => (
             <Card key={item.title} className="flex">
               <div className="flex flex-col h-full w-full">
