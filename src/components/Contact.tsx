@@ -261,8 +261,8 @@ export default function Contact() {
                     <select id="budget" name="budget" style={selectStyle}>
                       <option value="">Select</option>
                       <option value="Under KES 50,000">Under KES 50k</option>
-                      <option value="KES 50,000-90,000">KES 50k-90k</option>
-                      <option value="KES 90,000-150,000">KES 90k-150k</option>
+                      <option value="KES 50,000-100,000">KES 50k-100k</option>
+                      <option value="KES 100,000-150,000">KES 100k-150k</option>
                       <option value="KES 150,000+">KES 150k+</option>
                       <option value="Not sure yet">Not sure yet</option>
                     </select>

@@ -5,21 +5,21 @@ import { colors, typography } from "../lib/design-tokens";
 const offerings = [
   {
     title: "Business website",
-    price: "From KES 50,000",
+    price: "From KES 95,000",
     description:
       "A fast, mobile-first site with the pages you need, plus a dashboard to edit content yourself.",
     includes: ["Up to 10 pages", "Admin dashboard", "SEO basics", "2 months support"],
   },
   {
     title: "Online store",
-    price: "From KES 90,000",
+    price: "From KES 120,000",
     description:
       "Catalogue, cart, checkout and Lipa na M-Pesa — with an admin panel for products and orders.",
     includes: ["M-Pesa checkout", "Order management", "Stock control", "3 months support"],
   },
   {
     title: "Non-profit & community",
-    price: "From KES 60,000",
+    price: "From KES 65,000",
     description:
       "Programmes, schedules, registrations and volunteer forms — at a discounted rate for mission-led organisations.",
     includes: ["Programme pages", "Online registration", "Volunteer forms", "1 month support"],

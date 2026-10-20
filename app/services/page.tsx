@@ -19,7 +19,7 @@ const services = [
       "2 Revision Rounds",
       "1 Month Support"
     ],
-    price: "KES 25,000",
+    price: "KES 35,000",
     priceNote: "Small business · 2–3 weeks",
     popular: false
   },
@@ -34,7 +34,7 @@ const services = [
       "3 Revision Rounds",
       "2 Months Support"
     ],
-    price: "KES 50,000",
+    price: "KES 95,000",
     priceNote: "Most popular for growing teams",
     popular: true
   },
@@ -49,7 +49,7 @@ const services = [
       "Admin Panel",
       "3 Months Support"
     ],
-    price: "KES 90,000",
+    price: "KES 120,000",
     priceNote: "Includes M-Pesa checkout",
     popular: false
   },
@@ -63,7 +63,7 @@ const services = [
       "Volunteer & partner forms",
       "1 Month Support"
     ],
-    price: "KES 60,000",
+    price: "KES 65,000",
     priceNote: "Discounted for registered non-profits",
     popular: false
   }
@@ -207,7 +207,8 @@ export default function ServicesPage() {
             style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
           >
             Starting prices, not final ones — you get a fixed quote before any work
-            begins. Domain, hosting and Safaricom/Daraja fees are billed at cost and
+            begins. All four sit at the lower end of Nairobi market rates for the same
+            scope. Domain, hosting and Safaricom/Daraja fees are billed at cost and
             paid directly by you, so nothing is marked up.
           </p>
 
