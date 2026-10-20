@@ -1,20 +1,8 @@
-"use client";
-
-import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import Button from './ui/Button';
 import { colors, typography } from '../lib/design-tokens';
 
 export default function Hero() {
-  const [visible, setVisible] = useState(false);
-  const mounted = useRef(false);
-
-  useEffect(() => {
-    if (!mounted.current) {
-      mounted.current = true;
-      requestAnimationFrame(() => setVisible(true));
-    }
-  }, []);
-
   return (
     <section className="min-h-screen flex items-center px-6 relative overflow-hidden">
       {/* Subtle grid pattern */}
@@ -32,25 +20,22 @@ export default function Hero() {
         style={{ background: colors.accent }}
       />
 
-      <div className="max-w-6xl mx-auto w-full relative z-10">
+      <div className="max-w-6xl mx-auto w-full relative z-10 pt-24 pb-16">
         {/* Eyebrow */}
-        <div
-          className={`mb-6 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-          style={{ transitionDelay: '0.1s' }}
-        >
+        <div className="rise mb-6" style={{ animationDelay: '0.1s' }}>
           <span
             className="inline-flex items-center gap-2 text-xs uppercase tracking-widest"
             style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
           >
             <span className="w-8 h-px" style={{ background: colors.accent }} />
-            Software Developer
+            Websites &amp; web apps · Nairobi
           </span>
         </div>
 
         {/* Name */}
         <h1
-          className={`text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold leading-[0.9] mb-6 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-          style={{ fontFamily: typography.display.fontFamily, transitionDelay: '0.2s' }}
+          className="rise text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold leading-[0.9] mb-6"
+          style={{ fontFamily: typography.display.fontFamily, animationDelay: '0.2s' }}
         >
           Odallo
           <br />
@@ -59,31 +44,44 @@ export default function Hero() {
 
         {/* Tagline */}
         <p
-          className={`text-lg md:text-xl max-w-xl mb-10 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-          style={{ fontFamily: typography.body.fontFamily, color: colors.muted, transitionDelay: '0.3s' }}
+          className="rise text-lg md:text-xl max-w-xl mb-10"
+          style={{ fontFamily: typography.body.fontFamily, color: colors.muted, animationDelay: '0.3s' }}
         >
-          I build reliable, scalable digital solutions with clean code
-          and modern technologies. Specializing in React, Next.js, and TypeScript
-          on the frontend, with backend experience in Node.js, Python, and Laravel.
-          Open to opportunities where I can grow as an engineer and ship products
-          that solve real problems.
+          I design and build fast, accessible websites for Nairobi businesses and
+          organisations — with M-Pesa payments, online registration, and admin tools
+          your team can actually use. You own the code, the domain and the content.
         </p>
 
         {/* CTA */}
         <div
-          className={`flex flex-wrap gap-4 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-          style={{ transitionDelay: '0.4s' }}
+          className="rise flex flex-wrap items-center gap-4"
+          style={{ animationDelay: '0.4s' }}
         >
-          <Button href="/projects" variant="primary">View My Work</Button>
-          <Button href="/contact" variant="secondary">Get in Touch</Button>
-          <Button href="/resume.pdf" variant="ghost" download>Download Resume ↓</Button>
+          <Button href="/projects" variant="primary">See my work</Button>
+          <Button href="/contact" variant="secondary">Get a quote</Button>
+          <Link
+            href="/services"
+            className="text-sm underline-offset-4 hover:underline transition-colors"
+            style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
+          >
+            Services &amp; pricing →
+          </Link>
         </div>
 
-        {/* Terminal hint */}
-        <div
-          className={`mt-20 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-          style={{ transitionDelay: '0.6s' }}
+        {/* Secondary note */}
+        <p
+          className="rise mt-8 text-sm max-w-lg"
+          style={{ fontFamily: typography.body.fontFamily, color: colors.muted, animationDelay: '0.5s' }}
         >
+          Also open to full-time engineering roles —{' '}
+          <Link href="/about" className="underline underline-offset-4" style={{ color: colors.accent }}>
+            read more about me
+          </Link>
+          .
+        </p>
+
+        {/* Terminal hint */}
+        <div className="rise mt-16" style={{ animationDelay: '0.6s' }}>
           <div
             className="inline-flex items-center gap-2 text-xs"
             style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}

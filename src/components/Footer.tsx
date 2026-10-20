@@ -17,6 +17,36 @@ export default function Footer() {
           &copy; {new Date().getFullYear()} Odallo Eugine
         </span>
         <div className="flex items-center gap-6">
+          <a
+            href="mailto:odaloeugine@gmail.com"
+            className="text-xs transition-colors duration-200"
+            style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = colors.accent)}
+            onMouseLeave={(e) => (e.currentTarget.style.color = colors.muted)}
+          >
+            Email
+          </a>
+          <a
+            href="/resume.pdf"
+            download
+            className="text-xs transition-colors duration-200"
+            style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = colors.accent)}
+            onMouseLeave={(e) => (e.currentTarget.style.color = colors.muted)}
+          >
+            Resume ↓
+          </a>
+          <a
+            href="https://www.linkedin.com/in/odallo-eugine/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs transition-colors duration-200"
+            style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = colors.accent)}
+            onMouseLeave={(e) => (e.currentTarget.style.color = colors.muted)}
+          >
+            LinkedIn
+          </a>
           <Link
             href="/privacy-policy"
             className="text-xs transition-colors duration-200"

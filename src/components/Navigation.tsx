@@ -1,12 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { colors, typography } from "../lib/design-tokens";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -51,18 +53,25 @@ export default function Navigation() {
             </Link>
 
             <div className="hidden md:flex items-center gap-8">
-              {navLinks.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="text-sm transition-colors duration-200"
-                  style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}
-                  onMouseEnter={(e) => e.currentTarget.style.color = colors.accent}
-                  onMouseLeave={(e) => e.currentTarget.style.color = colors.muted}
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {navLinks.map((item) => {
+                const active = pathname === item.href;
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    aria-current={active ? "page" : undefined}
+                    className="text-sm transition-colors duration-200"
+                    style={{
+                      fontFamily: typography.body.fontFamily,
+                      color: active ? colors.accent : colors.muted,
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.color = colors.accent}
+                    onMouseLeave={(e) => e.currentTarget.style.color = active ? colors.accent : colors.muted}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
             </div>
 
             <button

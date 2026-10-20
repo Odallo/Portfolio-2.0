@@ -3,83 +3,9 @@
 import { useEffect, useState } from "react";
 import Card from "./ui/Card";
 import Button from "./ui/Button";
+import BrowserFrame from "./ui/BrowserFrame";
 import { colors, typography } from "../lib/design-tokens";
-
-type Project = {
-  title: string;
-  subtitle: string;
-  description: string;
-  highlights: string[];
-  tech: string[];
-  github: string;
-  website?: string;
-};
-
-const projects: Project[] = [
-  {
-    title: "Pulse Diagnostics",
-    subtitle: "Live E-commerce · M-Pesa",
-    description: "A live online store for a Nairobi medical, lab and hospital supplies supplier. Customers browse, add to cart and order, while the team manages products and orders from a private admin panel.",
-    highlights: [
-      "Product catalog with categories, search, cart and checkout",
-      "Lipa na M-Pesa Paybill payment flow with order tracking",
-      "Private admin: add/edit/delete products, image upload, stock and order status (Confirm / Delivered / Cancel)",
-      "Hosted database + Supabase storage; built for countrywide delivery",
-    ],
-    tech: ["Next.js", "TypeScript", "Tailwind", "M-Pesa", "Supabase"],
-    github: "https://github.com/Odallo/PulseDiagnosticss",
-    website: "https://pulse-diagnosticss.vercel.app/",
-  },
-  {
-    title: "MiniRDBMS",
-    subtitle: "PesaPal Junior Dev Challenge 2026",
-    description: "A lightweight relational database management system from scratch in Python. Supports SQL-like commands and demonstrates core database engine concepts — parsing, execution, storage, and indexing.",
-    highlights: [
-      "SQL-like syntax: CREATE, INSERT, SELECT, UPDATE, DELETE, JOIN",
-      "JSON-based persistent storage with primary key indexing",
-      "Layered architecture: parser → engine → storage → REPL",
-      "Interactive CLI and demo Flask web interface",
-    ],
-    tech: ["Python", "Flask", "Data Structures"],
-    github: "https://github.com/Odallo/Pesa-Pal",
-  },
-  {
-    title: "Weather App",
-    subtitle: "Decoupled Architecture",
-    description: "A production-style weather application with a Next.js + TypeScript frontend and a Laravel backend. Focused on clean separation of concerns and reliable API integration.",
-    highlights: [
-      "OpenWeatherMap API through a clean REST interface",
-      "Async data loading with graceful error handling",
-      "Decoupled frontend–backend architecture",
-    ],
-    tech: ["Next.js", "TypeScript", "Laravel"],
-    github: "https://github.com/Odallo/WeatherApplication",
-  },
-  {
-    title: "CLI Goal Tracker",
-    subtitle: "Local-first Productivity",
-    description: "A command-line application for tracking goals and monthly progress. Simple, fast, and future cloud-ready.",
-    highlights: [
-      "Persistent storage using SQLite",
-      "Clear and predictable CLI interface",
-      "Correctness and usability over complexity",
-    ],
-    tech: ["Node.js", "TypeScript", "SQLite"],
-    github: "https://github.com/Odallo/Personal-Goal-Tracker-2025",
-  },
-  {
-    title: "Hotel Management System",
-    subtitle: "Operations Platform",
-    description: "A system for managing reservations, customer records, and reporting, built around real-world operational workflows.",
-    highlights: [
-      "Business processes translated into application logic",
-      "Database-backed features with consistency",
-      "Structured system design fundamentals",
-    ],
-    tech: ["PHP", "Laravel", "Databases"],
-    github: "https://github.com/Odallo/Management-System",
-  },
-];
+import { projects } from "../lib/projects";
 
 export default function Projects() {
   const [visible, setVisible] = useState(false);
@@ -124,10 +50,9 @@ export default function Projects() {
           className="text-base mb-16 max-w-xl"
           style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}
         >
-          A selection of projects that showcase problem-solving and technical skills.
-          Each project represents a unique challenge and the opportunity to learn and
-          grow as a developer. From database systems to web applications, these projects
-          demonstrate my ability to work across the full stack.
+          Real products, shipped and running. Pulse Diagnostics is live with paying
+          customers — the rest are builds where I worked through the harder parts of
+          the stack: database engines, API design, and operational tooling.
         </p>
 
         <div className="space-y-6">
@@ -138,6 +63,18 @@ export default function Projects() {
               style={{ transitionDelay: `${index * 0.1}s` }}
             >
               <Card className="group">
+                {/* Screenshot */}
+                {project.image && (
+                  <div className="mb-8">
+                    <BrowserFrame
+                      src={project.image}
+                      alt={project.imageAlt ?? project.title}
+                      url={project.website}
+                      ratio="wide"
+                    />
+                  </div>
+                )}
+
                 <div className="grid md:grid-cols-12 gap-6 items-start">
                   {/* Left: Project info */}
                   <div className="md:col-span-5">
@@ -145,7 +82,7 @@ export default function Projects() {
                       className="text-xs mb-2 block"
                       style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
                     >
-                      {project.subtitle}
+                      {project.year} · {project.subtitle}
                     </span>
                     <h3
                       className="text-xl md:text-2xl font-bold mb-3"
@@ -177,12 +114,18 @@ export default function Projects() {
                     </div>
 
                     <div className="flex flex-wrap gap-3">
-                      <Button href={project.github} variant="secondary">
-                        View on GitHub →
-                      </Button>
-                      {project.website && (
-                        <Button href={project.website} variant="secondary">
-                          Live Site →
+                      {project.website ? (
+                        <>
+                          <Button href={project.website} variant="primary">
+                            Visit live site →
+                          </Button>
+                          <Button href={project.github} variant="secondary">
+                            View code
+                          </Button>
+                        </>
+                      ) : (
+                        <Button href={project.github} variant="secondary">
+                          View on GitHub →
                         </Button>
                       )}
                     </div>
@@ -222,6 +165,15 @@ export default function Projects() {
               </Card>
             </div>
           ))}
+        </div>
+
+        <div className="mt-12">
+          <p className="text-sm mb-4" style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}>
+            Older experiments and open-source work live on GitHub.
+          </p>
+          <Button href="https://github.com/Odallo" variant="ghost">
+            Browse all repositories →
+          </Button>
         </div>
       </div>
     </section>

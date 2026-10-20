@@ -126,7 +126,7 @@ export default function About() {
               style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}
             >
               My approach to development is practical and user-focused. I believe that
-              great software isn&apos;t just about writing code, it&apos;s about understanding
+              great software isn&apos;t just about writing code, 1it&apos;s about understanding
               the problem deeply and crafting solutions that are both elegant and
               effective. I&apos;m always looking for opportunities to collaborate with
               teams that share this philosophy.

@@ -9,11 +9,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Skills | Odallo Eugine",
     description: "Technical skills and tools used by Odallo Eugine: React, Next.js, TypeScript, Python, Node.js, Laravel, and more.",
-    images: ["/og-image.svg"],
+    images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/og-image.svg"],
+    images: ["/og-image.png"],
   },
   alternates: {
     canonical: "/skills",

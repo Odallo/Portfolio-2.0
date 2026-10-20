@@ -27,32 +27,32 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Odallo Eugine — Software Developer",
+    default: "Odallo Eugine — Web Developer in Nairobi",
     template: "%s | Odallo Eugine",
   },
-  description: "Software developer building reliable, scalable digital solutions with React, Next.js, TypeScript, and Python. Available for freelance and full-time opportunities.",
+  description: "Nairobi web developer building fast, accessible websites and web apps with M-Pesa payments, online registration and admin dashboards. Next.js, TypeScript, Supabase. Available for freelance projects and full-time roles.",
   metadataBase: new URL(siteUrl),
   openGraph: {
     type: "website",
-    locale: "en_US",
-    siteName: "Odallo Eugine — Software Developer",
-    title: "Odallo Eugine — Software Developer",
-    description: "Software developer building reliable, scalable digital solutions with React, Next.js, TypeScript, and Python.",
+    locale: "en_KE",
+    siteName: "Odallo Eugine — Web Developer",
+    title: "Odallo Eugine — Web Developer in Nairobi",
+    description: "Fast, accessible websites and web apps with M-Pesa payments, online registration and admin dashboards.",
     url: siteUrl,
     images: [
       {
-        url: `${siteUrl}/og-image.svg`,
+        url: `${siteUrl}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Odallo Eugine — Software Developer",
+        alt: "Odallo Eugine — web developer in Nairobi, Kenya",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Odallo Eugine — Software Developer",
-    description: "Software developer building reliable, scalable digital solutions with React, Next.js, TypeScript, and Python.",
-    images: [`${siteUrl}/og-image.svg`],
+    title: "Odallo Eugine — Web Developer in Nairobi",
+    description: "Fast, accessible websites and web apps with M-Pesa payments, online registration and admin dashboards.",
+    images: [`${siteUrl}/og-image.png`],
   },
   robots: {
     index: true,

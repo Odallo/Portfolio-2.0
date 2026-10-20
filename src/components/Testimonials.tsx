@@ -13,8 +13,18 @@ const testimonials = [
   },
 ];
 
-export default function Testimonials() {
-  const [visible, setVisible] = useState(false);
+export default function Testimonials({
+  showForm = true,
+  reveal = true,
+  sectionNumber = "05",
+  heading = "What Clients Say",
+}: {
+  showForm?: boolean;
+  reveal?: boolean;
+  sectionNumber?: string;
+  heading?: string;
+} = {}) {
+  const [visible, setVisible] = useState(!reveal);
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
@@ -26,6 +36,7 @@ export default function Testimonials() {
   }, []);
 
   useEffect(() => {
+    if (!reveal) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) setVisible(true);
@@ -35,7 +46,7 @@ export default function Testimonials() {
     const el = document.getElementById("testimonials");
     if (el) observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [reveal]);
 
   const inputStyle: React.CSSProperties = {
     width: "100%",
@@ -57,7 +68,7 @@ export default function Testimonials() {
             className="text-xs uppercase tracking-widest"
             style={{ fontFamily: typography.mono.fontFamily, color: colors.accent }}
           >
-            05
+            {sectionNumber}
           </span>
           <span className="w-12 h-px" style={{ background: colors.border }} />
           <span
@@ -72,7 +83,7 @@ export default function Testimonials() {
           className="text-3xl md:text-4xl font-bold mb-4"
           style={{ fontFamily: typography.display.fontFamily }}
         >
-          What Clients Say
+          {heading}
         </h1>
         <p
           className="text-base mb-16 max-w-xl"
@@ -139,6 +150,7 @@ export default function Testimonials() {
         </div>
 
         {/* Write a testimonial */}
+        {showForm && (
         <Card className="mt-16">
           <div className="max-w-2xl">
             <h2
@@ -245,6 +257,7 @@ export default function Testimonials() {
             )}
           </div>
         </Card>
+        )}
       </div>
     </section>
   );

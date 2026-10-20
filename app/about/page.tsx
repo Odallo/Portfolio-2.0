@@ -9,11 +9,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "About Odallo Eugine — Software Developer",
     description: "Learn about Odallo Eugine's background, skills, and passion for building clean, scalable software.",
-    images: ["/og-image.svg"],
+    images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/og-image.svg"],
+    images: ["/og-image.png"],
   },
   alternates: {
     canonical: "/about",

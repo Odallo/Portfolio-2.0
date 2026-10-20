@@ -9,11 +9,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Testimonials | Odallo Eugine",
     description: "What clients say about working with Odallo Eugine — and leave your own testimonial.",
-    images: ["/og-image.svg"],
+    images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/og-image.svg"],
+    images: ["/og-image.png"],
   },
   alternates: {
     canonical: "/testimonials",

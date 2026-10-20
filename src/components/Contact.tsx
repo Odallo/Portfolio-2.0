@@ -249,6 +249,7 @@ export default function Contact() {
                     <option value="Custom Website">Custom Website</option>
                     <option value="Web Application">Web Application</option>
                     <option value="E-commerce">E-commerce</option>
+                    <option value="Community / Non-profit">Community / Non-profit</option>
                     <option value="Other">Other</option>
                   </select>
                 </div>
@@ -259,10 +260,11 @@ export default function Contact() {
                     </label>
                     <select id="budget" name="budget" style={selectStyle}>
                       <option value="">Select</option>
-                      <option value="KES 25,000-35,000">KES 25k-35k</option>
-                      <option value="KES 50,000-80,000">KES 50k-80k</option>
+                      <option value="Under KES 50,000">Under KES 50k</option>
+                      <option value="KES 50,000-90,000">KES 50k-90k</option>
                       <option value="KES 90,000-150,000">KES 90k-150k</option>
                       <option value="KES 150,000+">KES 150k+</option>
+                      <option value="Not sure yet">Not sure yet</option>
                     </select>
                   </div>
                   <div className="space-y-1">
