@@ -98,7 +98,7 @@ export default function About() {
             >
               I&apos;m a software developer who enjoys building things that work well and are
               built to last. My interest in web development started with figuring out how
-              websites actually function — that curiosity turned into a career focused on
+              websites actually function, that curiosity turned into a career focused on
               creating clean, maintainable code.
             </p>
 
@@ -126,7 +126,7 @@ export default function About() {
               style={{ fontFamily: typography.body.fontFamily, color: colors.muted }}
             >
               My approach to development is practical and user-focused. I believe that
-              great software isn&apos;t just about writing code — it&apos;s about understanding
+              great software isn&apos;t just about writing code, it&apos;s about understanding
               the problem deeply and crafting solutions that are both elegant and
               effective. I&apos;m always looking for opportunities to collaborate with
               teams that share this philosophy.
