@@ -114,18 +114,14 @@ export default function Projects() {
                     </div>
 
                     <div className="flex flex-wrap gap-3">
-                      {project.website ? (
-                        <>
-                          <Button href={project.website} variant="primary">
-                            Visit live site →
-                          </Button>
-                          <Button href={project.github} variant="secondary">
-                            View code
-                          </Button>
-                        </>
-                      ) : (
+                      {project.website && (
+                        <Button href={project.website} variant="primary">
+                          Visit live site →
+                        </Button>
+                      )}
+                      {project.github && (
                         <Button href={project.github} variant="secondary">
-                          View on GitHub →
+                          {project.website ? "View code" : "View on GitHub →"}
                         </Button>
                       )}
                     </div>

@@ -5,10 +5,12 @@ export type Project = {
   description: string;
   highlights: string[];
   tech: string[];
-  github: string;
+  github?: string;
   website?: string;
   image?: string;
   imageAlt?: string;
+  /** Looping launch video shown in the frame instead of the still image. */
+  video?: string;
   year: string;
   type: "client" | "personal";
 };
@@ -34,6 +36,25 @@ export const projects: Project[] = [
       "Pulse Diagnostics storefront showing product categories, M-Pesa payment details and featured products",
     year: "2025",
     type: "client",
+  },
+  {
+    slug: "mpesa-stk-push",
+    title: "M-Pesa STK Push Demo",
+    subtitle: "Daraja API · payments",
+    description:
+      "A working STK Push integration on Safaricom's Daraja API. You type a phone number and an amount, and the payment prompt lands on the customer's own phone — no Paybill digits to recite, no till number to remember.",
+    highlights: [
+      "OAuth token, timestamped password and STK Push request built against Daraja",
+      "Callback endpoint receives the M-Pesa confirmation; status query polls the transaction",
+      "Two fields and one button — the entire integration surface is phone + amount",
+      "Sandbox shortcode swaps for a production Till without touching the UI",
+    ],
+    tech: ["Next.js", "Node.js", "Express", "M-Pesa", "Daraja"],
+    image: "/work/mpesa-stk.jpg",
+    imageAlt:
+      "M-Pesa STK Push demo card beside a phone showing the M-Pesa PIN prompt and a confirmed KSh 250 payment",
+    year: "2026",
+    type: "personal",
   },
   {
     slug: "minirdbms",

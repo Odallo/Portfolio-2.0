@@ -129,7 +129,7 @@ export default function HomeWork() {
                   {project.description}
                 </p>
                 <Link
-                  href={project.github}
+                  href={project.github!}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm transition-colors"

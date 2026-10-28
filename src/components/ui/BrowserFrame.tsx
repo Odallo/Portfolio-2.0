@@ -51,7 +51,7 @@ export default function BrowserFrame({
           className="ml-auto text-[10px] uppercase tracking-wider flex-shrink-0"
           style={{ fontFamily: typography.mono.fontFamily, color: colors.green }}
         >
-          ● Live
+          ● {url ? "Live" : "Demo"}
         </span>
       </div>
       {ratio === "wide" ? (
