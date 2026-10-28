@@ -1,10 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import { colors, typography } from "../../lib/design-tokens";
 
 type BrowserFrameProps = {
-  src: string;
+  src?: string;
+  /** Looping launch video shown instead of the image; `src` becomes its poster. */
+  video?: string;
   alt: string;
   url?: string;
   width?: number;
@@ -17,6 +20,7 @@ type BrowserFrameProps = {
 
 export default function BrowserFrame({
   src,
+  video,
   alt,
   url,
   width = 1440,
@@ -25,6 +29,25 @@ export default function BrowserFrame({
   priority = false,
   ratio = "natural",
 }: BrowserFrameProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(true);
+
+  // Respect reduced-motion: don't start a looping video unprompted.
+  // `onPause` below keeps the button in sync, so no setState here.
+  useEffect(() => {
+    if (!video) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      videoRef.current?.pause();
+    }
+  }, [video]);
+
+  function toggle() {
+    const el = videoRef.current;
+    if (!el) return;
+    if (el.paused) void el.play();
+    else el.pause();
+  }
+
   return (
     <div
       className="overflow-hidden"
@@ -47,17 +70,45 @@ export default function BrowserFrame({
             {url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
           </span>
         )}
-        <span
-          className="ml-auto text-[10px] uppercase tracking-wider flex-shrink-0"
-          style={{ fontFamily: typography.mono.fontFamily, color: colors.green }}
-        >
-          ● {url ? "Live" : "Demo"}
-        </span>
+        <div className="ml-auto flex items-center gap-3 flex-shrink-0">
+          {video && (
+            <button
+              type="button"
+              onClick={toggle}
+              aria-label={playing ? "Pause video" : "Play video"}
+              className="text-[10px] uppercase tracking-wider transition-colors"
+              style={{ fontFamily: typography.mono.fontFamily, color: colors.muted }}
+            >
+              {playing ? "❚❚ Pause" : "▶ Play"}
+            </button>
+          )}
+          <span
+            className="text-[10px] uppercase tracking-wider"
+            style={{ fontFamily: typography.mono.fontFamily, color: colors.green }}
+          >
+            ● {url ? "Live" : "Demo"}
+          </span>
+        </div>
       </div>
-      {ratio === "wide" ? (
+      {video ? (
+        <video
+          ref={videoRef}
+          className="block w-full h-auto"
+          src={video}
+          poster={src}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-label={alt}
+          onPlay={() => setPlaying(true)}
+          onPause={() => setPlaying(false)}
+        />
+      ) : ratio === "wide" ? (
         <div className="relative w-full aspect-[2.4/1]">
           <Image
-            src={src}
+            src={src!}
             alt={alt}
             fill
             sizes={sizes}
@@ -67,7 +118,7 @@ export default function BrowserFrame({
         </div>
       ) : (
         <Image
-          src={src}
+          src={src!}
           alt={alt}
           width={width}
           height={height}

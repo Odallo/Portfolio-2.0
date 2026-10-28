@@ -68,6 +68,7 @@ export default function Projects() {
                   <div className="mb-8">
                     <BrowserFrame
                       src={project.image}
+                      video={project.video}
                       alt={project.imageAlt ?? project.title}
                       url={project.website}
                       ratio="wide"

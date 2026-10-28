@@ -50,6 +50,7 @@ export const projects: Project[] = [
       "Sandbox shortcode swaps for a production Till without touching the UI",
     ],
     tech: ["Next.js", "Node.js", "Express", "M-Pesa", "Daraja"],
+    video: "/work/mpesa-stk.mp4",
     image: "/work/mpesa-stk.jpg",
     imageAlt:
       "M-Pesa STK Push demo card beside a phone showing the M-Pesa PIN prompt and a confirmed KSh 250 payment",
